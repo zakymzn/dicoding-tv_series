@@ -17,19 +17,26 @@ class Tv extends Equatable {
     required this.originalName,
   });
 
-  final String? posterPath;
-  final double? popularity;
-  final int id;
-  final String? backdropPath;
-  final double? voteAverage;
-  final String? overview;
-  final DateTime? firstAirDate;
-  final List<String>? originCountry;
-  final List<int>? genreIds;
-  final String? originalLanguage;
-  final int? voteCount;
-  final String? name;
-  final String? originalName;
+  Tv.watchlist({
+    required this.id,
+    required this.overview,
+    required this.posterPath,
+    required this.name,
+  });
+
+  String? posterPath;
+  double? popularity;
+  int id;
+  String? backdropPath;
+  double? voteAverage;
+  String? overview;
+  DateTime? firstAirDate;
+  List<String>? originCountry;
+  List<int>? genreIds;
+  String? originalLanguage;
+  int? voteCount;
+  String? name;
+  String? originalName;
 
   @override
   // TODO: implement props
