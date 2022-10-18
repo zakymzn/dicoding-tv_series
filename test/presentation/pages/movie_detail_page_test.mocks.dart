@@ -33,11 +33,12 @@ class _FakeGetMovieRecommendations extends _i1.Fake
     implements _i3.GetMovieRecommendations {}
 
 class _FakeGetWatchListStatus extends _i1.Fake
-    implements _i4.GetWatchListStatus {}
+    implements _i4.GetMovieWatchListStatus {}
 
-class _FakeSaveWatchlist extends _i1.Fake implements _i5.SaveWatchlist {}
+class _FakeSaveWatchlist extends _i1.Fake implements _i5.SaveMovieWatchlist {}
 
-class _FakeRemoveWatchlist extends _i1.Fake implements _i6.RemoveWatchlist {}
+class _FakeRemoveWatchlist extends _i1.Fake
+    implements _i6.RemoveMovieWatchlist {}
 
 class _FakeMovieDetail extends _i1.Fake implements _i7.MovieDetail {}
 
@@ -60,17 +61,17 @@ class MockMovieDetailNotifier extends _i1.Mock
               returnValue: _FakeGetMovieRecommendations())
           as _i3.GetMovieRecommendations);
   @override
-  _i4.GetWatchListStatus get getWatchListStatus =>
-      (super.noSuchMethod(Invocation.getter(#getWatchListStatus),
-          returnValue: _FakeGetWatchListStatus()) as _i4.GetWatchListStatus);
+  _i4.GetMovieWatchListStatus get getWatchListStatus => (super.noSuchMethod(
+      Invocation.getter(#getWatchListStatus),
+      returnValue: _FakeGetWatchListStatus()) as _i4.GetMovieWatchListStatus);
   @override
-  _i5.SaveWatchlist get saveWatchlist =>
+  _i5.SaveMovieWatchlist get saveWatchlist =>
       (super.noSuchMethod(Invocation.getter(#saveWatchlist),
-          returnValue: _FakeSaveWatchlist()) as _i5.SaveWatchlist);
+          returnValue: _FakeSaveWatchlist()) as _i5.SaveMovieWatchlist);
   @override
-  _i6.RemoveWatchlist get removeWatchlist =>
+  _i6.RemoveMovieWatchlist get removeWatchlist =>
       (super.noSuchMethod(Invocation.getter(#removeWatchlist),
-          returnValue: _FakeRemoveWatchlist()) as _i6.RemoveWatchlist);
+          returnValue: _FakeRemoveWatchlist()) as _i6.RemoveMovieWatchlist);
   @override
   _i7.MovieDetail get movie => (super.noSuchMethod(Invocation.getter(#movie),
       returnValue: _FakeMovieDetail()) as _i7.MovieDetail);

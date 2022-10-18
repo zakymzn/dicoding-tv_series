@@ -18,9 +18,9 @@ import 'movie_detail_notifier_test.mocks.dart';
 @GenerateMocks([
   GetMovieDetail,
   GetMovieRecommendations,
-  GetWatchListStatus,
-  SaveWatchlist,
-  RemoveWatchlist,
+  GetMovieWatchListStatus,
+  SaveMovieWatchlist,
+  RemoveMovieWatchlist,
 ])
 void main() {
   late MovieDetailNotifier provider;
