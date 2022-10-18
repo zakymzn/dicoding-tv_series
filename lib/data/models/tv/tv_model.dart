@@ -1,4 +1,5 @@
 // import 'package:ditonton/domain/entities/tv.dart';
+import 'package:ditonton/domain/entities/tv/tv.dart';
 import 'package:equatable/equatable.dart';
 
 class TvModel extends Equatable {
@@ -64,6 +65,24 @@ class TvModel extends Equatable {
         "name": name,
         "original_name": originalName,
       };
+
+  Tv toEntity() {
+    return Tv(
+      posterPath: this.posterPath,
+      popularity: this.popularity,
+      id: this.id,
+      backdropPath: this.backdropPath,
+      voteAverage: this.voteAverage,
+      overview: this.overview,
+      firstAirDate: this.firstAirDate,
+      originCountry: this.originCountry,
+      genreIds: this.genreIds,
+      originalLanguage: this.originalLanguage,
+      voteCount: this.voteCount,
+      name: this.name,
+      originalName: this.originalName,
+    );
+  }
 
   @override
   // TODO: implement props
