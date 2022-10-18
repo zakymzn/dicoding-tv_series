@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:ditonton/data/models/movie_table.dart';
-import 'package:ditonton/data/models/tv_table.dart';
+import 'package:ditonton/data/models/movie/movie_table.dart';
+import 'package:ditonton/data/models/tv/tv_table.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
@@ -33,7 +33,8 @@ class DatabaseHelper {
   }
 
   void _onCreate(Database db, int version) async {
-    await db.execute('''
+    await db.execute(
+        '''
       CREATE TABLE  $_movieTableWatchList (
         id INTEGER PRIMARY KEY,
         title TEXT,
