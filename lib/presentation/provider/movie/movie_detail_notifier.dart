@@ -15,16 +15,16 @@ class MovieDetailNotifier extends ChangeNotifier {
 
   final GetMovieDetail getMovieDetail;
   final GetMovieRecommendations getMovieRecommendations;
-  final GetMovieWatchListStatus getWatchListStatus;
-  final SaveMovieWatchlist saveWatchlist;
-  final RemoveMovieWatchlist removeWatchlist;
+  final GetMovieWatchListStatus getMovieWatchListStatus;
+  final SaveMovieWatchlist saveMovieWatchlist;
+  final RemoveMovieWatchlist removeMovieWatchlist;
 
   MovieDetailNotifier({
     required this.getMovieDetail,
     required this.getMovieRecommendations,
-    required this.getWatchListStatus,
-    required this.saveWatchlist,
-    required this.removeWatchlist,
+    required this.getMovieWatchListStatus,
+    required this.saveMovieWatchlist,
+    required this.removeMovieWatchlist,
   });
 
   late MovieDetail _movie;
@@ -80,7 +80,7 @@ class MovieDetailNotifier extends ChangeNotifier {
   String get watchlistMessage => _watchlistMessage;
 
   Future<void> addWatchlist(MovieDetail movie) async {
-    final result = await saveWatchlist.execute(movie);
+    final result = await saveMovieWatchlist.execute(movie);
 
     await result.fold(
       (failure) async {
@@ -91,11 +91,11 @@ class MovieDetailNotifier extends ChangeNotifier {
       },
     );
 
-    await loadWatchlistStatus(movie.id);
+    await loadMovieWatchlistStatus(movie.id);
   }
 
   Future<void> removeFromWatchlist(MovieDetail movie) async {
-    final result = await removeWatchlist.execute(movie);
+    final result = await removeMovieWatchlist.execute(movie);
 
     await result.fold(
       (failure) async {
@@ -106,11 +106,11 @@ class MovieDetailNotifier extends ChangeNotifier {
       },
     );
 
-    await loadWatchlistStatus(movie.id);
+    await loadMovieWatchlistStatus(movie.id);
   }
 
-  Future<void> loadWatchlistStatus(int id) async {
-    final result = await getWatchListStatus.execute(id);
+  Future<void> loadMovieWatchlistStatus(int id) async {
+    final result = await getMovieWatchListStatus.execute(id);
     _isAddedtoWatchlist = result;
     notifyListeners();
   }

@@ -41,9 +41,9 @@ void main() {
     provider = MovieDetailNotifier(
       getMovieDetail: mockGetMovieDetail,
       getMovieRecommendations: mockGetMovieRecommendations,
-      getWatchListStatus: mockGetWatchlistStatus,
-      saveWatchlist: mockSaveWatchlist,
-      removeWatchlist: mockRemoveWatchlist,
+      getMovieWatchListStatus: mockGetWatchlistStatus,
+      saveMovieWatchlist: mockSaveWatchlist,
+      removeMovieWatchlist: mockRemoveWatchlist,
     )..addListener(() {
         listenerCallCount += 1;
       });
@@ -160,7 +160,7 @@ void main() {
       // arrange
       when(mockGetWatchlistStatus.execute(1)).thenAnswer((_) async => true);
       // act
-      await provider.loadWatchlistStatus(1);
+      await provider.loadMovieWatchlistStatus(1);
       // assert
       expect(provider.isAddedToWatchlist, true);
     });
