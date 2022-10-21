@@ -19,13 +19,13 @@ class TvModel extends Equatable {
     required this.originalName,
   });
 
-  final String posterPath;
+  final String? posterPath;
   final double popularity;
   final int id;
-  final String backdropPath;
+  final String? backdropPath;
   final double voteAverage;
   final String overview;
-  final DateTime firstAirDate;
+  final DateTime? firstAirDate;
   final List<String> originCountry;
   final List<int> genreIds;
   final String originalLanguage;
@@ -57,7 +57,7 @@ class TvModel extends Equatable {
         "vote_average": voteAverage,
         "overview": overview,
         "first_air_date":
-            "${firstAirDate.year.toString().padLeft(4, '0')}-${firstAirDate.month.toString().padLeft(2, '0')}-${firstAirDate.day.toString().padLeft(2, '0')}",
+            "${firstAirDate!.year.toString().padLeft(4, '0')}-${firstAirDate!.month.toString().padLeft(2, '0')}-${firstAirDate!.day.toString().padLeft(2, '0')}",
         "origin_country": List<dynamic>.from(originCountry.map((x) => x)),
         "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
         "original_language": originalLanguage,
