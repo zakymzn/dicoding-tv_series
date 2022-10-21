@@ -61,7 +61,7 @@ class TvDetailNotifier extends ChangeNotifier {
         _recommendationState = RequestState.Loading;
         _tv = tv;
         notifyListeners();
-        recommendationResult.fold(
+        recommendationResult?.fold(
           (failure) {
             _recommendationState = RequestState.Error;
             _message = failure.message;

@@ -4,7 +4,7 @@ import 'package:ditonton/domain/usecases/tv/get_watchlist_tv.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
-class WatchListTvNotifier extends ChangeNotifier {
+class WatchlistTvNotifier extends ChangeNotifier {
   var _watchlistTv = <Tv>[];
   List<Tv> get watchlistTv => _watchlistTv;
 
@@ -14,7 +14,7 @@ class WatchListTvNotifier extends ChangeNotifier {
   String _message = '';
   String get message => _message;
 
-  WatchListTvNotifier({required this.getWatchListTv});
+  WatchlistTvNotifier({required this.getWatchListTv});
 
   final GetWatchListTv getWatchListTv;
 
