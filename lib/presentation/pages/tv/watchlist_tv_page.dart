@@ -1,14 +1,12 @@
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/common/utils.dart';
-import 'package:ditonton/presentation/provider/movie/watchlist_movie_notifier.dart';
 import 'package:ditonton/presentation/provider/tv/watchlist_tv_notifier.dart';
+import 'package:ditonton/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 
 class WatchlistTvPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist-tv';
-  // const WatchlistTvPage({Key? key}) : super(key: key);
 
   @override
   State<WatchlistTvPage> createState() => _WatchlistTvPageState();
@@ -30,8 +28,7 @@ class _WatchlistTvPageState extends State<WatchlistTvPage> with RouteAware {
   }
 
   void didPopNext() {
-    Provider.of<WatchlistMovieNotifier>(context, listen: false)
-        .fetchWatchlistMovies();
+    Provider.of<WatchlistTvNotifier>(context, listen: false).fetchWatchlistTv();
   }
 
   @override

@@ -165,6 +165,7 @@ class TvDetailResponse extends Equatable {
       backdropPath: this.backdropPath,
       lastEpisodeToAir: this.lastEpisodeToAir.toEntity(),
       name: this.name,
+      episodeRunTime: this.episodeRunTime,
       firstAirDate: this.firstAirDate,
       nextEpisodeToAir: this.nextEpisodeToAir,
       numberOfEpisodes: this.numberOfEpisodes,

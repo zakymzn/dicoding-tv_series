@@ -31,7 +31,7 @@ class WatchlistTvNotifier extends ChangeNotifier {
       },
       (tvData) {
         _watchlistState = RequestState.Loaded;
-        _watchlistState = tvData;
+        _watchlistTv = tvData;
         notifyListeners();
       },
     );

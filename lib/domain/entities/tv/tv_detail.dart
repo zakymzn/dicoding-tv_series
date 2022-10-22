@@ -9,6 +9,7 @@ class TvDetail extends Equatable {
     required this.backdropPath,
     required this.lastEpisodeToAir,
     required this.name,
+    required this.episodeRunTime,
     required this.firstAirDate,
     required this.nextEpisodeToAir,
     required this.numberOfEpisodes,
@@ -28,6 +29,7 @@ class TvDetail extends Equatable {
   final String? backdropPath;
   final LastEpisodeToAir lastEpisodeToAir;
   final String name;
+  final List<dynamic> episodeRunTime;
   final DateTime firstAirDate;
   final dynamic nextEpisodeToAir;
   final int numberOfEpisodes;
@@ -48,6 +50,7 @@ class TvDetail extends Equatable {
         adult,
         backdropPath,
         lastEpisodeToAir,
+        episodeRunTime,
         name,
         firstAirDate,
         nextEpisodeToAir,

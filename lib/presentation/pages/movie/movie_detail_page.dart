@@ -43,7 +43,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
           } else if (provider.movieState == RequestState.Loaded) {
             final movie = provider.movie;
             return SafeArea(
-              child: DetailContent(
+              child: MovieDetailContent(
                 movie,
                 provider.movieRecommendations,
                 provider.isAddedToWatchlist,
@@ -58,12 +58,12 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   }
 }
 
-class DetailContent extends StatelessWidget {
+class MovieDetailContent extends StatelessWidget {
   final MovieDetail movie;
   final List<Movie> recommendations;
   final bool isAddedWatchlist;
 
-  DetailContent(this.movie, this.recommendations, this.isAddedWatchlist);
+  MovieDetailContent(this.movie, this.recommendations, this.isAddedWatchlist);
 
   @override
   Widget build(BuildContext context) {
