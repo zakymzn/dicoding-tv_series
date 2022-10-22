@@ -68,12 +68,19 @@ class _HomeTvPageState extends State<HomeTvPage> {
               onTap: () {
                 Navigator.pushNamed(context, WatchListPage.ROUTE_NAME);
               },
-            )
+            ),
+            ListTile(
+              leading: Icon(Icons.info_outline),
+              title: Text('About'),
+              onTap: () {
+                Navigator.pushNamed(context, AboutPage.ROUTE_NAME);
+              },
+            ),
           ],
         ),
       ),
       appBar: AppBar(
-        title: Text('Ditonton'),
+        title: Text('Ditonton Tv'),
         actions: [
           IconButton(
             onPressed: () {
