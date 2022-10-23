@@ -191,6 +191,7 @@ class TvList extends StatelessWidget {
     return Container(
       height: 200,
       child: ListView.builder(
+        scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           final tv = tvSeries[index];
           return Container(
