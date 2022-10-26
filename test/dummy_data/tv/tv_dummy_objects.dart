@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:ditonton/data/models/tv/tv_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/last_episode_to_air.dart';
@@ -26,7 +25,6 @@ final testTv = Tv(
 final testTvList = [testTv];
 
 final testTvDetail = TvDetail(
-  adult: false,
   backdropPath: "/ypLoTftyF5EpGBxJas4PThIdiU4.jpg",
   lastEpisodeToAir: LastEpisodeToAir(
     airDate: DateTime.tryParse("2017-06-27")!,

@@ -5,7 +5,6 @@ import 'package:equatable/equatable.dart';
 
 class TvDetail extends Equatable {
   TvDetail({
-    required this.adult,
     required this.backdropPath,
     required this.lastEpisodeToAir,
     required this.name,
@@ -25,7 +24,6 @@ class TvDetail extends Equatable {
     required this.voteCount,
   });
 
-  final bool adult;
   final String? backdropPath;
   final LastEpisodeToAir lastEpisodeToAir;
   final String name;
@@ -47,7 +45,6 @@ class TvDetail extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-        adult,
         backdropPath,
         lastEpisodeToAir,
         episodeRunTime,

@@ -8,7 +8,6 @@ import 'package:equatable/equatable.dart';
 
 class TvDetailResponse extends Equatable {
   TvDetailResponse({
-    required this.adult,
     required this.backdropPath,
     required this.createdBy,
     required this.episodeRunTime,
@@ -42,7 +41,6 @@ class TvDetailResponse extends Equatable {
     required this.voteCount,
   });
 
-  final bool adult;
   final dynamic backdropPath;
   final List<CreatedByModel> createdBy;
   final List<dynamic> episodeRunTime;
@@ -77,7 +75,6 @@ class TvDetailResponse extends Equatable {
 
   factory TvDetailResponse.fromJson(Map<String, dynamic> json) =>
       TvDetailResponse(
-        adult: json["adult"],
         backdropPath: json["backdrop_path"],
         createdBy: List<CreatedByModel>.from(
             json["created_by"].map((x) => CreatedByModel.fromJson(x))),
@@ -120,7 +117,6 @@ class TvDetailResponse extends Equatable {
       );
 
   Map<String, dynamic> toJson() => {
-        "adult": adult,
         "backdrop_path": backdropPath,
         "created_by": List<dynamic>.from(createdBy.map((x) => x.toJson())),
         "episode_run_time": List<dynamic>.from(episodeRunTime.map((x) => x)),
@@ -161,7 +157,6 @@ class TvDetailResponse extends Equatable {
 
   TvDetail toEntity() {
     return TvDetail(
-      adult: this.adult,
       backdropPath: this.backdropPath,
       lastEpisodeToAir: this.lastEpisodeToAir.toEntity(),
       name: this.name,
@@ -185,7 +180,6 @@ class TvDetailResponse extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-        adult,
         backdropPath,
         createdBy,
         episodeRunTime,

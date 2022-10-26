@@ -11,7 +11,6 @@ class LastEpisodeToAirModel extends Equatable {
     required this.productionCode,
     required this.runtime,
     required this.seasonNumber,
-    required this.showId,
     required this.stillPath,
     required this.voteAverage,
     required this.voteCount,
@@ -25,7 +24,6 @@ class LastEpisodeToAirModel extends Equatable {
   final String productionCode;
   final dynamic runtime;
   final int seasonNumber;
-  final int showId;
   final dynamic stillPath;
   final double voteAverage;
   final int voteCount;
@@ -40,7 +38,6 @@ class LastEpisodeToAirModel extends Equatable {
         productionCode: json["production_code"],
         runtime: json["runtime"],
         seasonNumber: json["season_number"],
-        showId: json["show_id"],
         stillPath: json["still_path"],
         voteAverage: json["vote_average"],
         voteCount: json["vote_count"],
@@ -56,7 +53,6 @@ class LastEpisodeToAirModel extends Equatable {
         "production_code": productionCode,
         "runtime": runtime,
         "season_number": seasonNumber,
-        "show_id": showId,
         "still_path": stillPath,
         "vote_average": voteAverage,
         "vote_count": voteCount,
@@ -87,7 +83,6 @@ class LastEpisodeToAirModel extends Equatable {
         productionCode,
         runtime,
         seasonNumber,
-        showId,
         stillPath,
         voteAverage,
         voteCount,
