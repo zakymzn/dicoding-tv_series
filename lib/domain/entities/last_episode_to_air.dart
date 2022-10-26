@@ -20,7 +20,7 @@ class LastEpisodeToAir extends Equatable {
   final String overview;
   final dynamic runtime;
   final int seasonNumber;
-  final int voteAverage;
+  final double voteAverage;
   final int voteCount;
 
   @override

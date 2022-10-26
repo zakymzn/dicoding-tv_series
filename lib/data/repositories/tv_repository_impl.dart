@@ -80,7 +80,7 @@ class TvRepositoryImpl implements TvRepository {
   }
 
   @override
-  Future<Either<Failure, List<Tv>>> getWatchListTv() async {
+  Future<Either<Failure, List<Tv>>> getWatchlistTv() async {
     final result = await localDataSource.getWatchlistTv();
     return Right(result.map((data) => data.toEntity()).toList());
   }

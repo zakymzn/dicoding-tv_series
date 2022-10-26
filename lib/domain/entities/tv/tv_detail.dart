@@ -41,7 +41,7 @@ class TvDetail extends Equatable {
   final String originalName;
   final String overview;
   final String posterPath;
-  final int voteAverage;
+  final double voteAverage;
   final int voteCount;
 
   @override

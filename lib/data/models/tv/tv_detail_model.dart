@@ -72,7 +72,7 @@ class TvDetailResponse extends Equatable {
   final String status;
   final String tagline;
   final String type;
-  final int voteAverage;
+  final double voteAverage;
   final int voteCount;
 
   factory TvDetailResponse.fromJson(Map<String, dynamic> json) =>

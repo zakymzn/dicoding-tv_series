@@ -27,7 +27,7 @@ class LastEpisodeToAirModel extends Equatable {
   final int seasonNumber;
   final int showId;
   final dynamic stillPath;
-  final int voteAverage;
+  final double voteAverage;
   final int voteCount;
 
   factory LastEpisodeToAirModel.fromJson(Map<String, dynamic> json) =>

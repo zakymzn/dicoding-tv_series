@@ -32,7 +32,7 @@ class DatabaseHelper {
     return db;
   }
 
-  void _onCreate(Database db, int version) async {
+  _onCreate(Database db, int version) async {
     await db.execute(
         '''
       CREATE TABLE  $_movieTableWatchList (
@@ -56,7 +56,7 @@ class DatabaseHelper {
     return await db!.insert(_movieTableWatchList, movie.toJson());
   }
 
-  Future<int> insertTvWatchList(TvTable tv) async {
+  Future<int> insertTvWatchlist(TvTable tv) async {
     final db = await database;
     return await db!.insert(_tvTableWatchList, tv.toJson());
   }
@@ -70,7 +70,7 @@ class DatabaseHelper {
     );
   }
 
-  Future<int> removeTvWatchList(TvTable tv) async {
+  Future<int> removeTvWatchlist(TvTable tv) async {
     final db = await database;
     return await db!.delete(
       _tvTableWatchList,
