@@ -1,4 +1,3 @@
-// import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/domain/entities/tv/tv.dart';
 import 'package:equatable/equatable.dart';
 
