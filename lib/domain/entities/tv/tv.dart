@@ -30,7 +30,7 @@ class Tv extends Equatable {
   String? backdropPath;
   double? voteAverage;
   String? overview;
-  DateTime? firstAirDate;
+  String? firstAirDate;
   List<String>? originCountry;
   List<int>? genreIds;
   String? originalLanguage;

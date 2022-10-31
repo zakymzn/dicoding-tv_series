@@ -28,7 +28,7 @@ class TvDetail extends Equatable {
   final LastEpisodeToAir lastEpisodeToAir;
   final String name;
   final List<dynamic> episodeRunTime;
-  final DateTime firstAirDate;
+  final String firstAirDate;
   final dynamic nextEpisodeToAir;
   final int numberOfEpisodes;
   final int numberOfSeasons;

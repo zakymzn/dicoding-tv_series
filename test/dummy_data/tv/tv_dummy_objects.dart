@@ -13,7 +13,7 @@ final testTv = Tv(
   voteAverage: 5.04,
   overview:
       "Based on the Pretty Little Liars series of young adult novels by Sara Shepard, the series follows the lives of four girls — Spencer, Hanna, Aria, and Emily — whose clique falls apart after the disappearance of their queen bee, Alison. One year later, they begin receiving messages from someone using the name \"A\" who threatens to expose their secrets — including long-hidden ones they thought only Alison knew.",
-  firstAirDate: DateTime.tryParse("2010-06-08"),
+  firstAirDate: "2010-06-08",
   originCountry: ["US"],
   genreIds: [18, 9648],
   originalLanguage: "en",
@@ -27,7 +27,7 @@ final testTvList = [testTv];
 final testTvDetail = TvDetail(
   backdropPath: "/ypLoTftyF5EpGBxJas4PThIdiU4.jpg",
   lastEpisodeToAir: LastEpisodeToAir(
-    airDate: DateTime.tryParse("2017-06-27")!,
+    airDate: "2017-06-27",
     episodeNumber: 20,
     id: 1328760,
     name: "Til DeAth Do Us PArt",
@@ -39,7 +39,7 @@ final testTvDetail = TvDetail(
   ),
   name: "Pretty Little Liars",
   episodeRunTime: [41],
-  firstAirDate: DateTime.tryParse("2010-06-08")!,
+  firstAirDate: "2010-06-08",
   nextEpisodeToAir: null,
   numberOfEpisodes: 161,
   numberOfSeasons: 7,
@@ -50,7 +50,7 @@ final testTvDetail = TvDetail(
   ],
   seasons: [
     Season(
-        airDate: DateTime.tryParse("2012-08-28")!,
+        airDate: "2012-08-28",
         episodeCount: 11,
         id: 43395,
         name: "Specials",

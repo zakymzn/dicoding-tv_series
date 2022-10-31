@@ -13,7 +13,7 @@ class CreatedBy extends Equatable {
   final String? creditId;
   final String? name;
   final int? gender;
-  final dynamic? profilePath;
+  final dynamic profilePath;
 
   @override
   // TODO: implement props

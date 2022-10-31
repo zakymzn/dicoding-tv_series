@@ -14,7 +14,7 @@ void main() {
     backdropPath: 'backdropPath',
     voteAverage: 1,
     overview: 'overview',
-    firstAirDate: DateTime.tryParse('2022-10-29'),
+    firstAirDate: '2022-10-29',
     originCountry: ['originCountry'],
     genreIds: [1],
     originalLanguage: 'originalLanguage',

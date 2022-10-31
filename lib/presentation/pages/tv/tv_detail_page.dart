@@ -153,7 +153,16 @@ class TvDetailContent extends StatelessWidget {
                           Text(
                             _showGenres(tv.genres),
                           ),
-                          Text(tv.episodeRunTime.toString()),
+                          Text('Episode runtime : '),
+                          ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: tv.episodeRunTime.length,
+                            itemBuilder: (context, index) {
+                              final episode = tv.episodeRunTime[index];
+                              return Text(episode.toString() + " ");
+                            },
+                          ),
                           Row(
                             children: [
                               RatingBarIndicator(

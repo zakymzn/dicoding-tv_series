@@ -13,7 +13,7 @@ class LastEpisodeToAir extends Equatable {
     required this.voteCount,
   });
 
-  final DateTime airDate;
+  final String airDate;
   final int episodeNumber;
   final int id;
   final String name;
