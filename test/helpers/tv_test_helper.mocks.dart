@@ -14,9 +14,8 @@ import 'package:ditonton/data/models/tv/tv_table.dart' as _i14;
 import 'package:ditonton/domain/entities/tv/tv.dart' as _i9;
 import 'package:ditonton/domain/entities/tv/tv_detail.dart' as _i10;
 import 'package:ditonton/domain/repositories/tv_repository.dart' as _i6;
-import 'package:flutter/material.dart';
 import 'package:http/src/base_request.dart' as _i20;
-import 'package:http/src/client.dart' as _i7;
+import 'package:http/src/client.dart' as _i17;
 import 'package:http/src/response.dart' as _i4;
 import 'package:http/src/streamed_response.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
@@ -192,7 +191,7 @@ class MockDatabaseHelper extends _i1.Mock implements _i15.DatabaseHelper {
           as _i7.Future<List<Map<String, dynamic>>>);
 }
 
-class MockHttpClient extends _i1.Mock implements _i7.Client {
+class MockHttpClient extends _i1.Mock implements _i17.Client {
   MockHttpClient() {
     _i1.throwOnMissingStub(this);
   }

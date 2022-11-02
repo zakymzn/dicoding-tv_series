@@ -2,7 +2,6 @@ import 'package:ditonton/data/models/created_by_model.dart';
 import 'package:ditonton/data/models/genre_model.dart';
 import 'package:ditonton/data/models/last_episode_to_air_model.dart';
 import 'package:ditonton/data/models/season_model.dart';
-import 'package:ditonton/data/models/spoken_language_model.dart';
 import 'package:ditonton/domain/entities/tv/tv_detail.dart';
 import 'package:equatable/equatable.dart';
 
@@ -33,7 +32,6 @@ class TvDetailResponse extends Equatable {
     required this.productionCompanies,
     required this.productionCountries,
     required this.seasons,
-    // required this.spokenLanguages,
     required this.status,
     required this.tagline,
     required this.type,
@@ -66,7 +64,6 @@ class TvDetailResponse extends Equatable {
   final List<dynamic> productionCompanies;
   final List<dynamic> productionCountries;
   final List<SeasonModel> seasons;
-  // final List<SpokenLanguage> spokenLanguages;
   final String status;
   final String tagline;
   final String type;
@@ -107,8 +104,6 @@ class TvDetailResponse extends Equatable {
             List<dynamic>.from(json["production_countries"].map((x) => x)),
         seasons: List<SeasonModel>.from(
             json["seasons"].map((x) => SeasonModel.fromJson(x))),
-        // spokenLanguages: List<SpokenLanguage>.from(
-        //     json["spoken_languages"].map((x) => SpokenLanguage.fromJson(x))),
         status: json["status"],
         tagline: json["tagline"],
         type: json["type"],
@@ -144,8 +139,6 @@ class TvDetailResponse extends Equatable {
         "production_countries":
             List<dynamic>.from(productionCountries.map((x) => x)),
         "seasons": List<dynamic>.from(seasons.map((x) => x.toJson())),
-        // "spoken_languages":
-        //     List<dynamic>.from(spokenLanguages.map((x) => x.toJson())),
         "status": status,
         "tagline": tagline,
         "type": type,

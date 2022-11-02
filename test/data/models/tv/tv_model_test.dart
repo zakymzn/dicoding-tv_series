@@ -1,8 +1,4 @@
-import 'dart:math';
-
-import 'package:dartz/dartz.dart';
 import 'package:ditonton/data/models/tv/tv_model.dart';
-import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/tv/tv.dart';
 import 'package:flutter_test/flutter_test.dart';
 
