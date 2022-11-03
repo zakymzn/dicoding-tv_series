@@ -153,11 +153,39 @@ class TvDetailContent extends StatelessWidget {
                           Text(
                             _showGenres(tv.genres),
                           ),
-                          Text(
-                              'Last episode : ${tv.lastEpisodeToAir.episodeNumber}'),
-                          Text('Number of episode : ${tv.numberOfEpisodes}'),
-                          Text(
-                              'Season : ${tv.seasons.map((e) => e.seasonNumber).first}'),
+                          Row(
+                            children: [
+                              Text('Last episode : '),
+                              Text(
+                                '${tv.lastEpisodeToAir.episodeNumber}',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text('Number of episode : '),
+                              Text(
+                                '${tv.numberOfEpisodes}',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text('Season : '),
+                              Text(
+                                '${tv.seasons.map((e) => e.seasonNumber).first}',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
+                          ),
                           Row(
                             children: [
                               RatingBarIndicator(
