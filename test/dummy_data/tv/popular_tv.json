@@ -1,6 +1,6 @@
 {
     "page": 1,
-    "result": [
+    "results": [
         {
             "poster_path": "/path.jpg",
             "popularity": 47.432451,
@@ -8,6 +8,7 @@
             "backdrop_path": "/path.jpg",
             "vote_average": 5.04,
             "overview": "overview",
+            "first_air_date": "2010-06-08",
             "origin_country": [
                 "US"
             ],
