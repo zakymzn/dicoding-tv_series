@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:ditonton/data/datasources/tv/tv_remote_data_source.dart';
 import 'package:ditonton/data/models/tv/tv_detail_model.dart';
 import 'package:ditonton/data/models/tv/tv_response.dart';
@@ -12,7 +13,7 @@ import '../../../helpers/tv_test_helper.mocks.dart';
 
 void main() {
   const API_KEY = 'api_key=2174d146bb9c0eab47529b2e77d6b526';
-  const BASE_URL = 'https://api.themoviedb.org/3';
+  const BASE_URL = 'https://api.thetvdb.org/3';
 
   late TvRemoteDataSourceImpl dataSource;
   late MockHttpClient mockHttpClient;
@@ -134,7 +135,7 @@ void main() {
         .tvList;
     final tId = 1;
 
-    test('should return list of Movie Model when the response code is 200',
+    test('should return list of tv Model when the response code is 200',
         () async {
       when(mockHttpClient
               .get(Uri.parse('$BASE_URL/tv/$tId/recommendations?$API_KEY')))
