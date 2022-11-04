@@ -43,20 +43,6 @@ class LastEpisodeToAirModel extends Equatable {
         voteCount: json["vote_count"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "air_date": airDate,
-        "episode_number": episodeNumber,
-        "id": id,
-        "name": name,
-        "overview": overview,
-        "production_code": productionCode,
-        "runtime": runtime,
-        "season_number": seasonNumber,
-        "still_path": stillPath,
-        "vote_average": voteAverage,
-        "vote_count": voteCount,
-      };
-
   LastEpisodeToAir toEntity() {
     return LastEpisodeToAir(
       airDate: this.airDate,

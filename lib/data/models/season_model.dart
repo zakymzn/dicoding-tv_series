@@ -30,16 +30,6 @@ class SeasonModel extends Equatable {
         seasonNumber: json["season_number"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "air_date": airDate,
-        "episode_count": episodeCount,
-        "id": id,
-        "name": name,
-        "overview": overview,
-        "poster_path": posterPath,
-        "season_number": seasonNumber,
-      };
-
   Season toEntity() {
     return Season(
       airDate: this.airDate,
