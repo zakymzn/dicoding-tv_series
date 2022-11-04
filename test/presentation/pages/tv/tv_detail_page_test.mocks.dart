@@ -12,7 +12,6 @@ import 'package:ditonton/domain/usecases/tv/remove_tv_watchlist.dart' as _i6;
 import 'package:ditonton/domain/usecases/tv/save_tv_watchlist.dart' as _i5;
 import 'package:ditonton/presentation/provider/tv/tv_detail_notifier.dart'
     as _i8;
-import 'package:flutter/cupertino.dart';
 import 'package:mockito/mockito.dart' as _i1;
 
 class _FakeGetTvDetail extends _i1.Fake implements _i2.GetTvDetail {}
@@ -92,13 +91,13 @@ class MockTvDetailNotifier extends _i1.Mock implements _i8.TvDetailNotifier {
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future.value()) as _i11.Future<void>);
   @override
-  _i11.Future<void> addWatchlist(_i7.TvDetail? Tv) =>
-      (super.noSuchMethod(Invocation.method(#addWatchlist, [Tv]),
+  _i11.Future<void> addWatchlist(_i7.TvDetail? tv) =>
+      (super.noSuchMethod(Invocation.method(#addWatchlist, [tv]),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future.value()) as _i11.Future<void>);
   @override
-  _i11.Future<void> removeFromWatchlist(_i7.TvDetail? Tv) =>
-      (super.noSuchMethod(Invocation.method(#removeFromWatchlist, [Tv]),
+  _i11.Future<void> removeFromWatchlist(_i7.TvDetail? tv) =>
+      (super.noSuchMethod(Invocation.method(#removeFromWatchlist, [tv]),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future.value()) as _i11.Future<void>);
   @override
