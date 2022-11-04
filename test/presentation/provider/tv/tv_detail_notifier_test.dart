@@ -164,4 +164,83 @@ void main() {
       });
     },
   );
+
+  group('Watchlist', () {
+    test('should get the watchlist status', () async {
+      // arrange
+      when(mockGetWatchListStatus.execute(1)).thenAnswer((_) async => true);
+      // act
+      await provider.loadTvWatchlistStatus(1);
+      // assert
+      expect(provider.isAddedToWatchlist, true);
+    });
+
+    test('should execute save watchlist when function called', () async {
+      // arrange
+      when(mockSaveWatchlist.execute(testTvDetail))
+          .thenAnswer((_) async => Right('Success'));
+      when(mockGetWatchListStatus.execute(testTvDetail.id))
+          .thenAnswer((_) async => true);
+      // act
+      await provider.addWatchlist(testTvDetail);
+      // assert
+      verify(mockSaveWatchlist.execute(testTvDetail));
+    });
+
+    test('should execute remove watchlist when function called', () async {
+      // arrange
+      when(mockRemoveWatchlist.execute(testTvDetail))
+          .thenAnswer((_) async => Right('Removed'));
+      when(mockGetWatchListStatus.execute(testTvDetail.id))
+          .thenAnswer((_) async => false);
+      // act
+      await provider.removeFromWatchlist(testTvDetail);
+      // assert
+      verify(mockRemoveWatchlist.execute(testTvDetail));
+    });
+
+    test('should update watchlist status when add watchlist success', () async {
+      // arrange
+      when(mockSaveWatchlist.execute(testTvDetail))
+          .thenAnswer((_) async => Right('Added to Watchlist'));
+      when(mockGetWatchListStatus.execute(testTvDetail.id))
+          .thenAnswer((_) async => true);
+      // act
+      await provider.addWatchlist(testTvDetail);
+      // assert
+      verify(mockGetWatchListStatus.execute(testTvDetail.id));
+      expect(provider.isAddedToWatchlist, true);
+      expect(provider.watchlistMessage, 'Added to Watchlist');
+      expect(listenerCallCount, 1);
+    });
+
+    test('should update watchlist message when add watchlist failed', () async {
+      // arrange
+      when(mockSaveWatchlist.execute(testTvDetail))
+          .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+      when(mockGetWatchListStatus.execute(testTvDetail.id))
+          .thenAnswer((_) async => false);
+      // act
+      await provider.addWatchlist(testTvDetail);
+      // assert
+      expect(provider.watchlistMessage, 'Failed');
+      expect(listenerCallCount, 1);
+    });
+  });
+
+  group('on Error', () {
+    test('should return error when data is unsuccessful', () async {
+      // arrange
+      when(mockGetTvDetail.execute(tId))
+          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+      when(mockGetTvRecommendations.execute(tId))
+          .thenAnswer((_) async => Right(tTvs));
+      // act
+      await provider.fetchTvDetail(tId);
+      // assert
+      expect(provider.tvState, RequestState.Error);
+      expect(provider.message, 'Server Failure');
+      expect(listenerCallCount, 2);
+    });
+  });
 }
