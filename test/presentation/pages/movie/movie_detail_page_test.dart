@@ -106,7 +106,8 @@ void main() {
     expect(find.text('Failed'), findsOneWidget);
   });
 
-  testWidgets('Watchlist button should display Snackbar when removed watchlist',
+  testWidgets(
+      'Watchlist button should display Snackbar when removed from watchlist',
       (WidgetTester tester) async {
     when(mockNotifier.movieState).thenReturn(RequestState.Loaded);
     when(mockNotifier.movie).thenReturn(testMovieDetail);
@@ -162,4 +163,16 @@ void main() {
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     },
   );
+
+  testWidgets('Page should show message when Request State is error',
+      (WidgetTester tester) async {
+    when(mockNotifier.movieState).thenReturn(RequestState.Error);
+    when(mockNotifier.recommendationState).thenReturn(RequestState.Error);
+    when(mockNotifier.message).thenReturn('Failed to connect to the network');
+
+    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+
+    expect(find.byType(Text), findsOneWidget);
+    expect(find.text('Failed to connect to the network'), findsOneWidget);
+  });
 }
