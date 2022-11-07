@@ -202,4 +202,18 @@ void main() {
     expect(find.byType(Text), findsWidgets);
     expect(find.text('Failed'), findsOneWidget);
   });
+
+  testWidgets(
+      'Recommendations should show Container when Request State is empty',
+      (WidgetTester tester) async {
+    when(mockNotifier.movieState).thenReturn(RequestState.Loaded);
+    when(mockNotifier.movie).thenReturn(testMovieDetail);
+    when(mockNotifier.recommendationState).thenReturn(RequestState.Empty);
+    when(mockNotifier.movieRecommendations).thenReturn(<Movie>[]);
+    when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+
+    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+
+    expect(find.byType(Container), findsWidgets);
+  });
 }
