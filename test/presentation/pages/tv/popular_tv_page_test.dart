@@ -8,6 +8,7 @@ import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 import 'package:provider/provider.dart';
 
+import '../../../dummy_data/tv/tv_dummy_objects.dart';
 import 'popular_tv_page_test.mocks.dart';
 
 @GenerateMocks([PopularTvNotifier])
@@ -69,4 +70,21 @@ void main() {
       expect(textFinder, findsOneWidget);
     },
   );
+
+  testWidgets('Page should be scrollable until a tv item is found',
+      (WidgetTester tester) async {
+    when(mockNotifier.state).thenReturn(RequestState.Loaded);
+    when(mockNotifier.tv).thenReturn(testTvList);
+
+    await tester.pumpWidget(_makeTestableWidget(PopularTvPage()));
+
+    int index = 0;
+    final scrollableFinder = find.byType(Scrollable);
+    final tvItemFinder = find.byKey(ValueKey('tv_$index'));
+
+    await tester.scrollUntilVisible(tvItemFinder, 500,
+        scrollable: scrollableFinder);
+
+    expect(tvItemFinder, findsOneWidget);
+  });
 }

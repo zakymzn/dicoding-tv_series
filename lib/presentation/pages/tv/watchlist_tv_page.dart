@@ -49,7 +49,7 @@ class _WatchlistTvPageState extends State<WatchlistTvPage> with RouteAware {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final tv = data.watchlistTv[index];
-                  return TvCard(tv);
+                  return TvCard(tv, index);
                 },
                 itemCount: data.watchlistTv.length,
               );

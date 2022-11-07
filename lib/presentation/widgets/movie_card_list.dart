@@ -6,12 +6,14 @@ import 'package:flutter/material.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
+  final int index;
 
-  MovieCard(this.movie);
+  MovieCard(this.movie, this.index);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: Key('movie_$index'),
       margin: const EdgeInsets.symmetric(vertical: 4),
       child: InkWell(
         onTap: () {
