@@ -8,6 +8,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 
+import '../../../dummy_data/movie/movie_dummy_objects.dart';
 import 'top_rated_movies_page_test.mocks.dart';
 
 @GenerateMocks([TopRatedMoviesNotifier])
@@ -62,5 +63,22 @@ void main() {
     await tester.pumpWidget(_makeTestableWidget(TopRatedMoviesPage()));
 
     expect(textFinder, findsOneWidget);
+  });
+
+  testWidgets('Page should be scrollable until a movie item is found',
+      (WidgetTester tester) async {
+    when(mockNotifier.state).thenReturn(RequestState.Loaded);
+    when(mockNotifier.movies).thenReturn(testMovieList);
+
+    await tester.pumpWidget(_makeTestableWidget(TopRatedMoviesPage()));
+
+    int index = 0;
+    final scrollableFinder = find.byType(Scrollable);
+    final movieItemFinder = find.byKey(ValueKey('movie_$index'));
+
+    await tester.scrollUntilVisible(movieItemFinder, 500,
+        scrollable: scrollableFinder);
+
+    expect(movieItemFinder, findsOneWidget);
   });
 }
