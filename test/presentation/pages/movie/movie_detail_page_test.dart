@@ -216,4 +216,25 @@ void main() {
 
     expect(find.byType(Container), findsWidgets);
   });
+
+  testWidgets(
+      'Recommendations should be scrollable until a recommended movie item is found',
+      (WidgetTester tester) async {
+    when(mockNotifier.movieState).thenReturn(RequestState.Loaded);
+    when(mockNotifier.movie).thenReturn(testMovieDetail);
+    when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
+    when(mockNotifier.movieRecommendations).thenReturn(testMovieList);
+    when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+
+    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+
+    int index = 0;
+    final scrollableFinder = find.byType(Scrollable).first;
+    final recommendationFinder = find.byKey(ValueKey('recommendation_$index'));
+
+    await tester.scrollUntilVisible(recommendationFinder, 500,
+        scrollable: scrollableFinder);
+
+    expect(recommendationFinder, findsOneWidget);
+  });
 }

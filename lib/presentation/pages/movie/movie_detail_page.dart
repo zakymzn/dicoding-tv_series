@@ -204,6 +204,7 @@ class MovieDetailContent extends StatelessWidget {
                                       itemBuilder: (context, index) {
                                         final movie = recommendations[index];
                                         return Padding(
+                                          key: Key('recommendation_$index'),
                                           padding: const EdgeInsets.all(4.0),
                                           child: InkWell(
                                             onTap: () {
