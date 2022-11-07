@@ -12,6 +12,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../dummy_data/movie/movie_dummy_objects.dart';
 import '../../../dummy_data/tv/tv_dummy_objects.dart';
 import 'tv_detail_notifier_test.mocks.dart';
 
@@ -222,6 +223,20 @@ void main() {
           .thenAnswer((_) async => false);
       // act
       await provider.addWatchlist(testTvDetail);
+      // assert
+      expect(provider.watchlistMessage, 'Failed');
+      expect(listenerCallCount, 1);
+    });
+
+    test('should update watchlist message when remove watchlist is failed',
+        () async {
+      // arrange
+      when(mockRemoveWatchlist.execute(testTvDetail))
+          .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+      when(mockGetWatchListStatus.execute(testTvDetail.id))
+          .thenAnswer((_) async => true);
+      // act
+      await provider.removeFromWatchlist(testTvDetail);
       // assert
       expect(provider.watchlistMessage, 'Failed');
       expect(listenerCallCount, 1);
