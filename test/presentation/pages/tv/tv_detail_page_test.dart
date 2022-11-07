@@ -158,25 +158,52 @@ void main() {
   );
 
   testWidgets(
-      'Page should show a Circular Progress Indicator when Request State is Loading',
+      'Detail page should show a Circular Progress Indicator when Request State is Loading',
       (WidgetTester tester) async {
     when(mockNotifier.tvState).thenReturn(RequestState.Loading);
-    when(mockNotifier.recommendationState).thenReturn(RequestState.Loading);
 
     await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
-  testWidgets('Page should show message when Request State is error',
+  testWidgets('Detail page should show message when Request State is error',
       (WidgetTester tester) async {
     when(mockNotifier.tvState).thenReturn(RequestState.Error);
-    when(mockNotifier.recommendationState).thenReturn(RequestState.Error);
     when(mockNotifier.message).thenReturn('Failed to connect to the network');
 
     await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
 
     expect(find.byType(Text), findsOneWidget);
     expect(find.text('Failed to connect to the network'), findsOneWidget);
+  });
+
+  testWidgets(
+      'Recommendations should show a Circular Progress Indicator when Request State is Loading',
+      (WidgetTester tester) async {
+    when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
+    when(mockNotifier.tv).thenReturn(testTvDetail);
+    when(mockNotifier.recommendationState).thenReturn(RequestState.Loading);
+    when(mockNotifier.tvRecommendations).thenReturn(<Tv>[]);
+    when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+
+    await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
+
+    expect(find.byType(CircularProgressIndicator), findsWidgets);
+  });
+
+  testWidgets('Recommendations should show message when Request State is error',
+      (WidgetTester tester) async {
+    when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
+    when(mockNotifier.tv).thenReturn(testTvDetail);
+    when(mockNotifier.recommendationState).thenReturn(RequestState.Error);
+    when(mockNotifier.tvRecommendations).thenReturn(<Tv>[]);
+    when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+    when(mockNotifier.message).thenReturn('Failed');
+
+    await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
+
+    expect(find.byType(Text), findsWidgets);
+    expect(find.text('Failed'), findsOneWidget);
   });
 }
