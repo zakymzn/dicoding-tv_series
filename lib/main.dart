@@ -38,6 +38,12 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  NavigatorObserver? navigatorObserver;
+
+  MyApp({
+    this.navigatorObserver,
+  });
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -91,7 +97,10 @@ class MyApp extends StatelessWidget {
           textTheme: kTextTheme,
         ),
         home: HomeMoviePage(),
-        navigatorObservers: [routeObserver],
+        navigatorObservers: [
+          routeObserver,
+          navigatorObserver ?? TestNavigatorObserver(),
+        ],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case '/home':
