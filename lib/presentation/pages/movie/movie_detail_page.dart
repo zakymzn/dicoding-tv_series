@@ -207,8 +207,6 @@ class MovieDetailContent extends StatelessWidget {
                                           key: Key('recommendation_$index'),
                                           padding: const EdgeInsets.all(4.0),
                                           child: InkWell(
-                                            key: Key(
-                                                'navigate_to_other_detail_page'),
                                             onTap: () {
                                               Navigator.pushReplacementNamed(
                                                 context,
