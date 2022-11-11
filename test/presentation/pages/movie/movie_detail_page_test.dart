@@ -1,5 +1,4 @@
 import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/presentation/pages/movie/movie_detail_page.dart';
 import 'package:ditonton/presentation/provider/movie/movie_detail_notifier.dart';
@@ -15,11 +14,9 @@ import 'movie_detail_page_test.mocks.dart';
 @GenerateMocks([MovieDetailNotifier])
 void main() {
   late MockMovieDetailNotifier mockNotifier;
-  TestNavigatorObserver? testNavigatorObserver;
 
   setUp(() {
     mockNotifier = MockMovieDetailNotifier();
-    testNavigatorObserver = TestNavigatorObserver();
   });
 
   Widget _makeTestableWidget(Widget body) {
@@ -27,7 +24,6 @@ void main() {
       value: mockNotifier,
       child: MaterialApp(
         home: body,
-        navigatorObservers: [testNavigatorObserver!],
       ),
     );
   }
