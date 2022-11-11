@@ -5,8 +5,6 @@ import 'package:provider/provider.dart';
 class WatchListPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist';
 
-  // const WatchListPage({Key? key}) : super(key: key);
-
   @override
   State<WatchListPage> createState() => _WatchListPageState();
 }

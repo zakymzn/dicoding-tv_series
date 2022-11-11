@@ -32,34 +32,6 @@ void main() {
     );
   }
 
-  testWidgets('Navigate to another movie detail page',
-      (WidgetTester tester) async {
-    when(mockNotifier.movieState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.movie).thenReturn(testMovieDetail);
-    when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.movieRecommendations).thenReturn(testMovieList);
-    when(mockNotifier.isAddedToWatchlist).thenReturn(false);
-    when(mockNotifier.watchlistMessage).thenReturn('');
-
-    var actualArgs;
-    int index = 0;
-    final scrollableFinder = find.byType(Scrollable).first;
-    final recommendationFinder = find.byKey(ValueKey('recommendation_$index'));
-
-    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
-    await tester.scrollUntilVisible(recommendationFinder, 500,
-        scrollable: scrollableFinder);
-    testNavigatorObserver!
-        .attachPushRouteObserverWithArgs(MovieDetailPage.ROUTE_NAME, (args) {
-      actualArgs = args;
-      return actualArgs;
-    });
-
-    await tester.tap(find.byType(InkWell));
-
-    expect(actualArgs, 1);
-  });
-
   testWidgets(
       'Watchlist button should display add icon when movie not added to watchlist',
       (WidgetTester tester) async {
