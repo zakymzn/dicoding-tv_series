@@ -129,8 +129,11 @@ class MovieDetailContent extends StatelessWidget {
                                     message ==
                                         MovieDetailNotifier
                                             .watchlistRemoveSuccessMessage) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text(message)));
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    content: Text(message),
+                                    duration: Duration(seconds: 3),
+                                  ));
                                 } else {
                                   showDialog(
                                       context: context,

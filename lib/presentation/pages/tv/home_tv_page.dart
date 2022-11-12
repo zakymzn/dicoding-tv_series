@@ -111,6 +111,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
               ),
               _buildSubHeading(
                 title: 'Now Playing',
+                valueKey: 'now_playing_tv',
                 onTap: () =>
                     Navigator.pushNamed(context, NowPlayingTvPage.ROUTE_NAME),
               ),
@@ -130,6 +131,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
               ),
               _buildSubHeading(
                 title: 'Popular',
+                valueKey: 'popular_tv',
                 onTap: () =>
                     Navigator.pushNamed(context, PopularTvPage.ROUTE_NAME),
               ),
@@ -149,6 +151,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
               ),
               _buildSubHeading(
                 title: 'Top Rated',
+                valueKey: 'top_rated_tv',
                 onTap: () =>
                     Navigator.pushNamed(context, TopRatedTvPage.ROUTE_NAME),
               ),
@@ -173,7 +176,11 @@ class _HomeTvPageState extends State<HomeTvPage> {
     );
   }
 
-  Row _buildSubHeading({required String title, required Function() onTap}) {
+  Row _buildSubHeading({
+    required String title,
+    required Function() onTap,
+    required String valueKey,
+  }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -183,6 +190,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
         ),
         InkWell(
           onTap: onTap,
+          key: Key(valueKey),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(

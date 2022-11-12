@@ -78,6 +78,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
         title: Text('Ditonton'),
         actions: [
           IconButton(
+            key: Key('search_movie'),
             onPressed: () {
               Navigator.pushNamed(context, MovieSearchPage.ROUTE_NAME);
             },
@@ -105,6 +106,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               ),
               _buildSubHeading(
                 title: 'Now Playing',
+                valueKey: 'now_playing_movies',
                 onTap: () => Navigator.pushNamed(
                     context, NowPlayingMoviesPage.ROUTE_NAME),
               ),
@@ -122,6 +124,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               }),
               _buildSubHeading(
                 title: 'Popular',
+                valueKey: 'popular_movies',
                 onTap: () =>
                     Navigator.pushNamed(context, PopularMoviesPage.ROUTE_NAME),
               ),
@@ -139,6 +142,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               }),
               _buildSubHeading(
                 title: 'Top Rated',
+                valueKey: 'top_rated_movies',
                 onTap: () =>
                     Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
               ),
@@ -161,7 +165,11 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
     );
   }
 
-  Row _buildSubHeading({required String title, required Function() onTap}) {
+  Row _buildSubHeading({
+    required String title,
+    required Function() onTap,
+    required String valueKey,
+  }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -171,6 +179,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
         ),
         InkWell(
           onTap: onTap,
+          key: Key(valueKey),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
