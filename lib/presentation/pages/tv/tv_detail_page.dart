@@ -76,7 +76,6 @@ class TvDetailContent extends StatelessWidget {
           placeholder: (context, url) => Center(
             child: CircularProgressIndicator(),
           ),
-          errorWidget: (context, url, error) => Icon(Icons.error),
         ),
         Container(
           margin: const EdgeInsets.only(top: 48 + 8),
@@ -258,9 +257,6 @@ class TvDetailContent extends StatelessWidget {
                                                 child:
                                                     CircularProgressIndicator(),
                                               ),
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      Icon(Icons.error),
                                             ),
                                           ),
                                         ),

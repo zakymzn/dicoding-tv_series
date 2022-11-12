@@ -64,7 +64,6 @@ class MovieCard extends StatelessWidget {
                   placeholder: (context, url) => Center(
                     child: CircularProgressIndicator(),
                   ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(8)),
               ),
