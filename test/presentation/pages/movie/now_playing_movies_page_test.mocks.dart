@@ -24,7 +24,7 @@ class MockNowPlayingMoviesNotifier extends _i1.Mock
           returnValue: _FakeGetNowPlayingMovies()) as _i2.GetNowPlayingMovies);
   @override
   _i4.RequestState get state => (super.noSuchMethod(Invocation.getter(#state),
-      returnValue: _i4.RequestState.Empty) as _i4.RequestState);
+      returnValue: _i4.RequestState.empty) as _i4.RequestState);
   @override
   List<_i5.Movie> get movies => (super.noSuchMethod(Invocation.getter(#movies),
       returnValue: <_i5.Movie>[]) as List<_i5.Movie>);
