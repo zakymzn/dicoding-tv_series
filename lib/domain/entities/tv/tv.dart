@@ -39,7 +39,6 @@ class Tv extends Equatable {
   String? originalName;
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
         posterPath,
         popularity,

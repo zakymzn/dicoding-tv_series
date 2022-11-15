@@ -24,7 +24,6 @@ class LastEpisodeToAir extends Equatable {
   final int voteCount;
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
         airDate,
         episodeNumber,
