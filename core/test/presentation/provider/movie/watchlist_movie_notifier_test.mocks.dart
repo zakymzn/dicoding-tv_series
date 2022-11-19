@@ -5,7 +5,7 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
-import '../../../../lib/utils/failure.dart' as _i5;
+import 'package:core/utils/failure.dart' as _i5;
 import 'package:core/domain/entities/movie/movie.dart' as _i6;
 import 'package:core/domain/usecases/movie/get_watchlist_movies.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;

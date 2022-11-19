@@ -1,11 +1,12 @@
 name: core
 description: A new Flutter package project.
+publish_to: 'none'
 version: 0.0.1
 homepage:
 
 environment:
-  sdk: '>=2.18.2 <3.0.0'
-  flutter: ">=1.17.0"
+  sdk: '>=2.12.2 <3.0.0'
+  
 
 dependencies:
   flutter:
@@ -31,7 +32,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  
   mockito: ^5.0.8
   build_runner: ^2.0.4
   integration_test:
@@ -45,6 +46,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+
+  uses-material-design: true
 
   # To add assets to your package, add an assets section, like this:
   # assets:

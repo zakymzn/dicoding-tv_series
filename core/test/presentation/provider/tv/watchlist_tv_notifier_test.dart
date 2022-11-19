@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import '../../../../lib/utils/failure.dart';
-import '../../../../lib/utils/state_enum.dart';
+import 'package:core/utils/failure.dart';
+import 'package:core/utils/state_enum.dart';
 import 'package:core/domain/usecases/tv/get_watchlist_tv.dart';
 import 'package:core/presentation/provider/tv/watchlist_tv_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';

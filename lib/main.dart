@@ -92,8 +92,6 @@ class MyApp extends StatelessWidget {
               );
             case MovieSearchPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => MovieSearchPage());
-            case WatchlistMoviesPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
             case HomeTvPage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => HomeTvPage());
             case NowPlayingTvPage.ROUTE_NAME:
@@ -110,8 +108,6 @@ class MyApp extends StatelessWidget {
               );
             case TvSearchPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => TvSearchPage());
-            case WatchlistTvPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => WatchlistTvPage());
             case AboutPage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => AboutPage());
             case WatchListPage.ROUTE_NAME:

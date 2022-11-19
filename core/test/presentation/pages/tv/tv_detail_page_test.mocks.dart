@@ -1,7 +1,7 @@
 import 'dart:async' as _i11;
 import 'dart:ui' as _i12;
 
-import '../../../../lib/utils/state_enum.dart' as _i9;
+import 'package:core/utils/state_enum.dart' as _i9;
 import 'package:core/domain/entities/tv/tv.dart' as _i10;
 import 'package:core/domain/entities/tv/tv_detail.dart' as _i7;
 import 'package:core/domain/usecases/tv/get_tv_detail.dart' as _i2;

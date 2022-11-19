@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/domain/entities/movie/movie.dart';
 import 'package:core/domain/usecases/movie/get_now_playing_movies.dart';
-import '../../../../lib/utils/failure.dart';
+import 'package:core/utils/failure.dart';
 import 'package:core/domain/usecases/movie/get_popular_movies.dart';
 import 'package:core/domain/usecases/movie/get_top_rated_movies.dart';
 import 'package:core/presentation/provider/movie/movie_list_notifier.dart';
-import '../../../../lib/utils/state_enum.dart';
+import 'package:core/utils/state_enum.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

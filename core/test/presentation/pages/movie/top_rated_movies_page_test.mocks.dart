@@ -5,7 +5,7 @@
 import 'dart:async' as _i6;
 import 'dart:ui' as _i7;
 
-import '../../../../lib/utils/state_enum.dart' as _i4;
+import 'package:core/utils/state_enum.dart' as _i4;
 import 'package:core/domain/entities/movie/movie.dart' as _i5;
 import 'package:core/domain/usecases/movie/get_top_rated_movies.dart' as _i2;
 import 'package:core/presentation/provider/movie/top_rated_movies_notifier.dart'
