@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:core/core.dart';
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 
 abstract class MovieRemoteDataSource {
   Future<List<MovieModel>> getNowPlayingMovies();
@@ -13,7 +14,8 @@ abstract class MovieRemoteDataSource {
 }
 
 class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
-  final http.Client client;
+  // final http.Client client;
+  final IOClient client;
 
   MovieRemoteDataSourceImpl({required this.client});
 

@@ -1,11 +1,14 @@
 import 'package:core/core.dart';
 import 'package:search/search.dart';
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 import 'package:get_it/get_it.dart';
 
 final locator = GetIt.instance;
 
-void init() {
+Future<void> init() async {
+  IOClient ioClient = await SslPinning.ioClient;
+
   // provider
   locator.registerFactory(
     () => MovieListNotifier(
@@ -141,5 +144,6 @@ void init() {
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
   // external
-  locator.registerLazySingleton(() => http.Client());
+  // locator.registerLazySingleton(() => http.Client());
+  locator.registerLazySingleton<IOClient>(() => ioClient);
 }

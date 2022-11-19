@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:core/core.dart';
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 
 abstract class TvRemoteDataSource {
   Future<List<TvModel>> getNowPlayingTv();
@@ -13,7 +14,8 @@ abstract class TvRemoteDataSource {
 }
 
 class TvRemoteDataSourceImpl implements TvRemoteDataSource {
-  final http.Client client;
+  // final http.Client client;
+  final IOClient client;
 
   TvRemoteDataSourceImpl({required this.client});
 
