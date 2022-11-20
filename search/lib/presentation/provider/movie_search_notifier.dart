@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:search/search.dart';
+import 'package:movies/movies.dart';
 import 'package:flutter/foundation.dart';
 
 class MovieSearchNotifier extends ChangeNotifier {

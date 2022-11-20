@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:movies/movies.dart';
+import 'package:tv_series/tv_series.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
@@ -32,8 +34,7 @@ class DatabaseHelper {
   }
 
   _onCreate(Database db, int version) async {
-    await db.execute(
-        '''
+    await db.execute('''
       CREATE TABLE  $_movieTableWatchList (
         id INTEGER PRIMARY KEY,
         title TEXT,
@@ -42,8 +43,7 @@ class DatabaseHelper {
       );
     ''');
 
-    await db.execute(
-        '''
+    await db.execute('''
       CREATE TABLE $_tvTableWatchList (
         id INTEGER PRIMARY KEY,
         name TEXT,

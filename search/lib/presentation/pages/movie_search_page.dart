@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:search/search.dart';
+import 'package:movies/movies.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

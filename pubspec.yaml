@@ -30,6 +30,12 @@ dependencies:
   core:
     path: core
 
+  movies:
+    path: movies
+  
+  tv_series:
+    path: tv_series
+
   search:
     path: search
 

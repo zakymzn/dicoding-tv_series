@@ -1,4 +1,6 @@
 import 'package:core/core.dart';
+import 'package:movies/movies.dart';
+import 'package:tv_series/tv_series.dart';
 import 'package:flutter/material.dart';
 
 class WatchlistNavigationBarNotifier extends ChangeNotifier {
