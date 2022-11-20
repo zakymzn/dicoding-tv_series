@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:core/core.dart';
 import 'package:movies/movies.dart';
-// import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 
 abstract class MovieRemoteDataSource {
@@ -15,7 +14,6 @@ abstract class MovieRemoteDataSource {
 }
 
 class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
-  // final http.Client client;
   final IOClient client;
 
   MovieRemoteDataSourceImpl({required this.client});
