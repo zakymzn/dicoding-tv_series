@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class WatchListPage extends StatefulWidget {
-  static const ROUTE_NAME = '/watchlist';
-
   @override
   State<WatchListPage> createState() => _WatchListPageState();
 }

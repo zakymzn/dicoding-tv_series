@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HomeTvPage extends StatefulWidget {
-  static const ROUTE_NAME = '/tv-series';
-
   @override
   State<HomeTvPage> createState() => _HomeTvPageState();
 }
@@ -60,14 +58,14 @@ class _HomeTvPageState extends State<HomeTvPage> {
               leading: Icon(Icons.save_alt),
               title: Text('Watchlist'),
               onTap: () {
-                Navigator.pushNamed(context, WatchListPage.ROUTE_NAME);
+                Navigator.pushNamed(context, WATCHLIST_ROUTE);
               },
             ),
             ListTile(
               leading: Icon(Icons.info_outline),
               title: Text('About'),
               onTap: () {
-                Navigator.pushNamed(context, AboutPage.ROUTE_NAME);
+                Navigator.pushNamed(context, ABOUT_ROUTE);
               },
             ),
           ],
@@ -78,7 +76,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, TvSearchPage.ROUTE_NAME);
+              Navigator.pushNamed(context, SEARCH_TV_ROUTE);
             },
             icon: Icon(Icons.search),
           ),
@@ -105,8 +103,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
               _buildSubHeading(
                 title: 'Now Playing',
                 valueKey: 'now_playing_tv',
-                onTap: () =>
-                    Navigator.pushNamed(context, NowPlayingTvPage.ROUTE_NAME),
+                onTap: () => Navigator.pushNamed(context, NOW_PLAYING_TV_ROUTE),
               ),
               Consumer<TvListNotifier>(
                 builder: (context, data, child) {
@@ -125,8 +122,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
               _buildSubHeading(
                 title: 'Popular',
                 valueKey: 'popular_tv',
-                onTap: () =>
-                    Navigator.pushNamed(context, PopularTvPage.ROUTE_NAME),
+                onTap: () => Navigator.pushNamed(context, POPULAR_TV_ROUTE),
               ),
               Consumer<TvListNotifier>(
                 builder: (context, data, child) {
@@ -145,8 +141,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
               _buildSubHeading(
                 title: 'Top Rated',
                 valueKey: 'top_rated_tv',
-                onTap: () =>
-                    Navigator.pushNamed(context, TopRatedTvPage.ROUTE_NAME),
+                onTap: () => Navigator.pushNamed(context, TOP_RATED_TV_ROUTE),
               ),
               Consumer<TvListNotifier>(
                 builder: (context, data, child) {
@@ -215,7 +210,7 @@ class TvList extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  TvDetailPage.ROUTE_NAME,
+                  TV_DETAIL_ROUTE,
                   arguments: tv.id,
                 );
               },

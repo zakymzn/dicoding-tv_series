@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class NowPlayingMoviesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/now-playing-movie';
-
   @override
   State<NowPlayingMoviesPage> createState() => _NowPlayingMoviesPageState();
 }
