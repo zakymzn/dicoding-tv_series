@@ -7,8 +7,6 @@ import 'package:mockito/mockito.dart';
 import 'package:movies/domain/entities/movie.dart';
 import 'package:search/domain/usecases/search_movies.dart';
 import 'package:search/presentation/bloc/search_movies_bloc.dart';
-import 'package:search/presentation/bloc/search_movies_event.dart';
-import 'package:search/presentation/bloc/search_movies_state.dart';
 
 import 'search_movies_bloc_test.mocks.dart';
 

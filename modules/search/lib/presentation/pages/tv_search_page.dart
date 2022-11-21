@@ -1,12 +1,9 @@
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search/presentation/bloc/search_tv_bloc.dart';
-import 'package:search/presentation/bloc/search_tv_event.dart';
-import 'package:search/presentation/bloc/search_tv_state.dart';
 import 'package:search/search.dart';
 import 'package:tv_series/tv_series.dart';
 import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
 
 class TvSearchPage extends StatelessWidget {
   @override

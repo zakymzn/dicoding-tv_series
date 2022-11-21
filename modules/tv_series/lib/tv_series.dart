@@ -32,11 +32,4 @@ export 'presentation/pages/top_rated_tv_page.dart';
 export 'presentation/pages/tv_detail_page.dart';
 export 'presentation/pages/watchlist_tv_page.dart';
 
-export 'presentation/provider/now_playing_tv_notifier.dart';
-export 'presentation/provider/popular_tv_notifier.dart';
-export 'presentation/provider/top_rated_tv_notifier.dart';
-export 'presentation/provider/tv_detail_notifier.dart';
-export 'presentation/provider/tv_list_notifier.dart';
-export 'presentation/provider/watchlist_tv_notifier.dart';
-
 export 'presentation/widgets/tv_card_list.dart';

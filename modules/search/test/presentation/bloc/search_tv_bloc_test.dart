@@ -7,8 +7,6 @@ import 'package:mockito/mockito.dart';
 import 'package:tv_series/domain/entities/tv.dart';
 import 'package:search/domain/usecases/search_tv.dart';
 import 'package:search/presentation/bloc/search_tv_bloc.dart';
-import 'package:search/presentation/bloc/search_tv_event.dart';
-import 'package:search/presentation/bloc/search_tv_state.dart';
 
 import 'search_tv_bloc_test.mocks.dart';
 

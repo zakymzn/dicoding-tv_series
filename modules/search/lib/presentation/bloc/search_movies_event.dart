@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-import 'search_movies_bloc.dart';
+part of 'search_movies_bloc.dart';
 
 abstract class SearchMoviesEvent extends Equatable {
   const SearchMoviesEvent();

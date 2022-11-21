@@ -1,5 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:tv_series/tv_series.dart';
+part of 'search_tv_bloc.dart';
 
 abstract class SearchTvState extends Equatable {
   const SearchTvState();

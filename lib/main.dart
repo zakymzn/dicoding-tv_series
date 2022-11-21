@@ -20,49 +20,49 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => di.locator<MovieListNotifier>(),
-        ),
-        BlocProvider(
-          create: (_) => di.locator<MovieDetailNotifier>(),
+          create: (_) => di.locator<MovieDetailBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<SearchMoviesBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<TopRatedMoviesNotifier>(),
+          create: (_) => di.locator<TopRatedMoviesBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<NowPlayingMoviesNotifier>(),
+          create: (_) => di.locator<NowPlayingMoviesBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<PopularMoviesNotifier>(),
+          create: (_) => di.locator<PopularMoviesBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<WatchlistMovieNotifier>(),
+          create: (_) => di.locator<MovieWatchlistBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<MovieRecommendationsBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<WatchlistNavigationBarNotifier>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<NowPlayingTvNotifier>(),
+          create: (_) => di.locator<NowPlayingTvBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<PopularTvNotifier>(),
+          create: (_) => di.locator<PopularTvBlocr>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<TopRatedTvNotifier>(),
+          create: (_) => di.locator<TopRatedTvBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<TvDetailNotifier>(),
-        ),
-        BlocProvider(
-          create: (_) => di.locator<TvListNotifier>(),
+          create: (_) => di.locator<TvDetailBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<SearchTvBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<WatchlistTvNotifier>(),
+          create: (_) => di.locator<WatchlistTvBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TvRecommendationsBloc>(),
         ),
       ],
       child: MaterialApp(
