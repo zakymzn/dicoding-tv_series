@@ -5,7 +5,7 @@ import 'package:about/about.dart';
 import 'package:search/search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ditonton/injection.dart' as di;
 
 Future<void> main() async {
@@ -17,51 +17,51 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return MultiBlocProvider(
       providers: [
-        ChangeNotifierProvider(
+        BlocProvider(
           create: (_) => di.locator<MovieListNotifier>(),
         ),
-        ChangeNotifierProvider(
+        BlocProvider(
           create: (_) => di.locator<MovieDetailNotifier>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieSearchNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<SearchMoviesBloc>(),
         ),
-        ChangeNotifierProvider(
+        BlocProvider(
           create: (_) => di.locator<TopRatedMoviesNotifier>(),
         ),
-        ChangeNotifierProvider(
+        BlocProvider(
           create: (_) => di.locator<NowPlayingMoviesNotifier>(),
         ),
-        ChangeNotifierProvider(
+        BlocProvider(
           create: (_) => di.locator<PopularMoviesNotifier>(),
         ),
-        ChangeNotifierProvider(
+        BlocProvider(
           create: (_) => di.locator<WatchlistMovieNotifier>(),
         ),
-        ChangeNotifierProvider(
+        BlocProvider(
           create: (_) => di.locator<WatchlistNavigationBarNotifier>(),
         ),
-        ChangeNotifierProvider(
+        BlocProvider(
           create: (_) => di.locator<NowPlayingTvNotifier>(),
         ),
-        ChangeNotifierProvider(
+        BlocProvider(
           create: (_) => di.locator<PopularTvNotifier>(),
         ),
-        ChangeNotifierProvider(
+        BlocProvider(
           create: (_) => di.locator<TopRatedTvNotifier>(),
         ),
-        ChangeNotifierProvider(
+        BlocProvider(
           create: (_) => di.locator<TvDetailNotifier>(),
         ),
-        ChangeNotifierProvider(
+        BlocProvider(
           create: (_) => di.locator<TvListNotifier>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvSearchNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<SearchTvBloc>(),
         ),
-        ChangeNotifierProvider(
+        BlocProvider(
           create: (_) => di.locator<WatchlistTvNotifier>(),
         ),
       ],

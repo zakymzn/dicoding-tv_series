@@ -28,8 +28,8 @@ Future<void> init() async {
     ),
   );
   locator.registerFactory(
-    () => MovieSearchNotifier(
-      searchMovies: locator(),
+    () => SearchMoviesBloc(
+      locator(),
     ),
   );
   locator.registerFactory(
@@ -69,8 +69,8 @@ Future<void> init() async {
     ),
   );
   locator.registerFactory(
-    () => TvSearchNotifier(
-      searchTv: locator(),
+    () => SearchTvBloc(
+      locator(),
     ),
   );
   locator.registerFactory(
