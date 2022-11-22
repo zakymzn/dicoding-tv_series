@@ -3,11 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
-import 'dart:ui' as _i5;
+import 'dart:async' as _i5;
+import 'dart:ui' as _i6;
 
-import 'package:core/core.dart' as _i3;
+import 'package:core/core.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:tv_series/presentation/provider/popular_tv_notifier.dart'
+    as _i3;
 import 'package:tv_series/tv_series.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -34,7 +36,7 @@ class _FakeGetPopularTv_0 extends _i1.SmartFake implements _i2.GetPopularTv {
 /// A class which mocks [PopularTvNotifier].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPopularTvNotifier extends _i1.Mock implements _i2.PopularTvNotifier {
+class MockPopularTvNotifier extends _i1.Mock implements _i3.PopularTvNotifier {
   MockPopularTvNotifier() {
     _i1.throwOnMissingStub(this);
   }
@@ -48,10 +50,10 @@ class MockPopularTvNotifier extends _i1.Mock implements _i2.PopularTvNotifier {
         ),
       ) as _i2.GetPopularTv);
   @override
-  _i3.RequestState get state => (super.noSuchMethod(
+  _i4.RequestState get state => (super.noSuchMethod(
         Invocation.getter(#state),
-        returnValue: _i3.RequestState.empty,
-      ) as _i3.RequestState);
+        returnValue: _i4.RequestState.empty,
+      ) as _i4.RequestState);
   @override
   List<_i2.Tv> get tv => (super.noSuchMethod(
         Invocation.getter(#tv),
@@ -68,16 +70,16 @@ class MockPopularTvNotifier extends _i1.Mock implements _i2.PopularTvNotifier {
         returnValue: false,
       ) as bool);
   @override
-  _i4.Future<void> fetchPopularTv() => (super.noSuchMethod(
+  _i5.Future<void> fetchPopularTv() => (super.noSuchMethod(
         Invocation.method(
           #fetchPopularTv,
           [],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
   @override
-  void addListener(_i5.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i6.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -85,7 +87,7 @@ class MockPopularTvNotifier extends _i1.Mock implements _i2.PopularTvNotifier {
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i5.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i6.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],

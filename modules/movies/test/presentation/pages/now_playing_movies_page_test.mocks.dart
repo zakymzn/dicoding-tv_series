@@ -3,12 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
-import 'dart:ui' as _i5;
+import 'dart:async' as _i5;
+import 'dart:ui' as _i6;
 
-import 'package:core/core.dart' as _i3;
+import 'package:core/core.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:movies/movies.dart' as _i2;
+import 'package:movies/presentation/provider/now_playing_movies_notifier.dart'
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -36,7 +38,7 @@ class _FakeGetNowPlayingMovies_0 extends _i1.SmartFake
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockNowPlayingMoviesNotifier extends _i1.Mock
-    implements _i2.NowPlayingMoviesNotifier {
+    implements _i3.NowPlayingMoviesNotifier {
   MockNowPlayingMoviesNotifier() {
     _i1.throwOnMissingStub(this);
   }
@@ -50,10 +52,10 @@ class MockNowPlayingMoviesNotifier extends _i1.Mock
         ),
       ) as _i2.GetNowPlayingMovies);
   @override
-  _i3.RequestState get state => (super.noSuchMethod(
+  _i4.RequestState get state => (super.noSuchMethod(
         Invocation.getter(#state),
-        returnValue: _i3.RequestState.empty,
-      ) as _i3.RequestState);
+        returnValue: _i4.RequestState.empty,
+      ) as _i4.RequestState);
   @override
   List<_i2.Movie> get movies => (super.noSuchMethod(
         Invocation.getter(#movies),
@@ -70,16 +72,16 @@ class MockNowPlayingMoviesNotifier extends _i1.Mock
         returnValue: false,
       ) as bool);
   @override
-  _i4.Future<void> fetchNowPlayingMovies() => (super.noSuchMethod(
+  _i5.Future<void> fetchNowPlayingMovies() => (super.noSuchMethod(
         Invocation.method(
           #fetchNowPlayingMovies,
           [],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
   @override
-  void addListener(_i5.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i6.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -87,7 +89,7 @@ class MockNowPlayingMoviesNotifier extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i5.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i6.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
