@@ -123,9 +123,6 @@ class MovieDetailContent extends StatelessWidget {
                                       .add(OnRemoveMovieWatchlist(movie));
                                 }
 
-                                // final message =
-                                //     context.read<MovieWatchlistBloc>().add(OnMovieWatchlist());
-
                                 String message = !isAddedWatchlist
                                     ? MovieWatchlistBloc
                                         .watchlistAddSuccessMessage

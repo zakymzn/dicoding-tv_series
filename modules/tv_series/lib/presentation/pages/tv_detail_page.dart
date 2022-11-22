@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/movies.dart';
 import 'package:tv_series/tv_series.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -17,34 +19,42 @@ class _TvDetailPageState extends State<TvDetailPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      Provider.of<TvDetailNotifier>(context, listen: false)
-          .fetchTvDetail(widget.id);
-      Provider.of<TvDetailNotifier>(context, listen: false)
-          .loadTvWatchlistStatus(widget.id);
-    });
+    context.read<TvDetailBloc>().add(OnTvDetail(widget.id));
+    context.read<TvRecommendationsBloc>().add(OnTvRecommendations(widget.id));
+    context.read<TvWatchlistBloc>().add(OnTvWatchlistStatus(widget.id));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer<TvDetailNotifier>(
-        builder: (context, provider, child) {
-          if (provider.tvState == RequestState.loading) {
+      body: BlocBuilder<TvDetailBloc, TvState>(
+        builder: (context, state) {
+          if (state is TvLoading) {
             return Center(
               child: CircularProgressIndicator(),
             );
-          } else if (provider.tvState == RequestState.loaded) {
-            final tv = provider.tv;
+          } else if (state is TvDetailHasData) {
+            final tv = state.result;
+            final tvRecommendations = context
+                .select<TvRecommendationsBloc, List<Tv>>(
+                    (TvRecommendationsBloc result) {
+              final state = result.state;
+              return state is TvListHasData ? state.result : [];
+            });
+            final isAddedToWatchlist =
+                context.select<TvWatchlistBloc, bool>((TvWatchlistBloc result) {
+              final state = result.state;
+              return state is TvWatchlistStatus ? state.status : false;
+            });
             return SafeArea(
               child: TvDetailContent(
                 tv,
-                provider.tvRecommendations,
-                provider.isAddedToWatchlist,
+                tvRecommendations,
+                isAddedToWatchlist,
               ),
             );
           } else {
-            return Text(provider.message);
+            return Text('Failed');
           }
         },
       ),
@@ -100,26 +110,25 @@ class TvDetailContent extends StatelessWidget {
                           ElevatedButton(
                             onPressed: () async {
                               if (!isAddedWatchlist) {
-                                await Provider.of<TvDetailNotifier>(context,
-                                        listen: false)
-                                    .addWatchlist(tv);
+                                context
+                                    .read<TvWatchlistBloc>()
+                                    .add(OnAddTvWatchlist(tv));
                               } else {
-                                await Provider.of<TvDetailNotifier>(context,
-                                        listen: false)
-                                    .removeFromWatchlist(tv);
+                                context
+                                    .read<TvWatchlistBloc>()
+                                    .add(OnRemoveTvWatchlist(tv));
                               }
 
-                              final message = Provider.of<TvDetailNotifier>(
-                                      context,
-                                      listen: false)
-                                  .watchlistMessage;
+                              String message = !isAddedWatchlist
+                                  ? TvWatchlistBloc.watchlistAddSuccessMessage
+                                  : TvWatchlistBloc
+                                      .watchlistRemoveSuccessMessage;
 
-                              if (message ==
-                                      TvDetailNotifier
-                                          .watchlistAddSuccessMessage ||
-                                  message ==
-                                      TvDetailNotifier
-                                          .watchlistRemoveSuccessMessage) {
+                              final state =
+                                  BlocProvider.of<TvWatchlistBloc>(context)
+                                      .state;
+
+                              if (state is MovieListHasData) {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
                                   content: Text(message),
@@ -213,18 +222,15 @@ class TvDetailContent extends StatelessWidget {
                             'Recommendations',
                             style: kHeading6,
                           ),
-                          Consumer<TvDetailNotifier>(
-                            builder: (context, data, child) {
-                              if (data.recommendationState ==
-                                  RequestState.loading) {
+                          BlocBuilder<TvDetailBloc, TvState>(
+                            builder: (context, state) {
+                              if (state is TvLoading) {
                                 return Center(
                                   child: CircularProgressIndicator(),
                                 );
-                              } else if (data.recommendationState ==
-                                  RequestState.error) {
-                                return Text(data.message);
-                              } else if (data.recommendationState ==
-                                  RequestState.loaded) {
+                              } else if (state is TvError) {
+                                return Text(state.message);
+                              } else if (state is TvListHasData) {
                                 return Container(
                                   height: 150,
                                   child: ListView.builder(

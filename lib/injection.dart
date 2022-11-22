@@ -50,19 +50,8 @@ Future<void> init() async {
     ),
   );
   locator.registerFactory(
-    () => TvListNotifier(
-      getNowPlayingTv: locator(),
-      getPopularTv: locator(),
-      getTopRatedTv: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TvDetailNotifier(
-      getTvDetail: locator(),
-      getTvRecommendations: locator(),
-      getTvWatchListStatus: locator(),
-      saveTvWatchlist: locator(),
-      removeTvWatchlist: locator(),
+    () => TvDetailBloc(
+      locator(),
     ),
   );
   locator.registerFactory(
@@ -71,23 +60,26 @@ Future<void> init() async {
     ),
   );
   locator.registerFactory(
-    () => NowPlayingTvNotifier(
+    () => NowPlayingTvBloc(
       locator(),
     ),
   );
   locator.registerFactory(
-    () => PopularTvNotifier(
+    () => PopularTvBloc(
       locator(),
     ),
   );
   locator.registerFactory(
-    () => TopRatedTvNotifier(
-      getTopRatedTv: locator(),
+    () => TopRatedTvBloc(
+      locator(),
     ),
   );
   locator.registerFactory(
-    () => WatchlistTvNotifier(
-      getWatchListTv: locator(),
+    () => TvWatchlistBloc(
+      locator(),
+      locator(),
+      locator(),
+      locator(),
     ),
   );
   locator.registerFactory(() => WatchlistNavigationBarNotifier());
