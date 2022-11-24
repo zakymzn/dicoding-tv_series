@@ -1,11 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies/movies.dart';
 import 'package:tv_series/tv_series.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-// import 'package:provider/provider.dart';
 
 class TvDetailPage extends StatefulWidget {
   final int id;
@@ -32,7 +30,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
       body: BlocBuilder<TvDetailBloc, TvState>(
         builder: (context, state) {
           if (state is TvLoading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state is TvDetailHasData) {
@@ -56,7 +54,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
               ),
             );
           } else {
-            return Text('Failed');
+            return const Text('Failed');
           }
         },
       ),
@@ -79,7 +77,7 @@ class TvDetailContent extends StatelessWidget {
         CachedNetworkImage(
           imageUrl: 'https://image.tmdb.org/t/p/w500${tv.posterPath}',
           width: screenWidth,
-          placeholder: (context, url) => Center(
+          placeholder: (context, url) => const Center(
             child: CircularProgressIndicator(),
           ),
         ),
@@ -88,7 +86,7 @@ class TvDetailContent extends StatelessWidget {
           child: DraggableScrollableSheet(
             builder: (context, scrollController) {
               return Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: kRichBlack,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
                 ),
@@ -135,7 +133,7 @@ class TvDetailContent extends StatelessWidget {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
                                   content: Text(message),
-                                  duration: Duration(seconds: 3),
+                                  duration: const Duration(seconds: 3),
                                 ));
                                 BlocProvider.of<TvWatchlistBloc>(context)
                                     .add(OnTvWatchlistStatus(tv.id));
@@ -143,7 +141,7 @@ class TvDetailContent extends StatelessWidget {
                                 showDialog(
                                   context: context,
                                   builder: (context) {
-                                    return AlertDialog(
+                                    return const AlertDialog(
                                       content: Text('Failed'),
                                     );
                                   },
@@ -154,9 +152,9 @@ class TvDetailContent extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 isAddedWatchlist
-                                    ? Icon(Icons.check)
-                                    : Icon(Icons.add),
-                                Text('Watchlist'),
+                                    ? const Icon(Icons.check)
+                                    : const Icon(Icons.add),
+                                const Text('Watchlist'),
                               ],
                             ),
                           ),
@@ -165,10 +163,10 @@ class TvDetailContent extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Text('Last episode : '),
+                              const Text('Last episode : '),
                               Text(
                                 '${tv.lastEpisodeToAir.episodeNumber}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -176,10 +174,10 @@ class TvDetailContent extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Text('Number of episode : '),
+                              const Text('Number of episode : '),
                               Text(
                                 '${tv.numberOfEpisodes}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),
                               )
@@ -187,10 +185,10 @@ class TvDetailContent extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Text('Season : '),
+                              const Text('Season : '),
                               Text(
                                 '${tv.seasons.map((e) => e.seasonNumber).first}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),
                               )
@@ -201,7 +199,7 @@ class TvDetailContent extends StatelessWidget {
                               RatingBarIndicator(
                                 rating: tv.voteAverage / 2,
                                 itemCount: 5,
-                                itemBuilder: (context, index) => Icon(
+                                itemBuilder: (context, index) => const Icon(
                                   Icons.star,
                                   color: kMikadoYellow,
                                 ),
@@ -210,7 +208,7 @@ class TvDetailContent extends StatelessWidget {
                               Text('${tv.voteAverage}')
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 16,
                           ),
                           Text(
@@ -220,17 +218,17 @@ class TvDetailContent extends StatelessWidget {
                           Text(
                             tv.overview,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 16,
                           ),
                           Text(
                             'Recommendations',
                             style: kHeading6,
                           ),
-                          BlocBuilder<TvDetailBloc, TvState>(
+                          BlocBuilder<TvRecommendationsBloc, TvState>(
                             builder: (context, state) {
                               if (state is TvLoading) {
-                                return Center(
+                                return const Center(
                                   child: CircularProgressIndicator(),
                                 );
                               } else if (state is TvError) {
@@ -254,14 +252,15 @@ class TvDetailContent extends StatelessWidget {
                                             );
                                           },
                                           child: ClipRRect(
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius:
+                                                const BorderRadius.all(
                                               Radius.circular(8),
                                             ),
                                             child: CachedNetworkImage(
                                               imageUrl:
                                                   'https://image.tmdb.org/t/p/w500${tv.posterPath}',
                                               placeholder: (context, url) =>
-                                                  Center(
+                                                  const Center(
                                                 child:
                                                     CircularProgressIndicator(),
                                               ),
@@ -305,7 +304,7 @@ class TvDetailContent extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
             ),
           ),
         )

@@ -55,7 +55,7 @@ void main() {
     act: (bloc) => bloc.add(OnTopRatedTv()),
     expect: () => <TvState>[
       TvLoading(),
-      TvListHasData(testTvList),
+      TvError('Server Failure'),
     ],
     verify: (bloc) {
       verify(mockGetTopRatedTv.execute());
