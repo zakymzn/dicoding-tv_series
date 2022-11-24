@@ -12,6 +12,8 @@ void main() {
 
   setUp(() {
     mockPopularMoviesBloc = MockPopularMoviesBloc();
+    registerFallbackValue(FakeMovieEvent());
+    registerFallbackValue(FakeMovieState());
   });
 
   Widget _makeTestableWidget(Widget body) {

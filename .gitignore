@@ -31,10 +31,10 @@
 .pub/
 /build/
 /coverage/
-/core/coverage/
-/movies/coverage/
-/tv_series/coverage/
-/search/coverage/
+modules/core/coverage/
+modules/movies/coverage/
+modules/tv_series/coverage/
+modules/search/coverage/
 
 # Web related
 lib/generated_plugin_registrant.dart

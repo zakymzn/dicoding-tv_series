@@ -13,6 +13,8 @@ void main() {
   setUp(
     () {
       mockTopRatedTvBloc = MockTopRatedTvBloc();
+      registerFallbackValue(FakeTvEvent());
+      registerFallbackValue(FakeTvState());
     },
   );
 

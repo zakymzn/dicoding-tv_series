@@ -17,9 +17,11 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
   @override
   void initState() {
     super.initState();
-    context.read<NowPlayingMoviesBloc>().add(OnNowPlayingMovies());
-    context.read<PopularMoviesBloc>().add(OnPopularMovies());
-    context.read<TopRatedMoviesBloc>().add(OnTopRatedMovies());
+    Future.microtask(() {
+      context.read<NowPlayingMoviesBloc>().add(OnNowPlayingMovies());
+      context.read<PopularMoviesBloc>().add(OnPopularMovies());
+      context.read<TopRatedMoviesBloc>().add(OnTopRatedMovies());
+    });
   }
 
   @override

@@ -12,6 +12,8 @@ void main() {
 
   setUp(() {
     mockPopularTvBloc = MockPopularTvBloc();
+    registerFallbackValue(FakeTvEvent());
+    registerFallbackValue(FakeTvState());
   });
 
   Widget _makeTestableWidget(Widget body) {
