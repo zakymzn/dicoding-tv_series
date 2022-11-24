@@ -1,9 +1,8 @@
 import 'package:tv_series/data/models/tv_table.dart';
 import 'package:core/domain/entities/genre.dart';
-import 'package:core/domain/entities/last_episode_to_air.dart';
-import 'package:core/domain/entities/season.dart';
 import 'package:tv_series/domain/entities/tv.dart';
 import 'package:tv_series/domain/entities/tv_detail.dart';
+import 'package:tv_series/tv_series.dart';
 
 final testTv = Tv(
   posterPath: "/vC324sdfcS313vh9QXwijLIHPJp.jpg",

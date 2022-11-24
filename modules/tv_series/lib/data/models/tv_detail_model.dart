@@ -1,9 +1,10 @@
-import 'package:core/data/models/created_by_model.dart';
 import 'package:core/data/models/genre_model.dart';
-import 'package:core/data/models/last_episode_to_air_model.dart';
-import 'package:core/data/models/season_model.dart';
+import 'package:tv_series/data/models/season_model.dart';
 import 'package:tv_series/domain/entities/tv_detail.dart';
 import 'package:equatable/equatable.dart';
+
+import 'created_by_model.dart';
+import 'last_episode_to_air_model.dart';
 
 class TvDetailResponse extends Equatable {
   TvDetailResponse({

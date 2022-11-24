@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:core/data/models/created_by_model.dart';
 import 'package:core/data/models/genre_model.dart';
-import 'package:core/data/models/last_episode_to_air_model.dart';
-import 'package:core/data/models/season_model.dart';
+import 'package:tv_series/data/models/created_by_model.dart';
+import 'package:tv_series/data/models/last_episode_to_air_model.dart';
+import 'package:tv_series/data/models/season_model.dart';
 import 'package:tv_series/data/models/tv_detail_model.dart';
 import 'package:tv_series/data/models/tv_model.dart';
 import 'package:tv_series/data/repositories/tv_repository_impl.dart';

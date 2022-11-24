@@ -22,6 +22,7 @@ class _WatchlistTvPageState extends State<WatchlistTvPage> with RouteAware {
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
+  @override
   void didPopNext() {
     context.read<TvWatchlistBloc>().add(OnTvWatchlist());
   }

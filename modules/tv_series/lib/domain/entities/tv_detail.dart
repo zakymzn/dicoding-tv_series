@@ -1,5 +1,8 @@
-import 'package:core/core.dart';
+import 'package:core/domain/entities/genre.dart';
 import 'package:equatable/equatable.dart';
+
+import 'last_episode_to_air.dart';
+import 'season.dart';
 
 class TvDetail extends Equatable {
   TvDetail({

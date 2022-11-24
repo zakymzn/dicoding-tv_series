@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
+import 'package:tv_series/domain/entities/last_episode_to_air.dart';
 
 class LastEpisodeToAirModel extends Equatable {
   LastEpisodeToAirModel({

@@ -7,11 +7,16 @@ export 'data/models/tv_detail_model.dart';
 export 'data/models/tv_model.dart';
 export 'data/models/tv_response.dart';
 export 'data/models/tv_table.dart';
+export 'data/models/created_by_model.dart';
+export 'data/models/last_episode_to_air_model.dart';
+export 'data/models/season_model.dart';
 
 export 'data/repositories/tv_repository_impl.dart';
 
 export 'domain/entities/tv.dart';
 export 'domain/entities/tv_detail.dart';
+export 'domain/entities/last_episode_to_air.dart';
+export 'domain/entities/season.dart';
 
 export 'domain/repositories/tv_repository.dart';
 

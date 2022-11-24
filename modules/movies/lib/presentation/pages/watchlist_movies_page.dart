@@ -22,6 +22,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
+  @override
   void didPopNext() {
     context.read<MovieWatchlistBloc>().add(OnMovieWatchlist());
   }

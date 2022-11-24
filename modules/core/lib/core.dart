@@ -12,13 +12,7 @@ export 'utils/utils.dart';
 
 export 'data/datasources/db/database_helper.dart';
 
-export 'data/models/created_by_model.dart';
 export 'data/models/genre_model.dart';
-export 'data/models/last_episode_to_air_model.dart';
-export 'data/models/season_model.dart';
-
 export 'domain/entities/genre.dart';
-export 'domain/entities/last_episode_to_air.dart';
-export 'domain/entities/season.dart';
 
 export 'presentation/pages/watchlist_page.dart';
