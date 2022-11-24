@@ -82,7 +82,11 @@ Future<void> init() async {
       locator(),
     ),
   );
-  locator.registerFactory(() => WatchlistNavigationBarNotifier());
+  locator.registerFactory(
+    () => TvRecommendationsBloc(
+      locator(),
+    ),
+  );
 
   // use case
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));
@@ -134,6 +138,5 @@ Future<void> init() async {
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
   // external
-  // locator.registerLazySingleton(() => http.Client());
   locator.registerLazySingleton<IOClient>(() => ioClient);
 }

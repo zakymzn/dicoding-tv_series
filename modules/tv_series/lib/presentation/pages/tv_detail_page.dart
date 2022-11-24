@@ -19,9 +19,11 @@ class _TvDetailPageState extends State<TvDetailPage> {
   @override
   void initState() {
     super.initState();
-    context.read<TvDetailBloc>().add(OnTvDetail(widget.id));
-    context.read<TvRecommendationsBloc>().add(OnTvRecommendations(widget.id));
-    context.read<TvWatchlistBloc>().add(OnTvWatchlistStatus(widget.id));
+    Future.microtask(() {
+      context.read<TvDetailBloc>().add(OnTvDetail(widget.id));
+      context.read<TvRecommendationsBloc>().add(OnTvRecommendations(widget.id));
+      context.read<TvWatchlistBloc>().add(OnTvWatchlistStatus(widget.id));
+    });
   }
 
   @override
@@ -128,18 +130,21 @@ class TvDetailContent extends StatelessWidget {
                                   BlocProvider.of<TvWatchlistBloc>(context)
                                       .state;
 
-                              if (state is MovieListHasData) {
+                              if (state is TvWatchlistMessage ||
+                                  state is TvWatchlistStatus) {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
                                   content: Text(message),
                                   duration: Duration(seconds: 3),
                                 ));
+                                BlocProvider.of<TvWatchlistBloc>(context)
+                                    .add(OnTvWatchlistStatus(tv.id));
                               } else {
                                 showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
-                                      content: Text(message),
+                                      content: Text('Failed'),
                                     );
                                   },
                                 );

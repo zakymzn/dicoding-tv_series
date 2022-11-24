@@ -133,18 +133,21 @@ class MovieDetailContent extends StatelessWidget {
                                     BlocProvider.of<MovieWatchlistBloc>(context)
                                         .state;
 
-                                if (state is MovieListHasData) {
+                                if (state is MovieWatchlistMessage ||
+                                    state is MovieWatchlistStatus) {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(
                                     content: Text(message),
                                     duration: Duration(seconds: 3),
                                   ));
+                                  BlocProvider.of<MovieWatchlistBloc>(context)
+                                      .add(OnMovieWatchlistStatus(movie.id));
                                 } else {
                                   showDialog(
                                       context: context,
                                       builder: (context) {
                                         return AlertDialog(
-                                          content: Text(message),
+                                          content: Text('Failed'),
                                         );
                                       });
                                 }

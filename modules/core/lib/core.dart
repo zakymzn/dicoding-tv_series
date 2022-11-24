@@ -22,5 +22,3 @@ export 'domain/entities/last_episode_to_air.dart';
 export 'domain/entities/season.dart';
 
 export 'presentation/pages/watchlist_page.dart';
-
-export 'presentation/provider/watchlist_navigation_bar_notifier.dart';

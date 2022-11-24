@@ -1,61 +1,36 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:movies/movies.dart';
+import 'package:tv_series/presentation/pages/watchlist_tv_page.dart';
 
-class WatchListPage extends StatefulWidget {
-  @override
-  State<WatchListPage> createState() => _WatchListPageState();
-}
-
-class _WatchListPageState extends State<WatchListPage> {
+class WatchListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<WatchlistNavigationBarNotifier>(
-      builder: (context, page, child) => Scaffold(
-        body: page.pages[page.currentIndex],
-        bottomNavigationBar: NavigationBarTheme(
-          data: NavigationBarThemeData(
-            indicatorColor: Colors.amber.shade100,
-            iconTheme: const MaterialStatePropertyAll(
-              IconThemeData(
-                color: Colors.white,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            labelColor: kMikadoYellow,
+            unselectedLabelColor: Colors.white,
+            indicatorColor: kMikadoYellow,
+            tabs: [
+              Tab(
+                icon: Icon(Icons.movie),
+                text: 'Movie',
               ),
-            ),
-            labelTextStyle: const MaterialStatePropertyAll(
-              TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+              Tab(
+                icon: Icon(Icons.tv),
+                text: 'TV',
               ),
-            ),
-          ),
-          child: NavigationBar(
-            onDestinationSelected: (index) {
-              page.currentPageIndex(index);
-            },
-            animationDuration: const Duration(milliseconds: 500),
-            selectedIndex: page.currentIndex,
-            backgroundColor: Colors.amber.shade300,
-            destinations: [
-              NavigationDestination(
-                icon: Icon(Icons.movie_outlined),
-                selectedIcon: Icon(
-                  Icons.movie,
-                  color: Colors.amber,
-                ),
-                label: 'Movie Watchlist',
-              ),
-              NavigationDestination(
-                icon: Icon(Icons.tv_outlined),
-                selectedIcon: Icon(
-                  Icons.tv,
-                  color: Colors.amber,
-                ),
-                label: 'TV Watchlist',
-              )
             ],
           ),
+          title: Text('Watchlist'),
         ),
+        body: TabBarView(children: [
+          WatchlistMoviesPage(),
+          WatchlistTvPage(),
+        ]),
       ),
     );
   }
