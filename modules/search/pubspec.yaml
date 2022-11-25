@@ -29,6 +29,7 @@ dependencies:
   sqflite: ^2.0.0+3
   path_provider: ^2.0.2
   rxdart: ^0.27.1
+  mocktail: ^0.3.0
 
 dev_dependencies:
   flutter_test:
