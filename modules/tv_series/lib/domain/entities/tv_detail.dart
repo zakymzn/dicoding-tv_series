@@ -1,8 +1,6 @@
 import 'package:core/domain/entities/genre.dart';
 import 'package:equatable/equatable.dart';
-
-import 'last_episode_to_air.dart';
-import 'season.dart';
+import 'package:tv_series/tv_series.dart';
 
 class TvDetail extends Equatable {
   TvDetail({
@@ -26,7 +24,7 @@ class TvDetail extends Equatable {
   });
 
   final String? backdropPath;
-  final LastEpisodeToAir lastEpisodeToAir;
+  final LastEpisodeToAirModel lastEpisodeToAir;
   final String name;
   final List<dynamic> episodeRunTime;
   final String firstAirDate;
@@ -35,7 +33,7 @@ class TvDetail extends Equatable {
   final int numberOfSeasons;
   final List<dynamic> originCountry;
   final List<Genre> genres;
-  final List<Season> seasons;
+  final List<dynamic> seasons;
   final int id;
   final String originalName;
   final String overview;

@@ -25,7 +25,7 @@ final testTvList = [testTv];
 
 final testTvDetail = TvDetail(
   backdropPath: "backdropPath",
-  lastEpisodeToAir: LastEpisodeToAir(
+  lastEpisodeToAir: LastEpisodeToAirModel(
     airDate: "airDate",
     episodeNumber: 1,
     id: 1,
@@ -35,6 +35,8 @@ final testTvDetail = TvDetail(
     seasonNumber: 1,
     voteAverage: 1,
     voteCount: 1,
+    productionCode: 'productionCode',
+    stillPath: 'stillPath',
   ),
   name: "name",
   episodeRunTime: [1],
@@ -47,7 +49,7 @@ final testTvDetail = TvDetail(
     Genre(id: 1, name: "name"),
   ],
   seasons: [
-    Season(
+    SeasonModel(
         airDate: "airDate",
         episodeCount: 1,
         id: 1,

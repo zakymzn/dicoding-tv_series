@@ -1,6 +1,10 @@
 import 'dart:convert';
 
 import 'package:core/core.dart';
+import 'package:http/http.dart';
+import 'package:tv_series/data/models/episode_model.dart';
+import 'package:tv_series/data/models/tv_episode_detail_model.dart';
+import 'package:tv_series/data/models/tv_season_detail_model.dart';
 import 'package:tv_series/tv_series.dart';
 import 'package:http/io_client.dart';
 
@@ -11,6 +15,9 @@ abstract class TvRemoteDataSource {
   Future<TvDetailResponse> getTvDetail(int id);
   Future<List<TvModel>> getTvRecommendations(int id);
   Future<List<TvModel>> searchTv(String query);
+  Future<TvSeasonDetailResponse> getTvSeasonDetail(int id, int seasonNumber);
+  Future<TvEpisodeDetailResponse> getTvEpisodeDetail(
+      int id, int seasonNumber, int episodeNumber);
 }
 
 class TvRemoteDataSourceImpl implements TvRemoteDataSource {
@@ -34,6 +41,30 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
     final response = await client.get(Uri.parse('$BASE_URL/tv/$id?$API_KEY'));
     if (response.statusCode == 200) {
       return TvDetailResponse.fromJson(json.decode(response.body));
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<TvSeasonDetailResponse> getTvSeasonDetail(
+      int id, int seasonNumber) async {
+    final response = await client
+        .get(Uri.parse('$BASE_URL/tv/$id/season/$seasonNumber?$API_KEY'));
+    if (response.statusCode == 200) {
+      return TvSeasonDetailResponse.fromJson(json.decode(response.body));
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<TvEpisodeDetailResponse> getTvEpisodeDetail(
+      int id, int seasonNumber, int episodeNumber) async {
+    final response = await client.get(Uri.parse(
+        '$BASE_URL/tv/$id/season/$seasonNumber/episode/$episodeNumber?$API_KEY'));
+    if (response.statusCode == 200) {
+      return TvEpisodeDetailResponse.fromJson(json.decode(response.body));
     } else {
       throw ServerException();
     }
