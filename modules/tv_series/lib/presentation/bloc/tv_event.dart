@@ -29,6 +29,35 @@ class OnTvDetail extends TvEvent {
   List<Object> get props => [id];
 }
 
+class OnTvSeasonDetail extends TvEvent {
+  final int id;
+  final int seasonNumber;
+
+  OnTvSeasonDetail(this.id, this.seasonNumber);
+
+  @override
+  List<Object> get props => [id, seasonNumber];
+}
+
+class OnTvEpisodeDetail extends TvEvent {
+  final int id;
+  final int seasonNumber;
+  final int episodeNumber;
+
+  OnTvEpisodeDetail(
+    this.id,
+    this.seasonNumber,
+    this.episodeNumber,
+  );
+
+  @override
+  List<Object> get props => [
+        id,
+        seasonNumber,
+        episodeNumber,
+      ];
+}
+
 class OnTvWatchlist extends TvEvent {}
 
 class OnTvWatchlistStatus extends TvEvent {

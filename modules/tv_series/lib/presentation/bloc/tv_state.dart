@@ -38,6 +38,24 @@ class TvDetailHasData extends TvState {
   List<Object> get props => [result];
 }
 
+class TvSeasonDetailHasData extends TvState {
+  final TvSeasonDetail result;
+
+  TvSeasonDetailHasData(this.result);
+
+  @override
+  List<Object> get props => [result];
+}
+
+class TvEpisodeDetailHasData extends TvState {
+  final TvEpisodeDetail result;
+
+  TvEpisodeDetailHasData(this.result);
+
+  @override
+  List<Object> get props => [result];
+}
+
 class TvWatchlistMessage extends TvState {
   final String message;
 

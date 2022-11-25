@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:tv_series/domain/usecases/get_tv_episode_detail.dart';
+import 'package:tv_series/domain/usecases/get_tv_season_detail.dart';
 import 'package:tv_series/tv_series.dart';
 
 part 'tv_event.dart';
@@ -109,6 +111,55 @@ class TvDetailBloc extends Bloc<TvEvent, TvState> {
         (tv) => emit(
           TvDetailHasData(tv),
         ),
+      );
+    });
+  }
+}
+
+class TvSeasonDetailBloc extends Bloc<TvEvent, TvState> {
+  final GetTvSeasonDetail getTvSeasonDetail;
+
+  TvSeasonDetailBloc(this.getTvSeasonDetail) : super(TvEmpty()) {
+    on<OnTvSeasonDetail>((event, emit) async {
+      final id = event.id;
+      final seasonNumber = event.seasonNumber;
+
+      emit(TvLoading());
+
+      final getTvSeasonDetailresult =
+          await getTvSeasonDetail.execute(id, seasonNumber);
+
+      getTvSeasonDetailresult.fold(
+        (failure) => emit(
+          TvError(failure.message),
+        ),
+        (tvSeason) => emit(
+          TvSeasonDetailHasData(tvSeason),
+        ),
+      );
+    });
+  }
+}
+
+class TvEpisodeDetailBloc extends Bloc<TvEvent, TvState> {
+  final GetTvEpisodeDetail getTvEpisodeDetail;
+
+  TvEpisodeDetailBloc(this.getTvEpisodeDetail) : super(TvEmpty()) {
+    on<OnTvEpisodeDetail>((event, emit) async {
+      final id = event.id;
+      final seasonNumber = event.seasonNumber;
+      final episodeNumber = event.episodeNumber;
+
+      emit(TvLoading());
+
+      final getTvEpisodeDetailresult =
+          await getTvEpisodeDetail.execute(id, seasonNumber, episodeNumber);
+
+      getTvEpisodeDetailresult.fold(
+        (failure) => emit(
+          TvError(failure.message),
+        ),
+        (tvEpisode) => TvEpisodeDetailHasData(tvEpisode),
       );
     });
   }
