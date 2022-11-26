@@ -2,17 +2,11 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:core/data/models/genre_model.dart';
-import 'package:tv_series/data/models/created_by_model.dart';
-import 'package:tv_series/data/models/last_episode_to_air_model.dart';
-import 'package:tv_series/data/models/season_model.dart';
-import 'package:tv_series/data/models/tv_detail_model.dart';
-import 'package:tv_series/data/models/tv_model.dart';
-import 'package:tv_series/data/repositories/tv_repository_impl.dart';
 import 'package:core/utils/exception.dart';
 import 'package:core/utils/failure.dart';
-import 'package:tv_series/domain/entities/tv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:tv_series/tv_series.dart';
 
 import '../../dummy_data/tv_dummy_objects.dart';
 import '../../helpers/tv_test_helper.mocks.dart';
@@ -67,6 +61,96 @@ void main() {
 
   final tTvModelList = <TvModel>[tTvModel];
   final tTvList = <Tv>[tTv];
+
+  final tTvSeasonDetail = TvSeasonDetail(
+    id: 'id',
+    airDate: 'airDate',
+    episodes: [
+      EpisodeModel(
+        airDate: 'airDate',
+        episodeNumber: 1,
+        crew: [
+          CrewInSeasonDetailModel(
+            department: 'department',
+            job: 'job',
+            creditId: 'creditId',
+            adult: false,
+            gender: 1,
+            id: 1,
+            knownForDepartment: 'knownForDepartment',
+            name: 'name',
+            originalName: 'originalName',
+            popularity: 1,
+            profilePath: 'profilePath',
+            order: 1,
+            character: 'character',
+          ),
+        ],
+        guestStars: [
+          CrewInSeasonDetailModel(
+            department: 'department',
+            job: 'job',
+            creditId: 'creditId',
+            adult: false,
+            gender: 1,
+            id: 1,
+            knownForDepartment: 'knownForDepartment',
+            name: 'name',
+            originalName: 'originalName',
+            popularity: 1,
+            profilePath: 'profilePath',
+            order: 1,
+            character: 'character',
+          )
+        ],
+        id: 1,
+        name: 'name',
+        overview: 'overview',
+        productionCode: 'productionCode',
+        seasonNumber: 1,
+        stillPath: 'stillPath',
+        voteAverage: 1,
+        voteCount: 1,
+      ),
+    ],
+    name: 'name',
+    overview: 'overview',
+    seasonDetailId: 1,
+    posterPath: 'posterPath',
+    seasonNumber: 1,
+  );
+
+  final tTvEpisodeDetail = TvEpisodeDetail(
+    airDate: 'airDate',
+    crew: [
+      CrewInEpisodeDetailModel(
+        id: 1,
+        creditId: 'creditId',
+        name: 'name',
+        department: 'department',
+        job: 'job',
+        profilePath: 'profilePath',
+      ),
+    ],
+    episodeNumber: 1,
+    guestStars: [
+      GuestStarModel(
+        id: 1,
+        name: 'name',
+        creditId: 'creditId',
+        character: 'character',
+        order: 1,
+        profilePath: 'profilePath',
+      ),
+    ],
+    name: 'name',
+    overview: 'overview',
+    id: 1,
+    seasonNumber: 1,
+    stillPath: 'stillPath',
+    voteAverage: 1,
+    voteCount: 1,
+  );
 
   group('Now Playing Tv', () {
     test(
@@ -281,6 +365,205 @@ void main() {
             equals(
                 Left(ConnectionFailure('Failed to connect to the network'))));
       });
+    },
+  );
+
+  group(
+    'Get tv season detail',
+    () {
+      const tId = 1;
+      const tSeasonNumber = 1;
+      final tTvSeasonDetailResponse = TvSeasonDetailResponse(
+        id: 'id',
+        airDate: 'airDate',
+        episodes: [
+          EpisodeModel(
+            airDate: 'airDate',
+            episodeNumber: 1,
+            crew: [
+              CrewInSeasonDetailModel(
+                department: 'department',
+                job: 'job',
+                creditId: 'creditId',
+                adult: false,
+                gender: 1,
+                id: 1,
+                knownForDepartment: 'knownForDepartment',
+                name: 'name',
+                originalName: 'originalName',
+                popularity: 1,
+                profilePath: 'profilePath',
+                order: 1,
+                character: 'character',
+              )
+            ],
+            guestStars: [
+              CrewInSeasonDetailModel(
+                department: 'department',
+                job: 'job',
+                creditId: 'creditId',
+                adult: false,
+                gender: 1,
+                id: 1,
+                knownForDepartment: 'knownForDepartment',
+                name: 'name',
+                originalName: 'originalName',
+                popularity: 1,
+                profilePath: 'profilePath',
+                order: 1,
+                character: 'character',
+              )
+            ],
+            id: 1,
+            name: 'name',
+            overview: 'overview',
+            productionCode: 'productionCode',
+            seasonNumber: 1,
+            stillPath: 'stillPath',
+            voteAverage: 1,
+            voteCount: 1,
+          ),
+        ],
+        name: 'name',
+        overview: 'overview',
+        seasonDetailId: 1,
+        posterPath: 'posterPath',
+        seasonNumber: 1,
+      );
+
+      test(
+        'should return tv season detail data when the call to remote source is successful',
+        () async {
+          when(mockRemoteDataSource.getTvSeasonDetail(tId, tSeasonNumber))
+              .thenAnswer((realInvocation) async => tTvSeasonDetailResponse);
+
+          final result = await repository.getTvSeasonDetail(tId, tSeasonNumber);
+
+          verify(mockRemoteDataSource.getTvSeasonDetail(tId, tSeasonNumber));
+          expect(result, equals(Right(testTvSeasonDetail)));
+        },
+      );
+
+      test(
+        'should return Server Failure when the call to remote data source is unsuccessful',
+        () async {
+          when(mockRemoteDataSource.getTvSeasonDetail(tId, tSeasonNumber))
+              .thenThrow(ServerException());
+
+          final result = await repository.getTvSeasonDetail(tId, tSeasonNumber);
+
+          verify(mockRemoteDataSource.getTvSeasonDetail(tId, tSeasonNumber));
+          expect(result, equals(Left(ServerFailure(''))));
+        },
+      );
+
+      test(
+        'should return connection failure when the device is not connected to internet',
+        () async {
+          when(mockRemoteDataSource.getTvSeasonDetail(tId, tSeasonNumber))
+              .thenThrow(SocketException('Failed to connect to the network'));
+
+          final result = await repository.getTvSeasonDetail(tId, tSeasonNumber);
+
+          verify(mockRemoteDataSource.getTvSeasonDetail(tId, tSeasonNumber));
+          expect(
+              result,
+              equals(
+                  Left(ConnectionFailure('Failed to connect to the network'))));
+        },
+      );
+    },
+  );
+
+  group(
+    'Get tv episode detail',
+    () {
+      const tId = 1;
+      const tSeasonNumber = 1;
+      const tEpisodeNumber = 1;
+      final tTvEpisodeDetailResponse = TvEpisodeDetailResponse(
+        airDate: 'airDate',
+        crew: [
+          CrewInEpisodeDetailModel(
+            id: 1,
+            creditId: 'creditId',
+            name: 'name',
+            department: 'department',
+            job: 'job',
+            profilePath: 'profilePath',
+          ),
+        ],
+        episodeNumber: 1,
+        guestStars: [
+          GuestStarModel(
+            id: 1,
+            name: 'name',
+            creditId: 'creditId',
+            character: 'character',
+            order: 1,
+            profilePath: 'profilePath',
+          ),
+        ],
+        name: 'name',
+        overview: 'overview',
+        id: 1,
+        productionCode: 'productionCode',
+        seasonNumber: 1,
+        stillPath: 'stillPath',
+        voteAverage: 1,
+        voteCount: 1,
+      );
+
+      test(
+        'should return tv episode detail data when the call to remote data source is successful',
+        () async {
+          when(mockRemoteDataSource.getTvEpisodeDetail(
+                  tId, tSeasonNumber, tEpisodeNumber))
+              .thenAnswer((realInvocation) async => tTvEpisodeDetailResponse);
+
+          final result = await repository.getTvEpisodeDetail(
+              tId, tSeasonNumber, tEpisodeNumber);
+
+          verify(mockRemoteDataSource.getTvEpisodeDetail(
+              tId, tSeasonNumber, tEpisodeNumber));
+          expect(result, equals(Right(testTvEpisodeDetail)));
+        },
+      );
+
+      test(
+        'should return Server Failure when the call to remote data source is unsuccessful',
+        () async {
+          when(mockRemoteDataSource.getTvEpisodeDetail(
+                  tId, tSeasonNumber, tEpisodeNumber))
+              .thenThrow(ServerException());
+
+          final result = await repository.getTvEpisodeDetail(
+              tId, tSeasonNumber, tEpisodeNumber);
+
+          verify(mockRemoteDataSource.getTvEpisodeDetail(
+              tId, tSeasonNumber, tEpisodeNumber));
+          expect(result, equals(Left(ServerFailure(''))));
+        },
+      );
+
+      test(
+        'should return connection failure when the device is not connected to internet',
+        () async {
+          when(mockRemoteDataSource.getTvEpisodeDetail(
+                  tId, tSeasonNumber, tEpisodeNumber))
+              .thenThrow(SocketException('Failed to connect to the network'));
+
+          final result = await repository.getTvEpisodeDetail(
+              tId, tSeasonNumber, tEpisodeNumber);
+
+          verify(mockRemoteDataSource.getTvEpisodeDetail(
+              tId, tSeasonNumber, tEpisodeNumber));
+          expect(
+              result,
+              equals(
+                  Left(ConnectionFailure('Failed to connect to the network'))));
+        },
+      );
     },
   );
 

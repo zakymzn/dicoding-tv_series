@@ -49,9 +49,9 @@ class _FakeTvDetailResponse_1 extends _i1.SmartFake
         );
 }
 
-class _FakeIOStreamedResponse_2 extends _i1.SmartFake
-    implements _i4.IOStreamedResponse {
-  _FakeIOStreamedResponse_2(
+class _FakeTvSeasonDetailResponse_2 extends _i1.SmartFake
+    implements _i3.TvSeasonDetailResponse {
+  _FakeTvSeasonDetailResponse_2(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -60,8 +60,30 @@ class _FakeIOStreamedResponse_2 extends _i1.SmartFake
         );
 }
 
-class _FakeResponse_3 extends _i1.SmartFake implements _i5.Response {
-  _FakeResponse_3(
+class _FakeTvEpisodeDetailResponse_3 extends _i1.SmartFake
+    implements _i3.TvEpisodeDetailResponse {
+  _FakeTvEpisodeDetailResponse_3(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeIOStreamedResponse_4 extends _i1.SmartFake
+    implements _i4.IOStreamedResponse {
+  _FakeIOStreamedResponse_4(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeResponse_5 extends _i1.SmartFake implements _i5.Response {
+  _FakeResponse_5(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -142,6 +164,61 @@ class MockTvRepository extends _i1.Mock implements _i3.TvRepository {
           ),
         )),
       ) as _i6.Future<_i2.Either<_i7.Failure, _i3.TvDetail>>);
+  @override
+  _i6.Future<_i2.Either<_i7.Failure, _i3.TvSeasonDetail>> getTvSeasonDetail(
+    int? id,
+    int? seasonNumber,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getTvSeasonDetail,
+          [
+            id,
+            seasonNumber,
+          ],
+        ),
+        returnValue:
+            _i6.Future<_i2.Either<_i7.Failure, _i3.TvSeasonDetail>>.value(
+                _FakeEither_0<_i7.Failure, _i3.TvSeasonDetail>(
+          this,
+          Invocation.method(
+            #getTvSeasonDetail,
+            [
+              id,
+              seasonNumber,
+            ],
+          ),
+        )),
+      ) as _i6.Future<_i2.Either<_i7.Failure, _i3.TvSeasonDetail>>);
+  @override
+  _i6.Future<_i2.Either<_i7.Failure, _i3.TvEpisodeDetail>> getTvEpisodeDetail(
+    int? id,
+    int? seasonNumber,
+    int? episodeNumber,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getTvEpisodeDetail,
+          [
+            id,
+            seasonNumber,
+            episodeNumber,
+          ],
+        ),
+        returnValue:
+            _i6.Future<_i2.Either<_i7.Failure, _i3.TvEpisodeDetail>>.value(
+                _FakeEither_0<_i7.Failure, _i3.TvEpisodeDetail>(
+          this,
+          Invocation.method(
+            #getTvEpisodeDetail,
+            [
+              id,
+              seasonNumber,
+              episodeNumber,
+            ],
+          ),
+        )),
+      ) as _i6.Future<_i2.Either<_i7.Failure, _i3.TvEpisodeDetail>>);
   @override
   _i6.Future<_i2.Either<_i7.Failure, List<_i3.Tv>>> getTvRecommendations(
           int? id) =>
@@ -299,6 +376,59 @@ class MockTvRemoteDataSource extends _i1.Mock
         ),
         returnValue: _i6.Future<List<_i3.TvModel>>.value(<_i3.TvModel>[]),
       ) as _i6.Future<List<_i3.TvModel>>);
+  @override
+  _i6.Future<_i3.TvSeasonDetailResponse> getTvSeasonDetail(
+    int? id,
+    int? seasonNumber,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getTvSeasonDetail,
+          [
+            id,
+            seasonNumber,
+          ],
+        ),
+        returnValue: _i6.Future<_i3.TvSeasonDetailResponse>.value(
+            _FakeTvSeasonDetailResponse_2(
+          this,
+          Invocation.method(
+            #getTvSeasonDetail,
+            [
+              id,
+              seasonNumber,
+            ],
+          ),
+        )),
+      ) as _i6.Future<_i3.TvSeasonDetailResponse>);
+  @override
+  _i6.Future<_i3.TvEpisodeDetailResponse> getTvEpisodeDetail(
+    int? id,
+    int? seasonNumber,
+    int? episodeNumber,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getTvEpisodeDetail,
+          [
+            id,
+            seasonNumber,
+            episodeNumber,
+          ],
+        ),
+        returnValue: _i6.Future<_i3.TvEpisodeDetailResponse>.value(
+            _FakeTvEpisodeDetailResponse_3(
+          this,
+          Invocation.method(
+            #getTvEpisodeDetail,
+            [
+              id,
+              seasonNumber,
+              episodeNumber,
+            ],
+          ),
+        )),
+      ) as _i6.Future<_i3.TvEpisodeDetailResponse>);
 }
 
 /// A class which mocks [TvLocalDataSource].
@@ -445,7 +575,7 @@ class MockHttpClient extends _i1.Mock implements _i4.IOClient {
           [request],
         ),
         returnValue:
-            _i6.Future<_i4.IOStreamedResponse>.value(_FakeIOStreamedResponse_2(
+            _i6.Future<_i4.IOStreamedResponse>.value(_FakeIOStreamedResponse_4(
           this,
           Invocation.method(
             #send,
@@ -472,7 +602,7 @@ class MockHttpClient extends _i1.Mock implements _i4.IOClient {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i6.Future<_i5.Response>.value(_FakeResponse_3(
+        returnValue: _i6.Future<_i5.Response>.value(_FakeResponse_5(
           this,
           Invocation.method(
             #head,
@@ -492,7 +622,7 @@ class MockHttpClient extends _i1.Mock implements _i4.IOClient {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i6.Future<_i5.Response>.value(_FakeResponse_3(
+        returnValue: _i6.Future<_i5.Response>.value(_FakeResponse_5(
           this,
           Invocation.method(
             #get,
@@ -518,7 +648,7 @@ class MockHttpClient extends _i1.Mock implements _i4.IOClient {
             #encoding: encoding,
           },
         ),
-        returnValue: _i6.Future<_i5.Response>.value(_FakeResponse_3(
+        returnValue: _i6.Future<_i5.Response>.value(_FakeResponse_5(
           this,
           Invocation.method(
             #post,
@@ -548,7 +678,7 @@ class MockHttpClient extends _i1.Mock implements _i4.IOClient {
             #encoding: encoding,
           },
         ),
-        returnValue: _i6.Future<_i5.Response>.value(_FakeResponse_3(
+        returnValue: _i6.Future<_i5.Response>.value(_FakeResponse_5(
           this,
           Invocation.method(
             #put,
@@ -578,7 +708,7 @@ class MockHttpClient extends _i1.Mock implements _i4.IOClient {
             #encoding: encoding,
           },
         ),
-        returnValue: _i6.Future<_i5.Response>.value(_FakeResponse_3(
+        returnValue: _i6.Future<_i5.Response>.value(_FakeResponse_5(
           this,
           Invocation.method(
             #patch,
@@ -608,7 +738,7 @@ class MockHttpClient extends _i1.Mock implements _i4.IOClient {
             #encoding: encoding,
           },
         ),
-        returnValue: _i6.Future<_i5.Response>.value(_FakeResponse_3(
+        returnValue: _i6.Future<_i5.Response>.value(_FakeResponse_5(
           this,
           Invocation.method(
             #delete,
