@@ -66,6 +66,95 @@ final testTvDetail = TvDetail(
   voteCount: 1,
 );
 
+final testTvSeasonDetail = TvSeasonDetail(
+  id: 'id',
+  airDate: 'airDate',
+  episodes: [
+    EpisodeModel(
+        airDate: 'airDate',
+        episodeNumber: 1,
+        crew: [
+          CrewInSeasonDetailModel(
+            department: 'department',
+            job: 'job',
+            creditId: 'creditId',
+            adult: false,
+            gender: 1,
+            id: 1,
+            knownForDepartment: 'knownForDepartment',
+            name: 'name',
+            originalName: 'originalName',
+            popularity: 1,
+            profilePath: 'profilePath',
+            order: 1,
+            character: 'character',
+          ),
+        ],
+        guestStars: [
+          CrewInSeasonDetailModel(
+            department: 'department',
+            job: 'job',
+            creditId: 'creditId',
+            adult: false,
+            gender: 1,
+            id: 1,
+            knownForDepartment: 'knownForDepartment',
+            name: 'name',
+            originalName: 'originalName',
+            popularity: 1,
+            profilePath: 'profilePath',
+            order: 1,
+            character: 'character',
+          ),
+        ],
+        id: 1,
+        name: 'name',
+        overview: 'overview',
+        productionCode: 'productionCode',
+        seasonNumber: 1,
+        stillPath: 'stillPath',
+        voteAverage: 1,
+        voteCount: 1)
+  ],
+  name: 'name',
+  overview: 'overview',
+  seasonDetailId: 1,
+  posterPath: 'posterPath',
+  seasonNumber: 1,
+);
+
+final testTvEpisodeDetail = TvEpisodeDetail(
+  airDate: 'airDate',
+  crew: [
+    CrewInEpisodeDetailModel(
+      id: 1,
+      creditId: 'creditId',
+      name: 'name',
+      department: 'department',
+      job: 'job',
+      profilePath: 'profilePath',
+    ),
+  ],
+  episodeNumber: 1,
+  guestStars: [
+    GuestStarModel(
+      id: 1,
+      name: 'name',
+      creditId: 'creditId',
+      character: 'character',
+      order: 1,
+      profilePath: 'profilePath',
+    ),
+  ],
+  name: 'name',
+  overview: 'overview',
+  id: 1,
+  seasonNumber: 1,
+  stillPath: 'stillPath',
+  voteAverage: 1,
+  voteCount: 1,
+);
+
 final testWatchlistTv = Tv.watchlist(
   id: 1,
   overview: "overview",
