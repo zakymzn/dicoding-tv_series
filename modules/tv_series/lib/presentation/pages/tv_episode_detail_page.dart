@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tv_series/tv_series.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,11 @@ class TvEpisodeDetailPage extends StatefulWidget {
 }
 
 class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
+  List<bool> boolExpand = [
+    false,
+    false,
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -116,82 +122,198 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                         SizedBox(
                           height: 16,
                         ),
-                        Text(
-                          'Guest Stars',
-                          style: kHeading6,
-                        ),
-                        ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: tvEpisode.guestStars.length,
-                          itemBuilder: (context, index) {
-                            final guestStar = tvEpisode.guestStars[index];
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  guestStar.name,
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  guestStar.character,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                              ],
-                            );
+                        ExpansionPanelList(
+                          expansionCallback: (panelIndex, isExpanded) {
+                            setState(() {
+                              boolExpand[panelIndex] = !isExpanded;
+                            });
                           },
-                        ),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        Text(
-                          'Crew',
-                          style: kHeading6,
-                        ),
-                        ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: tvEpisode.crew.length,
-                          itemBuilder: (context, index) {
-                            final crew = tvEpisode.crew[index];
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  crew.name,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
+                          dividerColor: kMikadoYellow,
+                          animationDuration: Duration(milliseconds: 500),
+                          children: [
+                            ExpansionPanel(
+                              headerBuilder: (context, isExpanded) {
+                                return ListTile(
+                                  title: Text(
+                                    'Guest Stars',
+                                    style: kHeading6,
                                   ),
-                                ),
-                                Text(
-                                  crew.department,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
+                                );
+                              },
+                              isExpanded: boolExpand[0],
+                              canTapOnHeader: true,
+                              body: MasonryGridView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                gridDelegate:
+                                    SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2),
+                                itemCount: tvEpisode.guestStars.length,
+                                itemBuilder: (context, index) {
+                                  final guestStar = tvEpisode.guestStars[index];
+
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: Container(
+                                        color: kGrey,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            CachedNetworkImage(
+                                              imageUrl:
+                                                  '$BASE_IMAGE_URL${guestStar.profilePath}',
+                                              placeholder: (context, url) =>
+                                                  Center(
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              ),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      Container(
+                                                height: 150,
+                                                width: screenWidth,
+                                                color: kDavysGrey,
+                                                child: Icon(
+                                                  Icons.image_not_supported,
+                                                  size: 100,
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 16,
+                                                      vertical: 8),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    guestStar.name,
+                                                    style: GoogleFonts.poppins(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    guestStar.character,
+                                                    style: GoogleFonts.poppins(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            ExpansionPanel(
+                              headerBuilder: (context, isExpanded) {
+                                return ListTile(
+                                  title: Text(
+                                    'Crew',
+                                    style: kHeading6,
                                   ),
-                                ),
-                                Text(
-                                  crew.job,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                              ],
-                            );
-                          },
+                                );
+                              },
+                              isExpanded: boolExpand[1],
+                              canTapOnHeader: true,
+                              body: MasonryGridView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                gridDelegate:
+                                    SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2),
+                                itemCount: tvEpisode.crew.length,
+                                itemBuilder: (context, index) {
+                                  final crew = tvEpisode.crew[index];
+
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: Container(
+                                        color: kGrey,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            CachedNetworkImage(
+                                              imageUrl:
+                                                  '$BASE_IMAGE_URL${crew.profilePath}',
+                                              placeholder: (context, url) =>
+                                                  Center(
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              ),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      Container(
+                                                height: 150,
+                                                width: screenWidth,
+                                                color: kDavysGrey,
+                                                child: Icon(
+                                                  Icons.image_not_supported,
+                                                  size: 100,
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 16,
+                                                      vertical: 8),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    crew.name,
+                                                    style: GoogleFonts.poppins(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    crew.department,
+                                                    style: GoogleFonts.poppins(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    crew.job,
+                                                    style: GoogleFonts.poppins(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
