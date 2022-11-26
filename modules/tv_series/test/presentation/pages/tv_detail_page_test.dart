@@ -86,7 +86,7 @@ void main() {
       when(() => mockTvWatchlistBloc.state).thenReturn(
           TvWatchlistMessage(TvWatchlistBloc.watchlistAddSuccessMessage));
 
-      final watchlistButton = find.byType(ElevatedButton);
+      final watchlistButton = find.byKey(ValueKey('tv_watchlist_button'));
 
       await tester
           .pumpWidget(_makeTestableWidget(TvDetailPage(id: testTvDetail.id)));
@@ -113,7 +113,7 @@ void main() {
           .thenReturn(TvWatchlistStatus(false));
       when(() => mockTvWatchlistBloc.state).thenReturn(TvError('Failed'));
 
-      final watchlistButton = find.byType(ElevatedButton);
+      final watchlistButton = find.byKey(ValueKey('tv_watchlist_button'));
 
       await tester
           .pumpWidget(_makeTestableWidget(TvDetailPage(id: testTvDetail.id)));
@@ -139,7 +139,7 @@ void main() {
           TvWatchlistMessage(TvWatchlistBloc.watchlistRemoveSuccessMessage));
       when(() => mockTvWatchlistBloc.state).thenReturn(TvWatchlistStatus(true));
 
-      final watchlistButton = find.byType(ElevatedButton);
+      final watchlistButton = find.byKey(ValueKey('tv_watchlist_button'));
 
       await tester
           .pumpWidget(_makeTestableWidget(TvDetailPage(id: testTvDetail.id)));
@@ -161,10 +161,10 @@ void main() {
   //         .thenReturn(TvDetailHasData(testTvDetail));
   //     when(() => mockTvRecommendationsBloc.state)
   //         .thenReturn(TvListHasData(testTvList));
-  //     when(() => mockTvWatchlistBloc.state).thenReturn(TvError('Failed'));
   //     when(() => mockTvWatchlistBloc.state).thenReturn(TvWatchlistStatus(true));
+  //     when(() => mockTvWatchlistBloc.state).thenReturn(TvError('Failed'));
 
-  //     final watchlistButton = find.byType(ElevatedButton);
+  //     final watchlistButton = find.byKey(ValueKey('tv_watchlist_button'));
 
   //     await tester
   //         .pumpWidget(_makeTestableWidget(TvDetailPage(id: testTvDetail.id)));

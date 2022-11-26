@@ -51,11 +51,7 @@ class OnTvEpisodeDetail extends TvEvent {
   );
 
   @override
-  List<Object> get props => [
-        id,
-        seasonNumber,
-        episodeNumber,
-      ];
+  List<Object> get props => [id, seasonNumber, episodeNumber];
 }
 
 class OnTvWatchlist extends TvEvent {}

@@ -108,6 +108,7 @@ class TvDetailContent extends StatelessWidget {
                             style: kHeading5,
                           ),
                           ElevatedButton(
+                            key: Key('tv_watchlist_button'),
                             onPressed: () async {
                               if (!isAddedWatchlist) {
                                 context
@@ -214,27 +215,22 @@ class TvDetailContent extends StatelessWidget {
                                     .map((e) => e.seasonNumber)
                                     .elementAt(index);
 
-                                if (tvSeason != null || tvSeason >= 0) {
-                                  return Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.pushNamed(
-                                          context,
-                                          TV_SEASON_DETAIL_ROUTE,
-                                          arguments: MultiArgument(
-                                            tv.id,
-                                            tvSeason,
-                                          ),
-                                        );
-                                      },
-                                      child: Text('Season $tvSeason'),
-                                    ),
-                                  );
-                                } else {
-                                  return Text(
-                                      'There are no seasons in this tv series');
-                                }
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        TV_SEASON_DETAIL_ROUTE,
+                                        arguments: MultiArgument(
+                                          tv.id,
+                                          tvSeason,
+                                        ),
+                                      );
+                                    },
+                                    child: Text('Season $tvSeason'),
+                                  ),
+                                );
                               },
                             ),
                           ),

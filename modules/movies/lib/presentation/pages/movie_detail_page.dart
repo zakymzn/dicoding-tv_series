@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/movies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-// import 'package:provider/provider.dart';
 
 class MovieDetailPage extends StatefulWidget {
   final int id;
@@ -112,6 +111,7 @@ class MovieDetailContent extends StatelessWidget {
                               style: kHeading5,
                             ),
                             ElevatedButton(
+                              key: Key('movie_watchlist_button'),
                               onPressed: () async {
                                 if (!isAddedWatchlist) {
                                   context

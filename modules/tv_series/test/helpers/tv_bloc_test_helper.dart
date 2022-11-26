@@ -18,6 +18,12 @@ class MockTopRatedTvBloc extends MockBloc<TvEvent, TvState>
 class MockTvDetailBloc extends MockBloc<TvEvent, TvState>
     implements TvDetailBloc {}
 
+class MockTvSeasonDetailBloc extends MockBloc<TvEvent, TvState>
+    implements TvSeasonDetailBloc {}
+
+class MockTvEpisodeDetailBloc extends MockBloc<TvEvent, TvState>
+    implements TvEpisodeDetailBloc {}
+
 class MockTvRecommendationsBloc extends MockBloc<TvEvent, TvState>
     implements TvRecommendationsBloc {}
 

@@ -123,6 +123,7 @@ class _TvSeasonDetailPageState extends State<TvSeasonDetailPage> {
                                     final tvEpisode = tvSeason.episodes[index];
                                     if (tvEpisode.stillPath != null) {
                                       return Padding(
+                                        key: Key('tv_episode_$index'),
                                         padding: const EdgeInsets.all(4.0),
                                         child: InkWell(
                                           onTap: () {

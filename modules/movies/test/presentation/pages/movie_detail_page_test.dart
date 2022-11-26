@@ -87,7 +87,7 @@ void main() {
     when(() => mockMovieWatchlistBloc.state).thenReturn(
         MovieWatchlistMessage(MovieWatchlistBloc.watchlistAddSuccessMessage));
 
-    final watchlistButton = find.byType(ElevatedButton);
+    final watchlistButton = find.byKey(ValueKey('movie_watchlist_button'));
 
     await tester.pumpWidget(
         _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
@@ -113,7 +113,7 @@ void main() {
         .thenReturn(MovieWatchlistStatus(false));
     when(() => mockMovieWatchlistBloc.state).thenReturn(MovieError('Failed'));
 
-    final watchlistButton = find.byType(ElevatedButton);
+    final watchlistButton = find.byKey(ValueKey('movie_watchlist_button'));
 
     await tester.pumpWidget(
         _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
@@ -139,7 +139,7 @@ void main() {
     when(() => mockMovieWatchlistBloc.state)
         .thenReturn(MovieWatchlistStatus(true));
 
-    final watchlistButton = find.byType(ElevatedButton);
+    final watchlistButton = find.byKey(ValueKey('movie_watchlist_button'));
 
     await tester.pumpWidget(
         _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
@@ -165,7 +165,7 @@ void main() {
   //   when(() => mockMovieWatchlistBloc.state)
   //       .thenReturn(MovieWatchlistStatus(true));
 
-  //   final watchlistButton = find.byType(ElevatedButton);
+  // final watchlistButton = find.byKey(ValueKey('movie_watchlist_button'));
 
   //   await tester.pumpWidget(
   //       _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));

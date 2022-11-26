@@ -153,6 +153,7 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                                   final guestStar = tvEpisode.guestStars[index];
 
                                   return Padding(
+                                    key: Key('guest_star_$index'),
                                     padding: const EdgeInsets.all(8),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(20),
@@ -240,6 +241,7 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                                   final crew = tvEpisode.crew[index];
 
                                   return Padding(
+                                    key: Key('crew_$index'),
                                     padding: const EdgeInsets.all(8),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(20),
