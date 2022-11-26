@@ -48,21 +48,6 @@ class EpisodeModel extends Equatable {
         voteCount: json["vote_count"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "air_date": airDate,
-        "episode_number": episodeNumber,
-        "crew": List<dynamic>.from(crew.map((x) => x.toJson())),
-        "guest_stars": List<dynamic>.from(guestStars.map((x) => x.toJson())),
-        "id": id,
-        "name": name,
-        "overview": overview,
-        "production_code": productionCode,
-        "season_number": seasonNumber,
-        "still_path": stillPath,
-        "vote_average": voteAverage,
-        "vote_count": voteCount,
-      };
-
   @override
   List<Object?> get props => [
         airDate,

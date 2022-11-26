@@ -36,17 +36,6 @@ class TvSeasonDetailResponse extends Equatable {
         seasonNumber: json["season_number"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "_id": id,
-        "air_date": airDate,
-        "episodes": List<dynamic>.from(episodes.map((x) => x.toJson())),
-        "name": name,
-        "overview": overview,
-        "id": seasonDetailId,
-        "poster_path": posterPath,
-        "season_number": seasonNumber,
-      };
-
   TvSeasonDetail toEntity() {
     return TvSeasonDetail(
       id: id,

@@ -48,22 +48,6 @@ class CrewInSeasonDetailModel extends Equatable {
         character: json["character"] == null ? null : json["character"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "department": department == null ? null : department,
-        "job": job == null ? null : job,
-        "credit_id": creditId,
-        "adult": adult,
-        "gender": gender,
-        "id": id,
-        "known_for_department": knownForDepartment,
-        "name": name,
-        "original_name": originalName,
-        "popularity": popularity,
-        "profile_path": profilePath == null ? null : profilePath,
-        "order": order == null ? null : order,
-        "character": character == null ? null : character,
-      };
-
   @override
   // TODO: implement props
   List<Object?> get props => [

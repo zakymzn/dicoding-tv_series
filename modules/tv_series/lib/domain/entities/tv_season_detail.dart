@@ -22,29 +22,6 @@ class TvSeasonDetail extends Equatable {
   String? posterPath;
   int seasonNumber;
 
-  factory TvSeasonDetail.fromJson(Map<String, dynamic> json) => TvSeasonDetail(
-        id: json["_id"],
-        airDate: json["air_date"],
-        episodes: List<EpisodeModel>.from(
-            json["episodes"].map((x) => EpisodeModel.fromJson(x))),
-        name: json["name"],
-        overview: json["overview"],
-        seasonDetailId: json["id"],
-        posterPath: json["poster_path"],
-        seasonNumber: json["season_number"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "_id": id,
-        "air_date": airDate,
-        "episodes": List<dynamic>.from(episodes.map((x) => x.toJson())),
-        "name": name,
-        "overview": overview,
-        "id": seasonDetailId,
-        "poster_path": posterPath,
-        "season_number": seasonNumber,
-      };
-
   @override
   List<Object?> get props => [
         id,

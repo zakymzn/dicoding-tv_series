@@ -27,15 +27,6 @@ class CrewInEpisodeDetailModel extends Equatable {
         profilePath: json["profile_path"] == null ? null : json["profile_path"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "credit_id": creditId,
-        "name": name,
-        "department": department,
-        "job": job,
-        "profile_path": profilePath == null ? null : profilePath,
-      };
-
   @override
   List<Object?> get props => [
         id,

@@ -26,15 +26,6 @@ class GuestStarModel extends Equatable {
         profilePath: json["profile_path"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "credit_id": creditId,
-        "character": character,
-        "order": order,
-        "profile_path": profilePath,
-      };
-
   @override
   List<Object?> get props => [
         id,
