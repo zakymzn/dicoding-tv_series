@@ -17,19 +17,19 @@ class CrewInSeasonDetailModel extends Equatable {
     required this.character,
   });
 
-  String department;
-  String job;
+  String? department;
+  String? job;
   String creditId;
   bool? adult;
   int? gender;
-  int id;
-  String knownForDepartment;
-  String name;
-  String originalName;
-  double popularity;
+  int? id;
+  String? knownForDepartment;
+  String? name;
+  String? originalName;
+  double? popularity;
   String? profilePath;
-  int order;
-  String character;
+  int? order;
+  String? character;
 
   factory CrewInSeasonDetailModel.fromJson(Map<String, dynamic> json) =>
       CrewInSeasonDetailModel(
@@ -42,7 +42,7 @@ class CrewInSeasonDetailModel extends Equatable {
         knownForDepartment: json["known_for_department"],
         name: json["name"],
         originalName: json["original_name"],
-        popularity: json["popularity"].toDouble(),
+        popularity: json["popularity"],
         profilePath: json["profile_path"] == null ? null : json["profile_path"],
         order: json["order"] == null ? null : json["order"],
         character: json["character"] == null ? null : json["character"],

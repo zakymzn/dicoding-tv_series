@@ -13,7 +13,8 @@ class _NowPlayingTvPageState extends State<NowPlayingTvPage> {
   @override
   void initState() {
     super.initState();
-    context.read<NowPlayingTvBloc>().add(OnNowPlayingTv());
+    Future.microtask(
+        () => context.read<NowPlayingTvBloc>().add(OnNowPlayingTv()));
   }
 
   @override

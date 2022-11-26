@@ -1,0 +1,53 @@
+{
+    "_id": "5256c89f19c2956ff6046d47",
+    "air_date": "2011-04-17",
+    "episodes": [
+        {
+            "air_date": "2011-04-24",
+            "episode_number": 2,
+            "crew": [
+                {
+                    "department": "Directing",
+                    "job": "Director",
+                    "credit_id": "5256c8a219c2956ff6046e77",
+                    "adult": false,
+                    "gender": 2,
+                    "id": 44797,
+                    "known_for_department": "Directing",
+                    "name": "Timothy Van Patten",
+                    "original_name": "Timothy Van Patten",
+                    "popularity": 2.744,
+                    "profile_path": "/MzSOFrd99HRdr6pkSRSctk3kBR.jpg"
+                }
+            ],
+            "guest_stars": [
+                {
+                    "credit_id": "5256c8a219c2956ff6046f40",
+                    "order": 0,
+                    "character": "Khal Drogo",
+                    "adult": false,
+                    "gender": 2,
+                    "id": 117642,
+                    "known_for_department": "Acting",
+                    "name": "Jason Momoa",
+                    "original_name": "Jason Momoa",
+                    "popularity": 9.159,
+                    "profile_path": "/6dEFBpZH8C8OijsynkSajQT99Pb.jpg"
+                }
+            ],
+            "id": 63057,
+            "name": "The Kingsroad",
+            "overview": "While Bran recovers from his fall, Ned takes only his daughters to Kings Landing. Jon Snow goes with his uncle Benjen to The Wall. Tyrion joins them.",
+            "production_code": "102",
+            "season_number": 1,
+            "still_path": "/icjOgl5F9DhysOEo6Six2Qfwcu2.jpg",
+            "vote_average": 7.5,
+            "vote_count": 118
+        }
+    ],
+    "name": "Season 1",
+    "overview": "Trouble is brewing in the Seven Kingdoms of Westeros. For the driven inhabitants of this visionary world, control of Westeros' Iron Throne holds the lure of great power. But in a land where the seasons can last a lifetime, winter is coming...and beyond the Great Wall that protects them, an ancient evil has returned. In Season One, the story centers on three primary areas: the Stark and the Lannister families, whose designs on controlling the throne threaten a tenuous peace; the dragon princess Daenerys, heir to the former dynasty, who waits just over the Narrow Sea with her malevolent brother Viserys; and the Great Wall--a massive barrier of ice where a forgotten danger is stirring.",
+    "id": 3624,
+    "poster_path": "/zwaj4egrhnXOBIit1tyb4Sbt3KP.jpg",
+    "season_number": 1
+}

@@ -13,7 +13,7 @@ class _TopRatedTvPageState extends State<TopRatedTvPage> {
   @override
   void initState() {
     super.initState();
-    context.read<TopRatedTvBloc>().add(OnTopRatedTv());
+    Future.microtask(() => context.read<TopRatedTvBloc>().add(OnTopRatedTv()));
   }
 
   @override

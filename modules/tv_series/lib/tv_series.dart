@@ -30,6 +30,8 @@ export 'domain/usecases/get_now_playing_tv.dart';
 export 'domain/usecases/get_popular_tv.dart';
 export 'domain/usecases/get_top_rated_tv.dart';
 export 'domain/usecases/get_tv_detail.dart';
+export 'domain/usecases/get_tv_season_detail.dart';
+export 'domain/usecases/get_tv_episode_detail.dart';
 export 'domain/usecases/get_tv_recommendations.dart';
 export 'domain/usecases/get_tv_watchlist_status.dart';
 export 'domain/usecases/get_watchlist_tv.dart';
@@ -41,6 +43,8 @@ export 'presentation/pages/now_playing_tv_page.dart';
 export 'presentation/pages/popular_tv_page.dart';
 export 'presentation/pages/top_rated_tv_page.dart';
 export 'presentation/pages/tv_detail_page.dart';
+export 'presentation/pages/tv_season_detail_page.dart';
+export 'presentation/pages/tv_episode_detail_page.dart';
 export 'presentation/pages/watchlist_tv_page.dart';
 
 export 'presentation/bloc/tv_bloc.dart';

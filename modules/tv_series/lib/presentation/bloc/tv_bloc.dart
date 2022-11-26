@@ -159,7 +159,7 @@ class TvEpisodeDetailBloc extends Bloc<TvEvent, TvState> {
         (failure) => emit(
           TvError(failure.message),
         ),
-        (tvEpisode) => TvEpisodeDetailHasData(tvEpisode),
+        (tvEpisode) => emit(TvEpisodeDetailHasData(tvEpisode)),
       );
     });
   }

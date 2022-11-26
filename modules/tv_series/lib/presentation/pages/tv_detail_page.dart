@@ -75,7 +75,7 @@ class TvDetailContent extends StatelessWidget {
     return Stack(
       children: [
         CachedNetworkImage(
-          imageUrl: 'https://image.tmdb.org/t/p/w500${tv.posterPath}',
+          imageUrl: '$BASE_IMAGE_URL${tv.posterPath}',
           width: screenWidth,
           placeholder: (context, url) => const Center(
             child: CircularProgressIndicator(),
@@ -185,17 +185,6 @@ class TvDetailContent extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              const Text('Season : '),
-                              Text(
-                                '${tv.seasons.map((e) => e.seasonNumber).first}',
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
-                            ],
-                          ),
-                          Row(
-                            children: [
                               RatingBarIndicator(
                                 rating: tv.voteAverage / 2,
                                 itemCount: 5,
@@ -209,6 +198,47 @@ class TvDetailContent extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(
+                            height: 16,
+                          ),
+                          Text(
+                            'Season List',
+                            style: kHeading6,
+                          ),
+                          SizedBox(
+                            height: 50,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: tv.seasons.length,
+                              itemBuilder: (context, index) {
+                                final tvSeason = tv.seasons
+                                    .map((e) => e.seasonNumber)
+                                    .elementAt(index);
+
+                                if (tvSeason != null || tvSeason >= 0) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pushNamed(
+                                          context,
+                                          TV_SEASON_DETAIL_ROUTE,
+                                          arguments: MultiArgument(
+                                            tv.id,
+                                            tvSeason,
+                                          ),
+                                        );
+                                      },
+                                      child: Text('Season $tvSeason'),
+                                    ),
+                                  );
+                                } else {
+                                  return Text(
+                                      'There are no seasons in this tv series');
+                                }
+                              },
+                            ),
+                          ),
+                          SizedBox(
                             height: 16,
                           ),
                           Text(
@@ -258,7 +288,7 @@ class TvDetailContent extends StatelessWidget {
                                             ),
                                             child: CachedNetworkImage(
                                               imageUrl:
-                                                  'https://image.tmdb.org/t/p/w500${tv.posterPath}',
+                                                  '$BASE_IMAGE_URL${tv.posterPath}',
                                               placeholder: (context, url) =>
                                                   const Center(
                                                 child:

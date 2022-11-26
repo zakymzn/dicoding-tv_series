@@ -13,7 +13,8 @@ class _WatchlistTvPageState extends State<WatchlistTvPage> with RouteAware {
   @override
   void initState() {
     super.initState();
-    context.read<TvWatchlistBloc>().add(OnTvWatchlist());
+    Future.microtask(
+        () => context.read<TvWatchlistBloc>().add(OnTvWatchlist()));
   }
 
   @override

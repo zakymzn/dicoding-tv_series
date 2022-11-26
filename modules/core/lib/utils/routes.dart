@@ -10,6 +10,8 @@ const NOW_PLAYING_TV_ROUTE = '/now-playing-route';
 const POPULAR_TV_ROUTE = '/popular-tv';
 const TOP_RATED_TV_ROUTE = '/top-rated-tv';
 const TV_DETAIL_ROUTE = '/detail-tv';
+const TV_SEASON_DETAIL_ROUTE = '/detail-tv-season';
+const TV_EPISODE_DETAIL_ROUTE = '/detail-tv-episode';
 const SEARCH_TV_ROUTE = '/search-tv';
 
 const ABOUT_ROUTE = '/about';

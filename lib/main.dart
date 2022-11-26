@@ -53,6 +53,12 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<TvDetailBloc>(),
         ),
         BlocProvider(
+          create: (context) => di.locator<TvSeasonDetailBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => di.locator<TvEpisodeDetailBloc>(),
+        ),
+        BlocProvider(
           create: (_) => di.locator<SearchTvBloc>(),
         ),
         BlocProvider(
@@ -104,6 +110,26 @@ class MyApp extends StatelessWidget {
               final id = settings.arguments as int;
               return MaterialPageRoute(
                 builder: (_) => TvDetailPage(id: id),
+                settings: settings,
+              );
+            case TV_SEASON_DETAIL_ROUTE:
+              final args = settings.arguments as MultiArgument;
+              return MaterialPageRoute(builder: (_) {
+                return TvSeasonDetailPage(
+                  id: args.arg1,
+                  seasonNumber: args.arg2,
+                );
+              });
+            case TV_EPISODE_DETAIL_ROUTE:
+              final args = settings.arguments as TripleArgument;
+              return MaterialPageRoute(
+                builder: (_) {
+                  return TvEpisodeDetailPage(
+                    id: args.arg1,
+                    seasonNumber: args.arg2,
+                    episodeNumber: args.arg3,
+                  );
+                },
                 settings: settings,
               );
             case SEARCH_TV_ROUTE:

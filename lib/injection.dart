@@ -55,6 +55,16 @@ Future<void> init() async {
     ),
   );
   locator.registerFactory(
+    () => TvSeasonDetailBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvEpisodeDetailBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
     () => SearchTvBloc(
       locator(),
     ),
@@ -103,6 +113,8 @@ Future<void> init() async {
   locator.registerLazySingleton(() => GetPopularTv(locator()));
   locator.registerLazySingleton(() => GetTopRatedTv(locator()));
   locator.registerLazySingleton(() => GetTvDetail(locator()));
+  locator.registerLazySingleton(() => GetTvSeasonDetail(locator()));
+  locator.registerLazySingleton(() => GetTvEpisodeDetail(locator()));
   locator.registerLazySingleton(() => GetTvRecommendations(locator()));
   locator.registerLazySingleton(() => SearchTv(locator()));
   locator.registerLazySingleton(() => GetTvWatchListStatus(locator()));

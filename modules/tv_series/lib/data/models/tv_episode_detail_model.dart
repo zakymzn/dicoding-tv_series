@@ -20,7 +20,7 @@ class TvEpisodeDetailResponse extends Equatable {
     required this.voteCount,
   });
 
-  DateTime airDate;
+  String airDate;
   List<CrewInEpisodeDetailModel> crew;
   int episodeNumber;
   List<GuestStarModel> guestStars;
@@ -35,7 +35,7 @@ class TvEpisodeDetailResponse extends Equatable {
 
   factory TvEpisodeDetailResponse.fromJson(Map<String, dynamic> json) =>
       TvEpisodeDetailResponse(
-        airDate: DateTime.parse(json["air_date"]),
+        airDate: json["air_date"],
         crew: List<CrewInEpisodeDetailModel>.from(
             json["crew"].map((x) => CrewInEpisodeDetailModel.fromJson(x))),
         episodeNumber: json["episode_number"],
@@ -52,8 +52,7 @@ class TvEpisodeDetailResponse extends Equatable {
       );
 
   Map<String, dynamic> toJson() => {
-        "air_date":
-            "${airDate.year.toString().padLeft(4, '0')}-${airDate.month.toString().padLeft(2, '0')}-${airDate.day.toString().padLeft(2, '0')}",
+        "air_date": airDate,
         "crew": List<dynamic>.from(crew.map((x) => x.toJson())),
         "episode_number": episodeNumber,
         "guest_stars": List<dynamic>.from(guestStars.map((x) => x.toJson())),

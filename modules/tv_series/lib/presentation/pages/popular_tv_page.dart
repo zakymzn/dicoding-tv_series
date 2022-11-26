@@ -13,7 +13,7 @@ class _PopularTvPageState extends State<PopularTvPage> {
   @override
   void initState() {
     super.initState();
-    context.read<PopularTvBloc>().add(OnPopularTv());
+    Future.microtask(() => context.read<PopularTvBloc>().add(OnPopularTv()));
   }
 
   @override

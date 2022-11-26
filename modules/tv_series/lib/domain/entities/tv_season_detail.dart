@@ -14,7 +14,7 @@ class TvSeasonDetail extends Equatable {
   });
 
   String id;
-  DateTime airDate;
+  String? airDate;
   List<EpisodeModel> episodes;
   String name;
   String overview;
@@ -24,7 +24,7 @@ class TvSeasonDetail extends Equatable {
 
   factory TvSeasonDetail.fromJson(Map<String, dynamic> json) => TvSeasonDetail(
         id: json["_id"],
-        airDate: DateTime.parse(json["air_date"]),
+        airDate: json["air_date"],
         episodes: List<EpisodeModel>.from(
             json["episodes"].map((x) => EpisodeModel.fromJson(x))),
         name: json["name"],
@@ -36,8 +36,7 @@ class TvSeasonDetail extends Equatable {
 
   Map<String, dynamic> toJson() => {
         "_id": id,
-        "air_date":
-            "${airDate.year.toString().padLeft(4, '0')}-${airDate.month.toString().padLeft(2, '0')}-${airDate.day.toString().padLeft(2, '0')}",
+        "air_date": airDate,
         "episodes": List<dynamic>.from(episodes.map((x) => x.toJson())),
         "name": name,
         "overview": overview,
