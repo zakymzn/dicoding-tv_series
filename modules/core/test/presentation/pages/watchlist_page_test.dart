@@ -33,6 +33,9 @@ void main() {
           value: mockMovieWatchlistBloc,
           child: MaterialApp(
             home: WatchListPage(),
+            theme: ThemeData.dark().copyWith(
+              textTheme: kTextTheme,
+            ),
           ),
         ),
       );
