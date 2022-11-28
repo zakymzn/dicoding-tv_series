@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv_series/tv_series.dart';
 import 'package:flutter/material.dart';
@@ -9,20 +10,35 @@ import '../../dummy_data/tv_dummy_objects.dart';
 
 void main() {
   late MockTvWatchlistBloc mockTvWatchlistBloc;
+  late MockTvDetailBloc mockTvDetailBloc;
+  late MockTvRecommendationsBloc mockTvRecommendationsBloc;
 
   setUp(
     () {
       mockTvWatchlistBloc = MockTvWatchlistBloc();
+      mockTvDetailBloc = MockTvDetailBloc();
+      mockTvRecommendationsBloc = MockTvRecommendationsBloc();
       registerFallbackValue(FakeTvEvent());
       registerFallbackValue(FakeTvState());
     },
   );
 
   Widget _makeTestableWidget(Widget body) {
-    return BlocProvider<TvWatchlistBloc>.value(
-      value: mockTvWatchlistBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<TvWatchlistBloc>(
+          create: (context) => mockTvWatchlistBloc,
+        ),
+        BlocProvider<TvDetailBloc>(
+          create: (context) => mockTvDetailBloc,
+        ),
+        BlocProvider<TvRecommendationsBloc>(
+          create: (context) => mockTvRecommendationsBloc,
+        ),
+      ],
       child: MaterialApp(
         home: body,
+        onGenerateRoute: routeSettings(),
       ),
     );
   }
@@ -75,6 +91,8 @@ void main() {
     (widgetTester) async {
       when(() => mockTvWatchlistBloc.state)
           .thenReturn(TvListHasData(testTvList));
+      when(() => mockTvDetailBloc.state).thenReturn(TvEmpty());
+      when(() => mockTvRecommendationsBloc.state).thenReturn(TvEmpty());
 
       await widgetTester.pumpWidget(_makeTestableWidget(WatchlistTvPage()));
 
@@ -86,6 +104,11 @@ void main() {
           scrollable: scrollableFinder);
 
       expect(tvItemFinder, findsOneWidget);
+
+      await widgetTester.tap(tvItemFinder);
+      await widgetTester.pumpAndSettle();
+
+      expect(find.byType(TvDetailPage), findsOneWidget);
     },
   );
 }

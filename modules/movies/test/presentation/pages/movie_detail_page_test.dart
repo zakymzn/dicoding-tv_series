@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/movies.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,7 @@ void main() {
       ],
       child: MaterialApp(
         home: body,
+        onGenerateRoute: routeSettings(),
       ),
     );
   }
@@ -249,7 +251,7 @@ void main() {
   });
 
   testWidgets(
-      'Recommendations should be scrollable until a recommended movie item is found',
+      'Recommendations should be scrollable until a recommended movie item is found and navigate to another movie detail page',
       (WidgetTester tester) async {
     when(() => mockMovieDetailBloc.state)
         .thenReturn(MovieDetailHasData(testMovieDetail));
@@ -265,9 +267,21 @@ void main() {
     final scrollableFinder = find.byType(Scrollable).first;
     final recommendationFinder = find.byKey(ValueKey('recommendation_$index'));
 
+    final backIconFinder = find.byIcon(Icons.arrow_back);
+
     await tester.scrollUntilVisible(recommendationFinder, 500,
         scrollable: scrollableFinder);
 
     expect(recommendationFinder, findsOneWidget);
+
+    await tester.tap(recommendationFinder);
+    await tester.pump();
+
+    expect(find.byType(MovieDetailPage), findsOneWidget);
+
+    expect(backIconFinder, findsOneWidget);
+
+    await tester.tap(backIconFinder, warnIfMissed: false);
+    await tester.pump();
   });
 }

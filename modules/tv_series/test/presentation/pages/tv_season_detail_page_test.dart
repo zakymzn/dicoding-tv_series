@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv_series/tv_series.dart';
 import 'package:flutter/material.dart';
@@ -9,29 +10,40 @@ import '../../dummy_data/tv_dummy_objects.dart';
 
 void main() {
   late MockTvSeasonDetailBloc mockTvSeasonDetailBloc;
+  late MockTvEpisodeDetailBloc mockTvEpisodeDetailBloc;
 
   setUp(
     () {
       mockTvSeasonDetailBloc = MockTvSeasonDetailBloc();
+      mockTvEpisodeDetailBloc = MockTvEpisodeDetailBloc();
       registerFallbackValue(FakeTvEvent());
       registerFallbackValue(FakeTvState());
     },
   );
 
   Widget _makeTestableWidget(Widget body) {
-    return BlocProvider<TvSeasonDetailBloc>.value(
-      value: mockTvSeasonDetailBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<TvSeasonDetailBloc>(
+          create: (context) => mockTvSeasonDetailBloc,
+        ),
+        BlocProvider<TvEpisodeDetailBloc>(
+          create: (context) => mockTvEpisodeDetailBloc,
+        ),
+      ],
       child: MaterialApp(
         home: body,
+        onGenerateRoute: routeSettings(),
       ),
     );
   }
 
   testWidgets(
-    'Tv episode list should be scrollable until a tv episode item is found',
+    'Tv episode list should be scrollable until a tv episode item is found and can be able to navigate to episode detail page',
     (widgetTester) async {
       when(() => mockTvSeasonDetailBloc.state)
           .thenReturn(TvSeasonDetailHasData(testTvSeasonDetail));
+      when(() => mockTvEpisodeDetailBloc.state).thenReturn(TvEmpty());
 
       await widgetTester.pumpWidget(_makeTestableWidget(TvSeasonDetailPage(
           id: testTvDetail.id, seasonNumber: testTvSeasonDetail.seasonNumber)));
@@ -44,6 +56,12 @@ void main() {
           scrollable: scrollableFinder.first);
 
       expect(episodeFinder, findsOneWidget);
+
+      await widgetTester.tap(episodeFinder);
+      await widgetTester.pump();
+      await widgetTester.pumpAndSettle();
+
+      expect(find.byType(TvEpisodeDetailPage), findsOneWidget);
     },
   );
 

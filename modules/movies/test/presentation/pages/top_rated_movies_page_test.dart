@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/movies.dart';
 import 'package:flutter/material.dart';
@@ -9,20 +10,40 @@ import '../../dummy_data/movie_dummy_objects.dart';
 
 void main() {
   late MockTopRatedMoviesBloc mockTopRatedMoviesBloc;
+  late MockMovieDetailBloc mockMovieDetailBloc;
+  late MockMovieRecommendationsBloc mockMovieRecommendationsBloc;
+  late MockMovieWatchlistBloc mockMovieWatchlistBloc;
 
   setUp(
     () {
       mockTopRatedMoviesBloc = MockTopRatedMoviesBloc();
+      mockMovieDetailBloc = MockMovieDetailBloc();
+      mockMovieRecommendationsBloc = MockMovieRecommendationsBloc();
+      mockMovieWatchlistBloc = MockMovieWatchlistBloc();
       registerFallbackValue(FakeMovieEvent());
       registerFallbackValue(FakeMovieState());
     },
   );
 
   Widget _makeTestableWidget(Widget body) {
-    return BlocProvider<TopRatedMoviesBloc>.value(
-      value: mockTopRatedMoviesBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<TopRatedMoviesBloc>(
+          create: (context) => mockTopRatedMoviesBloc,
+        ),
+        BlocProvider<MovieDetailBloc>(
+          create: (context) => mockMovieDetailBloc,
+        ),
+        BlocProvider<MovieWatchlistBloc>(
+          create: (context) => mockMovieWatchlistBloc,
+        ),
+        BlocProvider<MovieRecommendationsBloc>(
+          create: (context) => mockMovieRecommendationsBloc,
+        ),
+      ],
       child: MaterialApp(
         home: body,
+        onGenerateRoute: routeSettings(),
       ),
     );
   }
@@ -70,6 +91,9 @@ void main() {
       (WidgetTester tester) async {
     when(() => mockTopRatedMoviesBloc.state)
         .thenReturn(MovieListHasData(testMovieList));
+    when(() => mockMovieDetailBloc.state).thenReturn(MovieEmpty());
+    when(() => mockMovieRecommendationsBloc.state).thenReturn(MovieEmpty());
+    when(() => mockMovieWatchlistBloc.state).thenReturn(MovieEmpty());
 
     await tester.pumpWidget(_makeTestableWidget(TopRatedMoviesPage()));
 
@@ -81,5 +105,10 @@ void main() {
         scrollable: scrollableFinder);
 
     expect(movieItemFinder, findsOneWidget);
+
+    await tester.tap(movieItemFinder);
+    await tester.pumpAndSettle();
+
+    expect(find.byType(MovieDetailPage), findsOneWidget);
   });
 }

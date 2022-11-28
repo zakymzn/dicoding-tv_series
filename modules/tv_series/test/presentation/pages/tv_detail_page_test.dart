@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv_series/tv_series.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +12,13 @@ void main() {
   late MockTvDetailBloc mockTvDetailBloc;
   late MockTvRecommendationsBloc mockTvRecommendationsBloc;
   late MockTvWatchlistBloc mockTvWatchlistBloc;
+  late MockTvSeasonDetailBloc mockTvSeasonDetailBloc;
 
   setUp(() {
     mockTvDetailBloc = MockTvDetailBloc();
     mockTvRecommendationsBloc = MockTvRecommendationsBloc();
     mockTvWatchlistBloc = MockTvWatchlistBloc();
+    mockTvSeasonDetailBloc = MockTvSeasonDetailBloc();
     registerFallbackValue(FakeTvEvent());
     registerFallbackValue(FakeTvState());
   });
@@ -32,9 +35,13 @@ void main() {
         BlocProvider<TvRecommendationsBloc>(
           create: (context) => mockTvRecommendationsBloc,
         ),
+        BlocProvider<TvSeasonDetailBloc>(
+          create: (context) => mockTvSeasonDetailBloc,
+        ),
       ],
       child: MaterialApp(
         home: body,
+        onGenerateRoute: routeSettings(),
       ),
     );
   }
@@ -177,6 +184,44 @@ void main() {
   });
 
   testWidgets(
+    'Season list should be scrollable and can be able to navigate to tv season detail page',
+    (WidgetTester tester) async {
+      when(() => mockTvDetailBloc.state)
+          .thenReturn(TvDetailHasData(testTvDetail));
+      when(() => mockTvRecommendationsBloc.state)
+          .thenReturn(TvListHasData(testTvList));
+      when(() => mockTvWatchlistBloc.state)
+          .thenReturn(TvWatchlistStatus(false));
+      when(() => mockTvSeasonDetailBloc.state).thenReturn(TvEmpty());
+
+      await tester
+          .pumpWidget(_makeTestableWidget(TvDetailPage(id: testTvDetail.id)));
+
+      int index = 0;
+      final scrollableFinder = find.byType(Scrollable);
+      final seasonFinder = find.byKey(ValueKey('season_$index'));
+      final backIconFinder = find.byIcon(Icons.arrow_back);
+
+      await tester.scrollUntilVisible(seasonFinder, 500,
+          scrollable: scrollableFinder.first);
+
+      expect(seasonFinder, findsOneWidget);
+
+      await tester.tap(seasonFinder);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(TvSeasonDetailPage), findsOneWidget);
+
+      expect(backIconFinder, findsOneWidget);
+
+      await tester.tap(backIconFinder);
+      await tester.pump();
+
+      expect(find.byType(TvDetailPage), findsOneWidget);
+    },
+  );
+
+  testWidgets(
       'Recommendations should show a Circular Progress Indicator when Request State is loading',
       (WidgetTester tester) async {
     when(() => mockTvDetailBloc.state)
@@ -234,9 +279,21 @@ void main() {
     final scrollableFinder = find.byType(Scrollable).first;
     final recommendationFinder = find.byKey(ValueKey('recommendation_$index'));
 
+    final backIconFinder = find.byIcon(Icons.arrow_back);
+
     await tester.scrollUntilVisible(recommendationFinder, 500,
         scrollable: scrollableFinder);
 
     expect(recommendationFinder, findsOneWidget);
+
+    await tester.tap(recommendationFinder);
+    await tester.pump();
+
+    expect(find.byType(TvDetailPage), findsOneWidget);
+
+    expect(backIconFinder, findsOneWidget);
+
+    await tester.tap(backIconFinder, warnIfMissed: false);
+    await tester.pump();
   });
 }

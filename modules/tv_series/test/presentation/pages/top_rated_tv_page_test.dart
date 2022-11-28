@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:tv_series/tv_series.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mocktail/mocktail.dart';
@@ -9,20 +10,40 @@ import '../../dummy_data/tv_dummy_objects.dart';
 
 void main() {
   late MockTopRatedTvBloc mockTopRatedTvBloc;
+  late MockTvDetailBloc mockTvDetailBloc;
+  late MockTvRecommendationsBloc mockTvRecommendationsBloc;
+  late MockTvWatchlistBloc mockTvWatchlistBloc;
 
   setUp(
     () {
       mockTopRatedTvBloc = MockTopRatedTvBloc();
+      mockTvDetailBloc = MockTvDetailBloc();
+      mockTvRecommendationsBloc = MockTvRecommendationsBloc();
+      mockTvWatchlistBloc = MockTvWatchlistBloc();
       registerFallbackValue(FakeTvEvent());
       registerFallbackValue(FakeTvState());
     },
   );
 
   Widget _makeTestableWidget(Widget body) {
-    return BlocProvider<TopRatedTvBloc>.value(
-      value: mockTopRatedTvBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<TopRatedTvBloc>(
+          create: (context) => mockTopRatedTvBloc,
+        ),
+        BlocProvider<TvDetailBloc>(
+          create: (context) => mockTvDetailBloc,
+        ),
+        BlocProvider<TvWatchlistBloc>(
+          create: (context) => mockTvWatchlistBloc,
+        ),
+        BlocProvider<TvRecommendationsBloc>(
+          create: (context) => mockTvRecommendationsBloc,
+        ),
+      ],
       child: MaterialApp(
         home: body,
+        onGenerateRoute: routeSettings(),
       ),
     );
   }
@@ -72,6 +93,9 @@ void main() {
   testWidgets('Page should be scrollable until a movie item is found',
       (WidgetTester tester) async {
     when(() => mockTopRatedTvBloc.state).thenReturn(TvListHasData(testTvList));
+    when(() => mockTvDetailBloc.state).thenReturn(TvEmpty());
+    when(() => mockTvRecommendationsBloc.state).thenReturn(TvEmpty());
+    when(() => mockTvWatchlistBloc.state).thenReturn(TvEmpty());
 
     await tester.pumpWidget(_makeTestableWidget(TopRatedTvPage()));
 
@@ -83,5 +107,10 @@ void main() {
         scrollable: scrollableFinder);
 
     expect(tvItemFinder, findsOneWidget);
+
+    await tester.tap(tvItemFinder);
+    await tester.pumpAndSettle();
+
+    expect(find.byType(TvDetailPage), findsOneWidget);
   });
 }

@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:movies/movies.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -9,18 +10,38 @@ import '../../dummy_data/movie_dummy_objects.dart';
 
 void main() {
   late MockPopularMoviesBloc mockPopularMoviesBloc;
+  late MockMovieDetailBloc mockMovieDetailBloc;
+  late MockMovieRecommendationsBloc mockMovieRecommendationsBloc;
+  late MockMovieWatchlistBloc mockMovieWatchlistBloc;
 
   setUp(() {
     mockPopularMoviesBloc = MockPopularMoviesBloc();
+    mockMovieDetailBloc = MockMovieDetailBloc();
+    mockMovieRecommendationsBloc = MockMovieRecommendationsBloc();
+    mockMovieWatchlistBloc = MockMovieWatchlistBloc();
     registerFallbackValue(FakeMovieEvent());
     registerFallbackValue(FakeMovieState());
   });
 
   Widget _makeTestableWidget(Widget body) {
-    return BlocProvider<PopularMoviesBloc>.value(
-      value: mockPopularMoviesBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<PopularMoviesBloc>(
+          create: (context) => mockPopularMoviesBloc,
+        ),
+        BlocProvider<MovieDetailBloc>(
+          create: (context) => mockMovieDetailBloc,
+        ),
+        BlocProvider<MovieWatchlistBloc>(
+          create: (context) => mockMovieWatchlistBloc,
+        ),
+        BlocProvider<MovieRecommendationsBloc>(
+          create: (context) => mockMovieRecommendationsBloc,
+        ),
+      ],
       child: MaterialApp(
         home: body,
+        onGenerateRoute: routeSettings(),
       ),
     );
   }
@@ -66,6 +87,9 @@ void main() {
       (WidgetTester tester) async {
     when(() => mockPopularMoviesBloc.state)
         .thenReturn(MovieListHasData(testMovieList));
+    when(() => mockMovieDetailBloc.state).thenReturn(MovieEmpty());
+    when(() => mockMovieRecommendationsBloc.state).thenReturn(MovieEmpty());
+    when(() => mockMovieWatchlistBloc.state).thenReturn(MovieEmpty());
 
     await tester.pumpWidget(_makeTestableWidget(PopularMoviesPage()));
 
@@ -77,5 +101,10 @@ void main() {
         scrollable: scrollableFinder);
 
     expect(movieItemFinder, findsOneWidget);
+
+    await tester.tap(movieItemFinder);
+    await tester.pumpAndSettle();
+
+    expect(find.byType(MovieDetailPage), findsOneWidget);
   });
 }

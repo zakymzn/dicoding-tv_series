@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:movies/movies.dart';
@@ -9,18 +10,38 @@ import '../../dummy_data/movie_dummy_objects.dart';
 
 void main() {
   late MockNowPlayingMoviesBloc mockNowPlayingMoviesBloc;
+  late MockMovieDetailBloc mockMovieDetailBloc;
+  late MockMovieRecommendationsBloc mockMovieRecommendationsBloc;
+  late MockMovieWatchlistBloc mockMovieWatchlistBloc;
 
   setUp(() {
     mockNowPlayingMoviesBloc = MockNowPlayingMoviesBloc();
+    mockMovieDetailBloc = MockMovieDetailBloc();
+    mockMovieRecommendationsBloc = MockMovieRecommendationsBloc();
+    mockMovieWatchlistBloc = MockMovieWatchlistBloc();
     registerFallbackValue(FakeMovieEvent());
     registerFallbackValue(FakeMovieState());
   });
 
   Widget _makeTestableWidget(Widget body) {
-    return BlocProvider<NowPlayingMoviesBloc>.value(
-      value: mockNowPlayingMoviesBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<NowPlayingMoviesBloc>(
+          create: (context) => mockNowPlayingMoviesBloc,
+        ),
+        BlocProvider<MovieDetailBloc>(
+          create: (context) => mockMovieDetailBloc,
+        ),
+        BlocProvider<MovieWatchlistBloc>(
+          create: (context) => mockMovieWatchlistBloc,
+        ),
+        BlocProvider<MovieRecommendationsBloc>(
+          create: (context) => mockMovieRecommendationsBloc,
+        ),
+      ],
       child: MaterialApp(
         home: body,
+        onGenerateRoute: routeSettings(),
       ),
     );
   }
@@ -62,10 +83,14 @@ void main() {
     expect(textFinder, findsOneWidget);
   });
 
-  testWidgets('Page should be scrollable until a movie item is found',
+  testWidgets(
+      'Page should be scrollable until a movie item is found and navigate to movie detail page when movie card is tapped',
       (WidgetTester tester) async {
     when(() => mockNowPlayingMoviesBloc.state)
         .thenReturn(MovieListHasData(testMovieList));
+    when(() => mockMovieDetailBloc.state).thenReturn(MovieEmpty());
+    when(() => mockMovieRecommendationsBloc.state).thenReturn(MovieEmpty());
+    when(() => mockMovieWatchlistBloc.state).thenReturn(MovieEmpty());
 
     await tester.pumpWidget(_makeTestableWidget(NowPlayingMoviesPage()));
 
@@ -77,5 +102,10 @@ void main() {
         scrollable: scrollableFinder);
 
     expect(movieItemFinder, findsOneWidget);
+
+    await tester.tap(movieItemFinder);
+    await tester.pumpAndSettle();
+
+    expect(find.byType(MovieDetailPage), findsOneWidget);
   });
 }

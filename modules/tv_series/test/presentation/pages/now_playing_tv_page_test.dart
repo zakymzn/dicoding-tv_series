@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv_series/tv_series.dart';
@@ -9,18 +10,38 @@ import '../../dummy_data/tv_dummy_objects.dart';
 
 void main() {
   late MockNowPlayingTvBloc mockNowPlayingTvBloc;
+  late MockTvDetailBloc mockTvDetailBloc;
+  late MockTvRecommendationsBloc mockTvRecommendationsBloc;
+  late MockTvWatchlistBloc mockTvWatchlistBloc;
 
   setUp(() {
     mockNowPlayingTvBloc = MockNowPlayingTvBloc();
+    mockTvDetailBloc = MockTvDetailBloc();
+    mockTvRecommendationsBloc = MockTvRecommendationsBloc();
+    mockTvWatchlistBloc = MockTvWatchlistBloc();
     registerFallbackValue(FakeTvEvent());
     registerFallbackValue(FakeTvState());
   });
 
   Widget _makeTestableWidget(Widget body) {
-    return BlocProvider<NowPlayingTvBloc>.value(
-      value: mockNowPlayingTvBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<NowPlayingTvBloc>(
+          create: (context) => mockNowPlayingTvBloc,
+        ),
+        BlocProvider<TvDetailBloc>(
+          create: (context) => mockTvDetailBloc,
+        ),
+        BlocProvider<TvWatchlistBloc>(
+          create: (context) => mockTvWatchlistBloc,
+        ),
+        BlocProvider<TvRecommendationsBloc>(
+          create: (context) => mockTvRecommendationsBloc,
+        ),
+      ],
       child: MaterialApp(
         home: body,
+        onGenerateRoute: routeSettings(),
       ),
     );
   }
@@ -72,6 +93,9 @@ void main() {
       (WidgetTester tester) async {
     when(() => mockNowPlayingTvBloc.state)
         .thenReturn(TvListHasData(testTvList));
+    when(() => mockTvDetailBloc.state).thenReturn(TvEmpty());
+    when(() => mockTvRecommendationsBloc.state).thenReturn(TvEmpty());
+    when(() => mockTvWatchlistBloc.state).thenReturn(TvEmpty());
 
     await tester.pumpWidget(_makeTestableWidget(NowPlayingTvPage()));
 
@@ -83,5 +107,10 @@ void main() {
         scrollable: scrollableFinder);
 
     expect(tvItemFinder, findsOneWidget);
+
+    await tester.tap(tvItemFinder);
+    await tester.pumpAndSettle();
+
+    expect(find.byType(TvDetailPage), findsOneWidget);
   });
 }

@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/movies.dart';
 import 'package:flutter/material.dart';
@@ -9,20 +10,35 @@ import '../../dummy_data/movie_dummy_objects.dart';
 
 void main() {
   late MockMovieWatchlistBloc mockMovieWatchlistBloc;
+  late MockMovieDetailBloc mockMovieDetailBloc;
+  late MockMovieRecommendationsBloc mockMovieRecommendationsBloc;
 
   setUp(
     () {
       mockMovieWatchlistBloc = MockMovieWatchlistBloc();
+      mockMovieDetailBloc = MockMovieDetailBloc();
+      mockMovieRecommendationsBloc = MockMovieRecommendationsBloc();
       registerFallbackValue(FakeMovieEvent());
       registerFallbackValue(FakeMovieState());
     },
   );
 
   Widget _makeTestableWidget(Widget body) {
-    return BlocProvider<MovieWatchlistBloc>.value(
-      value: mockMovieWatchlistBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<MovieWatchlistBloc>(
+          create: (context) => mockMovieWatchlistBloc,
+        ),
+        BlocProvider<MovieDetailBloc>(
+          create: (context) => mockMovieDetailBloc,
+        ),
+        BlocProvider<MovieRecommendationsBloc>(
+          create: (context) => mockMovieRecommendationsBloc,
+        ),
+      ],
       child: MaterialApp(
         home: body,
+        onGenerateRoute: routeSettings(),
       ),
     );
   }
@@ -75,6 +91,8 @@ void main() {
     (widgetTester) async {
       when(() => mockMovieWatchlistBloc.state)
           .thenReturn(MovieListHasData(testMovieList));
+      when(() => mockMovieDetailBloc.state).thenReturn(MovieEmpty());
+      when(() => mockMovieRecommendationsBloc.state).thenReturn(MovieEmpty());
 
       await widgetTester.pumpWidget(_makeTestableWidget(WatchlistMoviesPage()));
 
@@ -86,6 +104,11 @@ void main() {
           scrollable: scrollableFinder);
 
       expect(movieItemFinder, findsOneWidget);
+
+      await widgetTester.tap(movieItemFinder);
+      await widgetTester.pumpAndSettle();
+
+      expect(find.byType(MovieDetailPage), findsOneWidget);
     },
   );
 }

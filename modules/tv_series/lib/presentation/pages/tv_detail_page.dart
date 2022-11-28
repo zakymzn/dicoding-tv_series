@@ -216,6 +216,7 @@ class TvDetailContent extends StatelessWidget {
                                     .elementAt(index);
 
                                 return Padding(
+                                  key: Key('season_$index'),
                                   padding: const EdgeInsets.all(8.0),
                                   child: ElevatedButton(
                                     onPressed: () {
