@@ -29,6 +29,7 @@ void main() {
       value: mockTvSeasonDetailBloc,
       child: MaterialApp(
         home: body,
+        onGenerateRoute: routeSettings(),
       ),
     );
   }

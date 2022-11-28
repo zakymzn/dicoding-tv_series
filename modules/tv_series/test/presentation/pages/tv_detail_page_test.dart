@@ -154,31 +154,6 @@ void main() {
     },
   );
 
-  // testWidgets(
-  //   'Watchlist button should display AlertDialog when removed from watchlist failed',
-  //   (WidgetTester tester) async {
-  //     when(() => mockTvDetailBloc.state)
-  //         .thenReturn(TvDetailHasData(testTvDetail));
-  //     when(() => mockTvRecommendationsBloc.state)
-  //         .thenReturn(TvListHasData(testTvList));
-  //     when(() => mockTvWatchlistBloc.state).thenReturn(TvWatchlistStatus(true));
-  //     when(() => mockTvWatchlistBloc.state).thenReturn(TvError('Failed'));
-
-  //     final watchlistButton = find.byKey(ValueKey('tv_watchlist_button'));
-
-  //     await tester
-  //         .pumpWidget(_makeTestableWidget(TvDetailPage(id: testTvDetail.id)));
-
-  //     expect(find.byIcon(Icons.check), findsOneWidget);
-
-  //     await tester.tap(watchlistButton);
-  //     await tester.pump();
-
-  //     expect(find.byType(AlertDialog), findsOneWidget);
-  //     expect(find.text('Failed'), findsOneWidget);
-  //   },
-  // );
-
   testWidgets(
       'Detail page should show a Circular Progress Indicator when Request State is loading',
       (WidgetTester tester) async {

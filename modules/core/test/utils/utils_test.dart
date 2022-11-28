@@ -9,7 +9,7 @@ import 'package:tv_series/domain/entities/tv.dart';
 import 'package:search/domain/usecases/search_tv.dart';
 import 'package:search/presentation/bloc/search_tv_bloc.dart';
 
-import '../presentation/bloc/search_tv_bloc_test.mocks.dart';
+import '../helpers/search_tv_bloc_test.mocks.dart';
 
 @GenerateMocks([SearchTv])
 void main() {
