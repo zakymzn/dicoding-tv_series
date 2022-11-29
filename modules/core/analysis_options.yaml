@@ -7,4 +7,3 @@ linter:
   rules: 
     depend_on_referenced_packages : false
     prefer_const_constructors : false
-    must_be_immutable : false
