@@ -5,7 +5,11 @@ import 'package:core/utils/constants.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:tv_series/tv_series.dart';
+import 'package:tv_series/data/datasources/tv_remote_data_source.dart';
+import 'package:tv_series/data/models/tv_detail_model.dart';
+import 'package:tv_series/data/models/tv_episode_detail_model.dart';
+import 'package:tv_series/data/models/tv_response.dart';
+import 'package:tv_series/data/models/tv_season_detail_model.dart';
 
 import '../../json_reader.dart';
 import '../../helpers/tv_test_helper.mocks.dart';
