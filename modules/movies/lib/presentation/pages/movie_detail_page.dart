@@ -80,7 +80,7 @@ class MovieDetailContent extends StatelessWidget {
     return Stack(
       children: [
         CachedNetworkImage(
-          imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
+          imageUrl: '$baseImageUrl${movie.posterPath}',
           width: screenWidth,
           placeholder: (context, url) => const Center(
             child: CircularProgressIndicator(),
@@ -231,7 +231,7 @@ class MovieDetailContent extends StatelessWidget {
                                               ),
                                               child: CachedNetworkImage(
                                                 imageUrl:
-                                                    '$BASE_IMAGE_URL${movie.posterPath}',
+                                                    '$baseImageUrl${movie.posterPath}',
                                                 placeholder: (context, url) =>
                                                     const Center(
                                                   child:

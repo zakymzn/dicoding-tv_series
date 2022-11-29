@@ -52,7 +52,7 @@ class _TvSeasonDetailPageState extends State<TvSeasonDetailPage> {
             return Stack(
               children: [
                 CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${tvSeason.posterPath}',
+                  imageUrl: '$baseImageUrl${tvSeason.posterPath}',
                   width: screenWidth,
                   placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(),
@@ -146,7 +146,7 @@ class _TvSeasonDetailPageState extends State<TvSeasonDetailPage> {
                                                 child: SizedBox(
                                                   child: CachedNetworkImage(
                                                     imageUrl:
-                                                        '$BASE_IMAGE_URL${tvEpisode.stillPath}',
+                                                        '$baseImageUrl${tvEpisode.stillPath}',
                                                     placeholder:
                                                         (context, url) =>
                                                             const Center(

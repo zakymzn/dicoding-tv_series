@@ -211,7 +211,7 @@ class TvList extends StatelessWidget {
                   Radius.circular(16),
                 ),
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${tv.posterPath}',
+                  imageUrl: '$baseImageUrl${tv.posterPath}',
                   placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(),
                   ),

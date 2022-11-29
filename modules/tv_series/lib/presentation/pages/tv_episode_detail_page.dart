@@ -65,7 +65,7 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CachedNetworkImage(
-                    imageUrl: '$BASE_IMAGE_URL${tvEpisode.stillPath}',
+                    imageUrl: '$baseImageUrl${tvEpisode.stillPath}',
                     placeholder: (context, url) => const Center(
                       child: CircularProgressIndicator(),
                     ),
@@ -165,7 +165,7 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                                           children: [
                                             CachedNetworkImage(
                                               imageUrl:
-                                                  '$BASE_IMAGE_URL${guestStar.profilePath}',
+                                                  '$baseImageUrl${guestStar.profilePath}',
                                               placeholder: (context, url) =>
                                                   const Center(
                                                 child:
@@ -253,7 +253,7 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                                           children: [
                                             CachedNetworkImage(
                                               imageUrl:
-                                                  '$BASE_IMAGE_URL${crew.profilePath}',
+                                                  '$baseImageUrl${crew.profilePath}',
                                               placeholder: (context, url) =>
                                                   const Center(
                                                 child:
