@@ -23,7 +23,7 @@ void main() {
     registerFallbackValue(FakeMovieState());
   });
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<PopularMoviesBloc>(
@@ -53,7 +53,7 @@ void main() {
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(_makeTestableWidget(PopularMoviesPage()));
+    await tester.pumpWidget(makeTestableWidget(const PopularMoviesPage()));
 
     expect(centerFinder, findsOneWidget);
     expect(progressBarFinder, findsOneWidget);
@@ -66,7 +66,7 @@ void main() {
 
     final listViewFinder = find.byType(ListView);
 
-    await tester.pumpWidget(_makeTestableWidget(PopularMoviesPage()));
+    await tester.pumpWidget(makeTestableWidget(const PopularMoviesPage()));
 
     expect(listViewFinder, findsOneWidget);
   });
@@ -74,11 +74,11 @@ void main() {
   testWidgets('Page should display text with message when error',
       (WidgetTester tester) async {
     when(() => mockPopularMoviesBloc.state)
-        .thenReturn(MovieError('error message'));
+        .thenReturn(const MovieError('error message'));
 
-    final textFinder = find.byKey(Key('error_message'));
+    final textFinder = find.byKey(const Key('error_message'));
 
-    await tester.pumpWidget(_makeTestableWidget(PopularMoviesPage()));
+    await tester.pumpWidget(makeTestableWidget(const PopularMoviesPage()));
 
     expect(textFinder, findsOneWidget);
   });
@@ -91,7 +91,7 @@ void main() {
     when(() => mockMovieRecommendationsBloc.state).thenReturn(MovieEmpty());
     when(() => mockMovieWatchlistBloc.state).thenReturn(MovieEmpty());
 
-    await tester.pumpWidget(_makeTestableWidget(PopularMoviesPage()));
+    await tester.pumpWidget(makeTestableWidget(const PopularMoviesPage()));
 
     int index = 0;
     final scrollableFinder = find.byType(Scrollable);

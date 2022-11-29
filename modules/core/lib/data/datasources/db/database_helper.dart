@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:core/core.dart';
 import 'package:movies/movies.dart';
 import 'package:tv_series/tv_series.dart';
 import 'package:sqflite/sqflite.dart';
@@ -16,9 +15,7 @@ class DatabaseHelper {
   static Database? _database;
 
   Future<Database?> get database async {
-    if (_database == null) {
-      _database = await _initDb();
-    }
+    _database ??= await _initDb();
     return _database;
   }
 

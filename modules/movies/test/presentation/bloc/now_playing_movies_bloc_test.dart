@@ -46,13 +46,14 @@ void main() {
     'emits [Loading, Error] when get now playing movies is unsuccessful.',
     build: () {
       when(mockGetNowPlayingMovies.execute()).thenAnswer(
-          (realInvocation) async => Left(ServerFailure('Server Failure')));
+          (realInvocation) async =>
+              const Left(ServerFailure('Server Failure')));
       return nowPlayingMoviesBloc;
     },
     act: (bloc) => bloc.add(OnNowPlayingMovies()),
     expect: () => <MovieState>[
       MovieLoading(),
-      MovieError('Server Failure'),
+      const MovieError('Server Failure'),
     ],
     verify: (bloc) {
       verify(mockGetNowPlayingMovies.execute());

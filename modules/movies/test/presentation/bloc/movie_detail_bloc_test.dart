@@ -29,13 +29,13 @@ void main() {
     'emits [Loading, HasData] when data is gotten successfully.',
     build: () {
       when(mockGetMovieDetail.execute(testMovieDetail.id))
-          .thenAnswer((realInvocation) async => Right(testMovieDetail));
+          .thenAnswer((realInvocation) async => const Right(testMovieDetail));
       return movieDetailBloc;
     },
     act: (bloc) => bloc.add(OnMovieDetail(testMovieDetail.id)),
     expect: () => <MovieState>[
       MovieLoading(),
-      MovieDetailHasData(testMovieDetail),
+      const MovieDetailHasData(testMovieDetail),
     ],
     verify: (bloc) {
       verify(mockGetMovieDetail.execute(testMovieDetail.id));
@@ -46,13 +46,14 @@ void main() {
     'emits [Loading, Error] when get movie detail is unsuccessful.',
     build: () {
       when(mockGetMovieDetail.execute(testMovieDetail.id)).thenAnswer(
-          (realInvocation) async => Left(ServerFailure('Server Failure')));
+          (realInvocation) async =>
+              const Left(ServerFailure('Server Failure')));
       return movieDetailBloc;
     },
     act: (bloc) => bloc.add(OnMovieDetail(testMovieDetail.id)),
     expect: () => <MovieState>[
       MovieLoading(),
-      MovieError('Server Failure'),
+      const MovieError('Server Failure'),
     ],
     verify: (bloc) {
       verify(mockGetMovieDetail.execute(testMovieDetail.id));

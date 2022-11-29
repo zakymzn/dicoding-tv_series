@@ -7,7 +7,7 @@ import 'created_by_model.dart';
 import 'last_episode_to_air_model.dart';
 
 class TvDetailResponse extends Equatable {
-  TvDetailResponse({
+  const TvDetailResponse({
     required this.backdropPath,
     required this.createdBy,
     required this.episodeRunTime,

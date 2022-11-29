@@ -2,17 +2,17 @@ import 'dart:convert';
 
 import 'package:core/data/models/genre_model.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:core/data/models/genre_response.dart';
 
 import '../../json_reader.dart';
-import '../../../lib/data/models/genre_response.dart';
 
 void main() {
-  final tGenreModel = GenreModel(
+  const tGenreModel = GenreModel(
     id: 1,
     name: "name",
   );
 
-  final tGenreResponseModel =
+  const tGenreResponseModel =
       GenreResponse(genreList: <GenreModel>[tGenreModel]);
 
   test(

@@ -3,7 +3,7 @@ import 'package:tv_series/domain/entities/tv.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tTvModel = TvModel(
+  const tTvModel = TvModel(
     posterPath: 'posterPath',
     popularity: 1,
     id: 1,
@@ -27,8 +27,8 @@ void main() {
     voteAverage: 1,
     overview: 'overview',
     firstAirDate: ('2022-10-29'),
-    originCountry: ['originCountry'],
-    genreIds: [1],
+    originCountry: const ['originCountry'],
+    genreIds: const [1],
     originalLanguage: 'originalLanguage',
     voteCount: 1,
     name: 'name',

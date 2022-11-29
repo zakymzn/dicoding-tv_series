@@ -48,14 +48,14 @@ void main() {
   blocTest<PopularTvBloc, TvState>(
     'emits [Loading, Error] when get popular tv is unsuccessful.',
     build: () {
-      when(mockGetPopularTv.execute()).thenAnswer(
-          (realInvocation) async => Left(ServerFailure('Server Failure')));
+      when(mockGetPopularTv.execute()).thenAnswer((realInvocation) async =>
+          const Left(ServerFailure('Server Failure')));
       return popularTvBloc;
     },
     act: (bloc) => bloc.add(OnPopularTv()),
     expect: () => <TvState>[
       TvLoading(),
-      TvError('Server Failure'),
+      const TvError('Server Failure'),
     ],
     verify: (bloc) {
       verify(mockGetPopularTv.execute());

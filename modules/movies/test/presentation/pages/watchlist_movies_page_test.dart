@@ -23,7 +23,7 @@ void main() {
     },
   );
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<MovieWatchlistBloc>(
@@ -51,7 +51,8 @@ void main() {
       final progressIndicator = find.byType(CircularProgressIndicator);
       final centerFinder = find.byType(Center);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(WatchlistMoviesPage()));
+      await widgetTester
+          .pumpWidget(makeTestableWidget(const WatchlistMoviesPage()));
 
       expect(centerFinder, findsOneWidget);
       expect(progressIndicator, findsOneWidget);
@@ -66,7 +67,8 @@ void main() {
 
       final listViewFinder = find.byType(ListView);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(WatchlistMoviesPage()));
+      await widgetTester
+          .pumpWidget(makeTestableWidget(const WatchlistMoviesPage()));
 
       expect(listViewFinder, findsOneWidget);
     },
@@ -75,11 +77,13 @@ void main() {
   testWidgets(
     'Page should display text with message when error',
     (widgetTester) async {
-      when(() => mockMovieWatchlistBloc.state).thenReturn(MovieError('Failed'));
+      when(() => mockMovieWatchlistBloc.state)
+          .thenReturn(const MovieError('Failed'));
 
-      final errorFinder = find.byKey(Key('error_message'));
+      final errorFinder = find.byKey(const Key('error_message'));
 
-      await widgetTester.pumpWidget(_makeTestableWidget(WatchlistMoviesPage()));
+      await widgetTester
+          .pumpWidget(makeTestableWidget(const WatchlistMoviesPage()));
 
       expect(errorFinder, findsOneWidget);
       expect(find.text('Failed'), findsOneWidget);
@@ -94,7 +98,8 @@ void main() {
       when(() => mockMovieDetailBloc.state).thenReturn(MovieEmpty());
       when(() => mockMovieRecommendationsBloc.state).thenReturn(MovieEmpty());
 
-      await widgetTester.pumpWidget(_makeTestableWidget(WatchlistMoviesPage()));
+      await widgetTester
+          .pumpWidget(makeTestableWidget(const WatchlistMoviesPage()));
 
       int index = 0;
       final scrollableFinder = find.byType(Scrollable);

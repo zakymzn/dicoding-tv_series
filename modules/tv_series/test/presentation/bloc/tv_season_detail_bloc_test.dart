@@ -53,15 +53,15 @@ void main() {
     build: () {
       when(mockGetTvSeasonDetail.execute(
               testTvDetail.id, testTvSeasonDetail.seasonNumber))
-          .thenAnswer(
-              (realInvocation) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((realInvocation) async =>
+              const Left(ServerFailure('Server Failure')));
       return tvSeasonDetailBloc;
     },
     act: (bloc) => bloc.add(
         OnTvSeasonDetail(testTvDetail.id, testTvSeasonDetail.seasonNumber)),
     expect: () => <TvState>[
       TvLoading(),
-      TvError('Server Failure'),
+      const TvError('Server Failure'),
     ],
     verify: (bloc) {
       verify(mockGetTvSeasonDetail.execute(

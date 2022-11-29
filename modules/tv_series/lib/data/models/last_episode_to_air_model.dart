@@ -1,8 +1,7 @@
-import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 
 class LastEpisodeToAirModel extends Equatable {
-  LastEpisodeToAirModel({
+  const LastEpisodeToAirModel({
     required this.airDate,
     required this.episodeNumber,
     required this.id,

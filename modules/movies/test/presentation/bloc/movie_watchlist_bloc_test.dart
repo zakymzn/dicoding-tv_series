@@ -65,13 +65,14 @@ void main() {
     'emits [Loading, Error] when get watchlist movies is unsuccessful.',
     build: () {
       when(mockGetWatchlistMovies.execute()).thenAnswer(
-          (realInvocation) async => Left(DatabaseFailure("Can't get data")));
+          (realInvocation) async =>
+              const Left(DatabaseFailure("Can't get data")));
       return movieWatchlistBloc;
     },
     act: (bloc) => bloc.add(OnMovieWatchlist()),
     expect: () => <MovieState>[
       MovieLoading(),
-      MovieError("Can't get data"),
+      const MovieError("Can't get data"),
     ],
     verify: (bloc) {
       verify(mockGetWatchlistMovies.execute());
@@ -88,7 +89,7 @@ void main() {
     act: (bloc) => bloc.add(OnMovieWatchlistStatus(testMovieDetail.id)),
     expect: () => <MovieState>[
       MovieLoading(),
-      MovieWatchlistStatus(true),
+      const MovieWatchlistStatus(true),
     ],
     verify: (bloc) {
       verify(mockGetMovieWatchListStatus.execute(testMovieDetail.id));
@@ -100,15 +101,16 @@ void main() {
     build: () {
       when(mockSaveMovieWatchlist.execute(testMovieDetail)).thenAnswer(
           (realInvocation) async =>
-              Right(MovieWatchlistBloc.watchlistAddSuccessMessage));
+              const Right(MovieWatchlistBloc.watchlistAddSuccessMessage));
       when(mockGetMovieWatchListStatus.execute(testMovieDetail.id))
           .thenAnswer((realInvocation) async => true);
       return movieWatchlistBloc;
     },
-    act: (bloc) => bloc.add(OnAddMovieWatchlist(testMovieDetail)),
+    act: (bloc) => bloc.add(const OnAddMovieWatchlist(testMovieDetail)),
     expect: () => <MovieState>[
       MovieLoading(),
-      MovieWatchlistMessage(MovieWatchlistBloc.watchlistAddSuccessMessage),
+      const MovieWatchlistMessage(
+          MovieWatchlistBloc.watchlistAddSuccessMessage),
     ],
     verify: (bloc) {
       verify(mockSaveMovieWatchlist.execute(testMovieDetail));
@@ -119,15 +121,15 @@ void main() {
     'emits [Loading, Error] when add movie to watchlist is unsuccessful.',
     build: () {
       when(mockSaveMovieWatchlist.execute(testMovieDetail)).thenAnswer(
-          (realInvocation) async => Left(DatabaseFailure('Failed')));
+          (realInvocation) async => const Left(DatabaseFailure('Failed')));
       when(mockGetMovieWatchListStatus.execute(testMovieDetail.id))
           .thenAnswer((realInvocation) async => false);
       return movieWatchlistBloc;
     },
-    act: (bloc) => bloc.add(OnAddMovieWatchlist(testMovieDetail)),
+    act: (bloc) => bloc.add(const OnAddMovieWatchlist(testMovieDetail)),
     expect: () => <MovieState>[
       MovieLoading(),
-      MovieError('Failed'),
+      const MovieError('Failed'),
     ],
     verify: (bloc) {
       verify(mockSaveMovieWatchlist.execute(testMovieDetail));
@@ -139,15 +141,16 @@ void main() {
     build: () {
       when(mockRemoveMovieWatchlist.execute(testMovieDetail)).thenAnswer(
           (realInvocation) async =>
-              Right(MovieWatchlistBloc.watchlistRemoveSuccessMessage));
+              const Right(MovieWatchlistBloc.watchlistRemoveSuccessMessage));
       when(mockGetMovieWatchListStatus.execute(testMovieDetail.id))
           .thenAnswer((realInvocation) async => false);
       return movieWatchlistBloc;
     },
-    act: (bloc) => bloc.add(OnRemoveMovieWatchlist(testMovieDetail)),
+    act: (bloc) => bloc.add(const OnRemoveMovieWatchlist(testMovieDetail)),
     expect: () => <MovieState>[
       MovieLoading(),
-      MovieWatchlistMessage(MovieWatchlistBloc.watchlistRemoveSuccessMessage),
+      const MovieWatchlistMessage(
+          MovieWatchlistBloc.watchlistRemoveSuccessMessage),
     ],
     verify: (bloc) {
       verify(mockRemoveMovieWatchlist.execute(testMovieDetail));
@@ -158,15 +161,15 @@ void main() {
     'emits [Loading, Error] when remove movie from watchlist is unsuccessful.',
     build: () {
       when(mockRemoveMovieWatchlist.execute(testMovieDetail)).thenAnswer(
-          (realInvocation) async => Left(DatabaseFailure('Failed')));
+          (realInvocation) async => const Left(DatabaseFailure('Failed')));
       when(mockGetMovieWatchListStatus.execute(testMovieDetail.id))
           .thenAnswer((realInvocation) async => true);
       return movieWatchlistBloc;
     },
-    act: (bloc) => bloc.add(OnRemoveMovieWatchlist(testMovieDetail)),
+    act: (bloc) => bloc.add(const OnRemoveMovieWatchlist(testMovieDetail)),
     expect: () => <MovieState>[
       MovieLoading(),
-      MovieError('Failed'),
+      const MovieError('Failed'),
     ],
     verify: (bloc) {
       verify(mockRemoveMovieWatchlist.execute(testMovieDetail));

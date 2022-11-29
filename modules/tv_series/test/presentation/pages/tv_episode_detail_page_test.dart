@@ -19,7 +19,7 @@ void main() {
     },
   );
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return BlocProvider<TvEpisodeDetailBloc>.value(
       value: mockTvEpisodeDetailBloc,
       child: MaterialApp(
@@ -34,7 +34,7 @@ void main() {
       when(() => mockTvEpisodeDetailBloc.state)
           .thenReturn(TvEpisodeDetailHasData(testTvEpisodeDetail));
 
-      await widgetTester.pumpWidget(_makeTestableWidget(TvEpisodeDetailPage(
+      await widgetTester.pumpWidget(makeTestableWidget(TvEpisodeDetailPage(
           id: testTvDetail.id,
           seasonNumber: testTvSeasonDetail.seasonNumber,
           episodeNumber: testTvEpisodeDetail.episodeNumber)));
@@ -62,7 +62,7 @@ void main() {
       when(() => mockTvEpisodeDetailBloc.state)
           .thenReturn(TvEpisodeDetailHasData(testTvEpisodeDetail));
 
-      await widgetTester.pumpWidget(_makeTestableWidget(TvEpisodeDetailPage(
+      await widgetTester.pumpWidget(makeTestableWidget(TvEpisodeDetailPage(
           id: testTvDetail.id,
           seasonNumber: testTvSeasonDetail.seasonNumber,
           episodeNumber: testTvEpisodeDetail.episodeNumber)));
@@ -89,7 +89,7 @@ void main() {
     (widgetTester) async {
       when(() => mockTvEpisodeDetailBloc.state).thenReturn(TvLoading());
 
-      await widgetTester.pumpWidget(_makeTestableWidget(TvEpisodeDetailPage(
+      await widgetTester.pumpWidget(makeTestableWidget(TvEpisodeDetailPage(
           id: testTvDetail.id,
           seasonNumber: testTvSeasonDetail.seasonNumber,
           episodeNumber: testTvEpisodeDetail.episodeNumber)));
@@ -101,9 +101,10 @@ void main() {
   testWidgets(
     'Episode detail page should show message when request state is error',
     (widgetTester) async {
-      when(() => mockTvEpisodeDetailBloc.state).thenReturn(TvError('Failed'));
+      when(() => mockTvEpisodeDetailBloc.state)
+          .thenReturn(const TvError('Failed'));
 
-      await widgetTester.pumpWidget(_makeTestableWidget(TvEpisodeDetailPage(
+      await widgetTester.pumpWidget(makeTestableWidget(TvEpisodeDetailPage(
           id: testTvDetail.id,
           seasonNumber: testTvSeasonDetail.seasonNumber,
           episodeNumber: testTvEpisodeDetail.episodeNumber)));

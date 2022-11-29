@@ -18,7 +18,7 @@ void main() {
     },
   );
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return BlocProvider<SearchTvBloc>.value(
       value: mockSearchTvBloc,
       child: MaterialApp(
@@ -36,8 +36,8 @@ void main() {
     overview:
         "Based on the Pretty Little Liars series of young adult novels by Sara Shepard, the series follows the lives of four girls — Spencer, Hanna, Aria, and Emily — whose clique falls apart after the disappearance of their queen bee, Alison. One year later, they begin receiving messages from someone using the name \"A\" who threatens to expose their secrets — including long-hidden ones they thought only Alison knew.",
     firstAirDate: "2010-06-08",
-    originCountry: ["US"],
-    genreIds: [18, 9648],
+    originCountry: const ["US"],
+    genreIds: const [18, 9648],
     originalLanguage: "en",
     voteCount: 133,
     name: "Pretty Little Liars",
@@ -54,7 +54,7 @@ void main() {
       final progressIndicatorFinder = find.byType(CircularProgressIndicator);
       final centerFinder = find.byType(Center);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(TvSearchPage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const TvSearchPage()));
 
       expect(centerFinder, findsWidgets);
       expect(progressIndicatorFinder, findsWidgets);
@@ -69,7 +69,7 @@ void main() {
 
       final listViewFinder = find.byType(ListView);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(TvSearchPage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const TvSearchPage()));
 
       expect(listViewFinder, findsOneWidget);
     },
@@ -78,11 +78,12 @@ void main() {
   testWidgets(
     'Page should display text with message when error',
     (widgetTester) async {
-      when(() => mockSearchTvBloc.state).thenReturn(SearchTvError('Failed'));
+      when(() => mockSearchTvBloc.state)
+          .thenReturn(const SearchTvError('Failed'));
 
       final textFinder = find.byType(Text);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(TvSearchPage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const TvSearchPage()));
 
       expect(textFinder, findsWidgets);
       expect(find.text('Failed'), findsOneWidget);
@@ -96,7 +97,7 @@ void main() {
 
       final containerFinder = find.byType(Container);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(TvSearchPage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const TvSearchPage()));
 
       expect(containerFinder, findsOneWidget);
     },
@@ -108,7 +109,7 @@ void main() {
       when(() => mockSearchTvBloc.state)
           .thenReturn(SearchTvHasData(testTvList));
 
-      await widgetTester.pumpWidget(_makeTestableWidget(TvSearchPage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const TvSearchPage()));
 
       int index = 0;
       final textFieldFinder = find.byType(TextField);

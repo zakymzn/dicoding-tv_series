@@ -128,7 +128,7 @@ class _TvSeasonDetailPageState extends State<TvSeasonDetailPage> {
                                           onTap: () {
                                             Navigator.pushNamed(
                                               context,
-                                              TV_EPISODE_DETAIL_ROUTE,
+                                              tvEpisodeDetailRoute,
                                               arguments: TripleArgument(
                                                   widget.id,
                                                   widget.seasonNumber,

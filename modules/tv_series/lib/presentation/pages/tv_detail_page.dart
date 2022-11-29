@@ -224,7 +224,7 @@ class TvDetailContent extends StatelessWidget {
                                     onPressed: () {
                                       Navigator.pushNamed(
                                         context,
-                                        TV_SEASON_DETAIL_ROUTE,
+                                        tvSeasonDetailRoute,
                                         arguments: MultiArgument(
                                           tv.id,
                                           tvSeason,
@@ -276,7 +276,7 @@ class TvDetailContent extends StatelessWidget {
                                           onTap: () {
                                             Navigator.pushReplacementNamed(
                                               context,
-                                              TV_DETAIL_ROUTE,
+                                              tvDetailRoute,
                                               arguments: tv.id,
                                             );
                                           },

@@ -8,59 +8,59 @@ import 'package:tv_series/tv_series.dart';
 
 import 'utils.dart';
 
-const HOME_MOVIES_ROUTE = '/home';
-const NOW_PLAYING_MOVIES_ROUTE = '/now-playing-movie';
-const POPULAR_MOVIES_RUOTE = '/popular-movie';
-const TOP_RATED_MOVIES_ROUTE = '/top-rated-movie';
-const MOVIE_DETAIL_ROUTE = '/detail-movie';
-const SEARCH_MOVIES_ROUTE = '/search-movie';
+const homeMoviesRoute = '/home';
+const nowPlayingMoviesRoute = '/now-playing-movie';
+const popularMoviesRoute = '/popular-movie';
+const topRatedMoviesRoute = '/top-rated-movie';
+const movieDetailRoute = '/detail-movie';
+const searchMoviesRoute = '/search-movie';
 
-const HOME_TV_ROUTE = '/tv-series';
-const NOW_PLAYING_TV_ROUTE = '/now-playing-route';
-const POPULAR_TV_ROUTE = '/popular-tv';
-const TOP_RATED_TV_ROUTE = '/top-rated-tv';
-const TV_DETAIL_ROUTE = '/detail-tv';
-const TV_SEASON_DETAIL_ROUTE = '/detail-tv-season';
-const TV_EPISODE_DETAIL_ROUTE = '/detail-tv-episode';
-const SEARCH_TV_ROUTE = '/search-tv';
+const homeTvRoute = '/tv-series';
+const nowPlayingTvRoute = '/now-playing-route';
+const popularTvRoute = '/popular-tv';
+const topRatedTvRoute = '/top-rated-tv';
+const tvDetailRoute = '/detail-tv';
+const tvSeasonDetailRoute = '/detail-tv-season';
+const tvEpisodeDetailRoute = '/detail-tv-episode';
+const searchTvRoute = '/search-tv';
 
-const ABOUT_ROUTE = '/about';
-const WATCHLIST_ROUTE = '/watchlist';
+const aboutRoute = '/about';
+const watchlistRoute = '/watchlist';
 
 routeSettings() {
   return (RouteSettings settings) {
     switch (settings.name) {
-      case HOME_MOVIES_ROUTE:
-        return MaterialPageRoute(builder: (_) => HomeMoviePage());
-      case NOW_PLAYING_MOVIES_ROUTE:
-        return MaterialPageRoute(builder: (_) => NowPlayingMoviesPage());
-      case POPULAR_MOVIES_RUOTE:
-        return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
-      case TOP_RATED_MOVIES_ROUTE:
-        return CupertinoPageRoute(builder: (_) => TopRatedMoviesPage());
-      case MOVIE_DETAIL_ROUTE:
+      case homeMoviesRoute:
+        return MaterialPageRoute(builder: (_) => const HomeMoviePage());
+      case nowPlayingMoviesRoute:
+        return MaterialPageRoute(builder: (_) => const NowPlayingMoviesPage());
+      case popularMoviesRoute:
+        return CupertinoPageRoute(builder: (_) => const PopularMoviesPage());
+      case topRatedMoviesRoute:
+        return CupertinoPageRoute(builder: (_) => const TopRatedMoviesPage());
+      case movieDetailRoute:
         final id = settings.arguments as int;
         return MaterialPageRoute(
           builder: (_) => MovieDetailPage(id: id),
           settings: settings,
         );
-      case SEARCH_MOVIES_ROUTE:
-        return CupertinoPageRoute(builder: (_) => MovieSearchPage());
-      case HOME_TV_ROUTE:
-        return MaterialPageRoute(builder: (_) => HomeTvPage());
-      case NOW_PLAYING_TV_ROUTE:
-        return MaterialPageRoute(builder: (_) => NowPlayingTvPage());
-      case POPULAR_TV_ROUTE:
-        return CupertinoPageRoute(builder: (_) => PopularTvPage());
-      case TOP_RATED_TV_ROUTE:
-        return CupertinoPageRoute(builder: (_) => TopRatedTvPage());
-      case TV_DETAIL_ROUTE:
+      case searchMoviesRoute:
+        return CupertinoPageRoute(builder: (_) => const MovieSearchPage());
+      case homeTvRoute:
+        return MaterialPageRoute(builder: (_) => const HomeTvPage());
+      case nowPlayingTvRoute:
+        return MaterialPageRoute(builder: (_) => const NowPlayingTvPage());
+      case popularTvRoute:
+        return CupertinoPageRoute(builder: (_) => const PopularTvPage());
+      case topRatedTvRoute:
+        return CupertinoPageRoute(builder: (_) => const TopRatedTvPage());
+      case tvDetailRoute:
         final id = settings.arguments as int;
         return MaterialPageRoute(
           builder: (_) => TvDetailPage(id: id),
           settings: settings,
         );
-      case TV_SEASON_DETAIL_ROUTE:
+      case tvSeasonDetailRoute:
         final args = settings.arguments as MultiArgument;
         return MaterialPageRoute(builder: (_) {
           return TvSeasonDetailPage(
@@ -68,7 +68,7 @@ routeSettings() {
             seasonNumber: args.arg2,
           );
         });
-      case TV_EPISODE_DETAIL_ROUTE:
+      case tvEpisodeDetailRoute:
         final args = settings.arguments as TripleArgument;
         return MaterialPageRoute(
           builder: (_) {
@@ -80,15 +80,15 @@ routeSettings() {
           },
           settings: settings,
         );
-      case SEARCH_TV_ROUTE:
-        return CupertinoPageRoute(builder: (_) => TvSearchPage());
-      case ABOUT_ROUTE:
-        return MaterialPageRoute(builder: (_) => AboutPage());
-      case WATCHLIST_ROUTE:
-        return MaterialPageRoute(builder: (_) => WatchListPage());
+      case searchTvRoute:
+        return CupertinoPageRoute(builder: (_) => const TvSearchPage());
+      case aboutRoute:
+        return MaterialPageRoute(builder: (_) => const AboutPage());
+      case watchlistRoute:
+        return MaterialPageRoute(builder: (_) => const WatchListPage());
       default:
         return MaterialPageRoute(builder: (_) {
-          return Scaffold(
+          return const Scaffold(
             body: Center(
               child: Text('Page not found :('),
             ),

@@ -1,8 +1,7 @@
-import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 
 class SeasonModel extends Equatable {
-  SeasonModel({
+  const SeasonModel({
     required this.airDate,
     required this.episodeCount,
     required this.id,

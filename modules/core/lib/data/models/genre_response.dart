@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 class GenreResponse extends Equatable {
   final List<GenreModel> genreList;
 
-  GenreResponse({required this.genreList});
+  const GenreResponse({required this.genreList});
 
   factory GenreResponse.fromJson(Map<String, dynamic> json) => GenreResponse(
       genreList: List<GenreModel>.from(

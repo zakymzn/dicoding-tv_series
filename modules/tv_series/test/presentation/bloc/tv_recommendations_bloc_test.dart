@@ -49,13 +49,14 @@ void main() {
     'emits [Loading, Error] when get tv recommendations is unsuccessful.',
     build: () {
       when(mockGetTvRecommendations.execute(testTv.id)).thenAnswer(
-          (realInvocation) async => Left(ServerFailure('Server Failure')));
+          (realInvocation) async =>
+              const Left(ServerFailure('Server Failure')));
       return tvRecommendationsBloc;
     },
     act: (bloc) => bloc.add(OnTvRecommendations(testTv.id)),
     expect: () => <TvState>[
       TvLoading(),
-      TvError('Server Failure'),
+      const TvError('Server Failure'),
     ],
     verify: (bloc) {
       verify(mockGetTvRecommendations.execute(testTv.id));

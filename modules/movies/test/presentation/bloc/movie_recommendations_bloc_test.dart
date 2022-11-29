@@ -50,13 +50,14 @@ void main() {
     'emits [Loading, Error] when get movie recommendations is unsuccessful.',
     build: () {
       when(mockGetMovieRecommendations.execute(testMovie.id)).thenAnswer(
-          (realInvocation) async => Left(ServerFailure('Server Failure')));
+          (realInvocation) async =>
+              const Left(ServerFailure('Server Failure')));
       return movieRecommendationsBloc;
     },
     act: (bloc) => bloc.add(OnMovieRecommendations(testMovie.id)),
     expect: () => <MovieState>[
       MovieLoading(),
-      MovieError('Server Failure'),
+      const MovieError('Server Failure'),
     ],
     verify: (bloc) {
       verify(mockGetMovieRecommendations.execute(testMovie.id));

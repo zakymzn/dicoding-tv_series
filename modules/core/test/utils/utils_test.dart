@@ -1,6 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
-import 'package:core/utils/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -31,8 +30,8 @@ void main() {
     voteAverage: 1,
     overview: 'overview',
     firstAirDate: 'firstAirDate',
-    originCountry: ['originCountry'],
-    genreIds: [1],
+    originCountry: const ['originCountry'],
+    genreIds: const [1],
     originalLanguage: 'originalLanguage',
     voteCount: 1,
     name: 'name',
@@ -40,7 +39,7 @@ void main() {
   );
 
   final tTvList = <Tv>[tTvModel];
-  final tQuery = 'game of thrones';
+  const tQuery = 'game of thrones';
 
   blocTest<SearchTvBloc, SearchTvState>(
     'debounce test',
@@ -49,7 +48,7 @@ void main() {
           .thenAnswer((_) async => Right(tTvList));
       return searchTvBloc;
     },
-    act: (bloc) => bloc.add(OnTvQueryChanged(tQuery)),
+    act: (bloc) => bloc.add(const OnTvQueryChanged(tQuery)),
     wait: const Duration(milliseconds: 500),
     expect: () => [
       SearchTvLoading(),

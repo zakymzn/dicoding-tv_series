@@ -46,19 +46,19 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               leading: const Icon(Icons.tv),
               title: const Text('Tv Series'),
               onTap: () {
-                Navigator.pushReplacementNamed(context, HOME_TV_ROUTE);
+                Navigator.pushReplacementNamed(context, homeTvRoute);
               },
             ),
             ListTile(
               leading: const Icon(Icons.save_alt),
               title: const Text('Watchlist'),
               onTap: () {
-                Navigator.pushNamed(context, WATCHLIST_ROUTE);
+                Navigator.pushNamed(context, watchlistRoute);
               },
             ),
             ListTile(
               onTap: () {
-                Navigator.pushNamed(context, ABOUT_ROUTE);
+                Navigator.pushNamed(context, aboutRoute);
               },
               leading: const Icon(Icons.info_outline),
               title: const Text('About'),
@@ -72,7 +72,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           IconButton(
             key: const Key('search_movie'),
             onPressed: () {
-              Navigator.pushNamed(context, SEARCH_MOVIES_ROUTE);
+              Navigator.pushNamed(context, searchMoviesRoute);
             },
             icon: const Icon(Icons.search),
           )
@@ -100,7 +100,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                 title: 'Now Playing',
                 valueKey: 'now_playing_movies',
                 onTap: () =>
-                    Navigator.pushNamed(context, NOW_PLAYING_MOVIES_ROUTE),
+                    Navigator.pushNamed(context, nowPlayingMoviesRoute),
               ),
               BlocBuilder<NowPlayingMoviesBloc, MovieState>(
                   builder: (context, state) {
@@ -117,7 +117,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               _buildSubHeading(
                 title: 'Popular',
                 valueKey: 'popular_movies',
-                onTap: () => Navigator.pushNamed(context, POPULAR_MOVIES_RUOTE),
+                onTap: () => Navigator.pushNamed(context, popularMoviesRoute),
               ),
               BlocBuilder<PopularMoviesBloc, MovieState>(
                   builder: (context, state) {
@@ -134,8 +134,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               _buildSubHeading(
                 title: 'Top Rated',
                 valueKey: 'top_rated_movies',
-                onTap: () =>
-                    Navigator.pushNamed(context, TOP_RATED_MOVIES_ROUTE),
+                onTap: () => Navigator.pushNamed(context, topRatedMoviesRoute),
               ),
               BlocBuilder<TopRatedMoviesBloc, MovieState>(
                   builder: (context, state) {
@@ -205,7 +204,7 @@ class MovieList extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  MOVIE_DETAIL_ROUTE,
+                  movieDetailRoute,
                   arguments: movie.id,
                 );
               },

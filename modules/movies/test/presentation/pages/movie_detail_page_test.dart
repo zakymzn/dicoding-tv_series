@@ -21,7 +21,7 @@ void main() {
     registerFallbackValue(FakeMovieState());
   });
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<MovieDetailBloc>(
@@ -45,16 +45,16 @@ void main() {
       'Watchlist button should display add icon when movie not added to watchlist',
       (WidgetTester tester) async {
     when(() => mockMovieDetailBloc.state)
-        .thenReturn(MovieDetailHasData(testMovieDetail));
+        .thenReturn(const MovieDetailHasData(testMovieDetail));
     when(() => mockMovieWatchlistBloc.state)
-        .thenReturn(MovieWatchlistStatus(false));
+        .thenReturn(const MovieWatchlistStatus(false));
     when(() => mockMovieRecommendationsBloc.state)
         .thenReturn(MovieListHasData(testMovieList));
 
     final watchlistButtonIcon = find.byIcon(Icons.add);
 
     await tester.pumpWidget(
-        _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
+        makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
 
     expect(watchlistButtonIcon, findsOneWidget);
   });
@@ -63,16 +63,16 @@ void main() {
       'Watchlist button should dispay check icon when movie is added to wathclist',
       (WidgetTester tester) async {
     when(() => mockMovieDetailBloc.state)
-        .thenReturn(MovieDetailHasData(testMovieDetail));
+        .thenReturn(const MovieDetailHasData(testMovieDetail));
     when(() => mockMovieRecommendationsBloc.state)
         .thenReturn(MovieListHasData(testMovieList));
     when(() => mockMovieWatchlistBloc.state)
-        .thenReturn(MovieWatchlistStatus(true));
+        .thenReturn(const MovieWatchlistStatus(true));
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
 
     await tester.pumpWidget(
-        _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
+        makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
 
     expect(watchlistButtonIcon, findsOneWidget);
   });
@@ -81,18 +81,20 @@ void main() {
       'Watchlist button should display Snackbar when added to watchlist',
       (WidgetTester tester) async {
     when(() => mockMovieDetailBloc.state)
-        .thenReturn(MovieDetailHasData(testMovieDetail));
+        .thenReturn(const MovieDetailHasData(testMovieDetail));
     when(() => mockMovieRecommendationsBloc.state)
         .thenReturn(MovieListHasData(testMovieList));
     when(() => mockMovieWatchlistBloc.state)
-        .thenReturn(MovieWatchlistStatus(false));
+        .thenReturn(const MovieWatchlistStatus(false));
     when(() => mockMovieWatchlistBloc.state).thenReturn(
-        MovieWatchlistMessage(MovieWatchlistBloc.watchlistAddSuccessMessage));
+        const MovieWatchlistMessage(
+            MovieWatchlistBloc.watchlistAddSuccessMessage));
 
-    final watchlistButton = find.byKey(ValueKey('movie_watchlist_button'));
+    final watchlistButton =
+        find.byKey(const ValueKey('movie_watchlist_button'));
 
     await tester.pumpWidget(
-        _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
+        makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
 
     expect(find.byIcon(Icons.add), findsOneWidget);
 
@@ -108,17 +110,19 @@ void main() {
       'Watchlist button should display AlertDialog when add to watchlist failed',
       (WidgetTester tester) async {
     when(() => mockMovieDetailBloc.state)
-        .thenReturn(MovieDetailHasData(testMovieDetail));
+        .thenReturn(const MovieDetailHasData(testMovieDetail));
     when(() => mockMovieRecommendationsBloc.state)
         .thenReturn(MovieListHasData(testMovieList));
     when(() => mockMovieWatchlistBloc.state)
-        .thenReturn(MovieWatchlistStatus(false));
-    when(() => mockMovieWatchlistBloc.state).thenReturn(MovieError('Failed'));
+        .thenReturn(const MovieWatchlistStatus(false));
+    when(() => mockMovieWatchlistBloc.state)
+        .thenReturn(const MovieError('Failed'));
 
-    final watchlistButton = find.byKey(ValueKey('movie_watchlist_button'));
+    final watchlistButton =
+        find.byKey(const ValueKey('movie_watchlist_button'));
 
     await tester.pumpWidget(
-        _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
+        makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
 
     expect(find.byIcon(Icons.add), findsOneWidget);
 
@@ -133,18 +137,20 @@ void main() {
       'Watchlist button should display Snackbar when removed from watchlist',
       (WidgetTester tester) async {
     when(() => mockMovieDetailBloc.state)
-        .thenReturn(MovieDetailHasData(testMovieDetail));
+        .thenReturn(const MovieDetailHasData(testMovieDetail));
     when(() => mockMovieRecommendationsBloc.state)
         .thenReturn(MovieListHasData(testMovieList));
-    when(() => mockMovieWatchlistBloc.state).thenReturn(MovieWatchlistMessage(
-        MovieWatchlistBloc.watchlistRemoveSuccessMessage));
+    when(() => mockMovieWatchlistBloc.state).thenReturn(
+        const MovieWatchlistMessage(
+            MovieWatchlistBloc.watchlistRemoveSuccessMessage));
     when(() => mockMovieWatchlistBloc.state)
-        .thenReturn(MovieWatchlistStatus(true));
+        .thenReturn(const MovieWatchlistStatus(true));
 
-    final watchlistButton = find.byKey(ValueKey('movie_watchlist_button'));
+    final watchlistButton =
+        find.byKey(const ValueKey('movie_watchlist_button'));
 
     await tester.pumpWidget(
-        _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
+        makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
 
     expect(find.byIcon(Icons.check), findsOneWidget);
 
@@ -170,7 +176,7 @@ void main() {
   // final watchlistButton = find.byKey(ValueKey('movie_watchlist_button'));
 
   //   await tester.pumpWidget(
-  //       _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
+  //       makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
 
   //   expect(find.byIcon(Icons.check), findsOneWidget);
 
@@ -187,7 +193,7 @@ void main() {
       when(() => mockMovieDetailBloc.state).thenReturn(MovieLoading());
 
       await tester.pumpWidget(
-          _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
+          makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
 
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     },
@@ -195,10 +201,11 @@ void main() {
 
   testWidgets('Detail page should show message when Request State is error',
       (WidgetTester tester) async {
-    when(() => mockMovieDetailBloc.state).thenReturn(MovieError('Failed'));
+    when(() => mockMovieDetailBloc.state)
+        .thenReturn(const MovieError('Failed'));
 
     await tester.pumpWidget(
-        _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
+        makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
 
     expect(find.byType(Text), findsOneWidget);
     expect(find.text('Failed'), findsOneWidget);
@@ -208,13 +215,13 @@ void main() {
       'Recommendations should show a Circular Progress Indicator when Request State is loading',
       (WidgetTester tester) async {
     when(() => mockMovieDetailBloc.state)
-        .thenReturn(MovieDetailHasData(testMovieDetail));
+        .thenReturn(const MovieDetailHasData(testMovieDetail));
     when(() => mockMovieRecommendationsBloc.state).thenReturn(MovieLoading());
     when(() => mockMovieWatchlistBloc.state)
-        .thenReturn(MovieWatchlistStatus(false));
+        .thenReturn(const MovieWatchlistStatus(false));
 
     await tester.pumpWidget(
-        _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
+        makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
 
     expect(find.byType(CircularProgressIndicator), findsWidgets);
   });
@@ -222,14 +229,14 @@ void main() {
   testWidgets('Recommendations should show message when Request State is error',
       (WidgetTester tester) async {
     when(() => mockMovieDetailBloc.state)
-        .thenReturn(MovieDetailHasData(testMovieDetail));
+        .thenReturn(const MovieDetailHasData(testMovieDetail));
     when(() => mockMovieRecommendationsBloc.state)
-        .thenReturn(MovieError('Failed'));
+        .thenReturn(const MovieError('Failed'));
     when(() => mockMovieWatchlistBloc.state)
-        .thenReturn(MovieWatchlistStatus(false));
+        .thenReturn(const MovieWatchlistStatus(false));
 
     await tester.pumpWidget(
-        _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
+        makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
 
     expect(find.byType(Text), findsWidgets);
     expect(find.text('Failed'), findsOneWidget);
@@ -239,13 +246,13 @@ void main() {
       'Recommendations should show Container when Request State is empty',
       (WidgetTester tester) async {
     when(() => mockMovieDetailBloc.state)
-        .thenReturn(MovieDetailHasData(testMovieDetail));
+        .thenReturn(const MovieDetailHasData(testMovieDetail));
     when(() => mockMovieRecommendationsBloc.state).thenReturn(MovieEmpty());
     when(() => mockMovieWatchlistBloc.state)
-        .thenReturn(MovieWatchlistStatus(false));
+        .thenReturn(const MovieWatchlistStatus(false));
 
     await tester.pumpWidget(
-        _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
+        makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
 
     expect(find.byType(Container), findsWidgets);
   });
@@ -254,14 +261,14 @@ void main() {
       'Recommendations should be scrollable until a recommended movie item is found and navigate to another movie detail page',
       (WidgetTester tester) async {
     when(() => mockMovieDetailBloc.state)
-        .thenReturn(MovieDetailHasData(testMovieDetail));
+        .thenReturn(const MovieDetailHasData(testMovieDetail));
     when(() => mockMovieRecommendationsBloc.state)
         .thenReturn(MovieListHasData(testMovieList));
     when(() => mockMovieWatchlistBloc.state)
-        .thenReturn(MovieWatchlistStatus(false));
+        .thenReturn(const MovieWatchlistStatus(false));
 
     await tester.pumpWidget(
-        _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
+        makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
 
     int index = 0;
     final scrollableFinder = find.byType(Scrollable).first;

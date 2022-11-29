@@ -64,14 +64,14 @@ void main() {
   blocTest<TvWatchlistBloc, TvState>(
     'emits [Loading, Error] when get watchlist tv is unsuccessful.',
     build: () {
-      when(mockGetWatchlistTv.execute()).thenAnswer(
-          (realInvocation) async => Left(DatabaseFailure("Can't get data")));
+      when(mockGetWatchlistTv.execute()).thenAnswer((realInvocation) async =>
+          const Left(DatabaseFailure("Can't get data")));
       return tvWatchlistBloc;
     },
     act: (bloc) => bloc.add(OnTvWatchlist()),
     expect: () => <TvState>[
       TvLoading(),
-      TvError("Can't get data"),
+      const TvError("Can't get data"),
     ],
     verify: (bloc) {
       verify(mockGetWatchlistTv.execute());
@@ -88,7 +88,7 @@ void main() {
     act: (bloc) => bloc.add(OnTvWatchlistStatus(testTvDetail.id)),
     expect: () => <TvState>[
       TvLoading(),
-      TvWatchlistStatus(true),
+      const TvWatchlistStatus(true),
     ],
     verify: (bloc) {
       verify(mockGetTvWatchListStatus.execute(testTvDetail.id));
@@ -100,15 +100,15 @@ void main() {
     build: () {
       when(mockSaveTvWatchlist.execute(testTvDetail)).thenAnswer(
           (realInvocation) async =>
-              Right(TvWatchlistBloc.watchlistAddSuccessMessage));
+              const Right(TvWatchlistBloc.watchlistAddSuccessMessage));
       when(mockGetTvWatchListStatus.execute(testTvDetail.id))
           .thenAnswer((realInvocation) async => true);
       return tvWatchlistBloc;
     },
-    act: (bloc) => bloc.add(OnAddTvWatchlist(testTvDetail)),
+    act: (bloc) => bloc.add(const OnAddTvWatchlist(testTvDetail)),
     expect: () => <TvState>[
       TvLoading(),
-      TvWatchlistMessage(TvWatchlistBloc.watchlistAddSuccessMessage),
+      const TvWatchlistMessage(TvWatchlistBloc.watchlistAddSuccessMessage),
     ],
     verify: (bloc) {
       verify(mockSaveTvWatchlist.execute(testTvDetail));
@@ -119,15 +119,15 @@ void main() {
     'emits [Loading, Error] when add tv to watchlist is unsuccessful.',
     build: () {
       when(mockSaveTvWatchlist.execute(testTvDetail)).thenAnswer(
-          (realInvocation) async => Left(DatabaseFailure('Failed')));
+          (realInvocation) async => const Left(DatabaseFailure('Failed')));
       when(mockGetTvWatchListStatus.execute(testTvDetail.id))
           .thenAnswer((realInvocation) async => false);
       return tvWatchlistBloc;
     },
-    act: (bloc) => bloc.add(OnAddTvWatchlist(testTvDetail)),
+    act: (bloc) => bloc.add(const OnAddTvWatchlist(testTvDetail)),
     expect: () => <TvState>[
       TvLoading(),
-      TvError('Failed'),
+      const TvError('Failed'),
     ],
     verify: (bloc) {
       verify(mockSaveTvWatchlist.execute(testTvDetail));
@@ -139,15 +139,15 @@ void main() {
     build: () {
       when(mockRemoveTvWatchlist.execute(testTvDetail)).thenAnswer(
           (realInvocation) async =>
-              Right(TvWatchlistBloc.watchlistRemoveSuccessMessage));
+              const Right(TvWatchlistBloc.watchlistRemoveSuccessMessage));
       when(mockGetTvWatchListStatus.execute(testTvDetail.id))
           .thenAnswer((realInvocation) async => false);
       return tvWatchlistBloc;
     },
-    act: (bloc) => bloc.add(OnRemoveTvWatchlist(testTvDetail)),
+    act: (bloc) => bloc.add(const OnRemoveTvWatchlist(testTvDetail)),
     expect: () => <TvState>[
       TvLoading(),
-      TvWatchlistMessage(TvWatchlistBloc.watchlistRemoveSuccessMessage),
+      const TvWatchlistMessage(TvWatchlistBloc.watchlistRemoveSuccessMessage),
     ],
     verify: (bloc) {
       verify(mockRemoveTvWatchlist.execute(testTvDetail));
@@ -158,15 +158,15 @@ void main() {
     'emits [Loading, Error] when remove tv from watchlist is unsuccessful.',
     build: () {
       when(mockRemoveTvWatchlist.execute(testTvDetail)).thenAnswer(
-          (realInvocation) async => Left(DatabaseFailure('Failed')));
+          (realInvocation) async => const Left(DatabaseFailure('Failed')));
       when(mockGetTvWatchListStatus.execute(testTvDetail.id))
           .thenAnswer((realInvocation) async => true);
       return tvWatchlistBloc;
     },
-    act: (bloc) => bloc.add(OnRemoveTvWatchlist(testTvDetail)),
+    act: (bloc) => bloc.add(const OnRemoveTvWatchlist(testTvDetail)),
     expect: () => <TvState>[
       TvLoading(),
-      TvError('Failed'),
+      const TvError('Failed'),
     ],
     verify: (bloc) {
       verify(mockRemoveTvWatchlist.execute(testTvDetail));

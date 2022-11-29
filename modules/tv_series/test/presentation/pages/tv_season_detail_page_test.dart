@@ -21,7 +21,7 @@ void main() {
     },
   );
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<TvSeasonDetailBloc>(
@@ -45,7 +45,7 @@ void main() {
           .thenReturn(TvSeasonDetailHasData(testTvSeasonDetail));
       when(() => mockTvEpisodeDetailBloc.state).thenReturn(TvEmpty());
 
-      await widgetTester.pumpWidget(_makeTestableWidget(TvSeasonDetailPage(
+      await widgetTester.pumpWidget(makeTestableWidget(TvSeasonDetailPage(
           id: testTvDetail.id, seasonNumber: testTvSeasonDetail.seasonNumber)));
 
       int index = 0;
@@ -70,7 +70,7 @@ void main() {
     (widgetTester) async {
       when(() => mockTvSeasonDetailBloc.state).thenReturn(TvLoading());
 
-      await widgetTester.pumpWidget(_makeTestableWidget(TvSeasonDetailPage(
+      await widgetTester.pumpWidget(makeTestableWidget(TvSeasonDetailPage(
           id: testTvDetail.id, seasonNumber: testTvSeasonDetail.seasonNumber)));
 
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
@@ -80,9 +80,10 @@ void main() {
   testWidgets(
     'Season detail page should show message when request state is error',
     (widgetTester) async {
-      when(() => mockTvSeasonDetailBloc.state).thenReturn(TvError('Failed'));
+      when(() => mockTvSeasonDetailBloc.state)
+          .thenReturn(const TvError('Failed'));
 
-      await widgetTester.pumpWidget(_makeTestableWidget(TvSeasonDetailPage(
+      await widgetTester.pumpWidget(makeTestableWidget(TvSeasonDetailPage(
           id: testTvDetail.id, seasonNumber: testTvSeasonDetail.seasonNumber)));
 
       expect(find.text('Failed'), findsOneWidget);

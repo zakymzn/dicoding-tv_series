@@ -16,7 +16,7 @@ void main() {
   });
 
   final tTv = <Tv>[];
-  final tQuery = 'Spiderman';
+  const tQuery = 'Spiderman';
 
   test('should get list of tv from the repository', () async {
     when(mockTvRepository.searchTv(tQuery)).thenAnswer((_) async => Right(tTv));

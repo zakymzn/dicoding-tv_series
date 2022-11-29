@@ -32,13 +32,13 @@ void main() {
     'emits [Loading, HasData] when data is gotten successfully.',
     build: () {
       when(mockGetTvDetail.execute(testTvDetail.id))
-          .thenAnswer((realInvocation) async => Right(testTvDetail));
+          .thenAnswer((realInvocation) async => const Right(testTvDetail));
       return tvDetailBloc;
     },
     act: (bloc) => bloc.add(OnTvDetail(testTvDetail.id)),
     expect: () => <TvState>[
       TvLoading(),
-      TvDetailHasData(testTvDetail),
+      const TvDetailHasData(testTvDetail),
     ],
     verify: (bloc) {
       verify(mockGetTvDetail.execute(testTvDetail.id));
@@ -49,13 +49,14 @@ void main() {
     'emits [Loading, Error] when get tv detail is unsuccessful.',
     build: () {
       when(mockGetTvDetail.execute(testTvDetail.id)).thenAnswer(
-          (realInvocation) async => Left(ServerFailure('Server Failure')));
+          (realInvocation) async =>
+              const Left(ServerFailure('Server Failure')));
       return tvDetailBloc;
     },
     act: (bloc) => bloc.add(OnTvDetail(testTvDetail.id)),
     expect: () => <TvState>[
       TvLoading(),
-      TvError('Server Failure'),
+      const TvError('Server Failure'),
     ],
     verify: (bloc) {
       verify(mockGetTvDetail.execute(testTvDetail.id));

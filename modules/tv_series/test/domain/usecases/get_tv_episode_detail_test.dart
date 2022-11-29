@@ -17,9 +17,9 @@ void main() {
     },
   );
 
-  final tId = 1;
-  final tSeasonNumber = 1;
-  final tEpisodeNumber = 1;
+  const tId = 1;
+  const tSeasonNumber = 1;
+  const tEpisodeNumber = 1;
 
   test(
     'should get tv episode detail from the repository',

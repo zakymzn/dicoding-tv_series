@@ -32,7 +32,7 @@ void main() {
         BlocProvider<MovieWatchlistBloc>.value(
           value: mockMovieWatchlistBloc,
           child: MaterialApp(
-            home: WatchListPage(),
+            home: const WatchListPage(),
             theme: ThemeData.dark().copyWith(
               textTheme: kTextTheme,
             ),

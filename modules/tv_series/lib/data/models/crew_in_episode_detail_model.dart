@@ -24,7 +24,7 @@ class CrewInEpisodeDetailModel extends Equatable {
         name: json["name"],
         department: json["department"],
         job: json["job"],
-        profilePath: json["profile_path"] == null ? null : json["profile_path"],
+        profilePath: json["profile_path"],
       );
 
   @override

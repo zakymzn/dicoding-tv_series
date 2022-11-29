@@ -10,16 +10,16 @@ void main() {
       expect(OnNowPlayingMovies(), OnNowPlayingMovies());
       expect(OnPopularMovies(), OnPopularMovies());
       expect(OnTopRatedMovies(), OnTopRatedMovies());
-      expect(OnMovieRecommendations(557),
+      expect(const OnMovieRecommendations(557),
           OnMovieRecommendations(testMovieList.first.id));
-      expect(OnMovieDetail(1), OnMovieDetail(testMovieDetail.id));
+      expect(const OnMovieDetail(1), OnMovieDetail(testMovieDetail.id));
       expect(OnMovieWatchlist(), OnMovieWatchlist());
-      expect(OnMovieWatchlistStatus(1),
+      expect(const OnMovieWatchlistStatus(1),
           OnMovieWatchlistStatus(testMovieDetail.id));
-      expect(OnAddMovieWatchlist(testMovieDetail),
-          OnAddMovieWatchlist(testMovieDetail));
-      expect(OnRemoveMovieWatchlist(testMovieDetail),
-          OnRemoveMovieWatchlist(testMovieDetail));
+      expect(const OnAddMovieWatchlist(testMovieDetail),
+          const OnAddMovieWatchlist(testMovieDetail));
+      expect(const OnRemoveMovieWatchlist(testMovieDetail),
+          const OnRemoveMovieWatchlist(testMovieDetail));
     },
   );
 }

@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../json_reader.dart';
 
 void main() {
-  final tTvModel = TvModel(
+  const tTvModel = TvModel(
     posterPath: 'posterPath',
     popularity: 1,
     id: 1,
@@ -23,7 +23,7 @@ void main() {
     originalName: 'originalName',
   );
 
-  final tTvResponseModel = TvResponse(tvList: <TvModel>[tTvModel]);
+  const tTvResponseModel = TvResponse(tvList: <TvModel>[tTvModel]);
 
   group('fromJson', () {
     test('should return a valid model from JSON', () async {

@@ -52,7 +52,7 @@ void main() {
     },
   );
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<NowPlayingMoviesBloc>(
@@ -99,7 +99,7 @@ void main() {
     final progressIndicatorFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(_makeTestableWidget(HomeMoviePage()));
+    await tester.pumpWidget(makeTestableWidget(const HomeMoviePage()));
 
     expect(centerFinder, findsWidgets);
     expect(progressIndicatorFinder, findsWidgets);
@@ -117,7 +117,7 @@ void main() {
 
       final listViewFinder = find.byType(ListView);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(HomeMoviePage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const HomeMoviePage()));
 
       expect(listViewFinder, findsWidgets);
     },
@@ -127,13 +127,15 @@ void main() {
     'Page should display text with message when error',
     (widgetTester) async {
       when(() => mockNowPlayingMoviesBloc.state)
-          .thenReturn(MovieError('Failed'));
-      when(() => mockPopularMoviesBloc.state).thenReturn(MovieError('Failed'));
-      when(() => mockTopRatedMoviesBloc.state).thenReturn(MovieError('Failed'));
+          .thenReturn(const MovieError('Failed'));
+      when(() => mockPopularMoviesBloc.state)
+          .thenReturn(const MovieError('Failed'));
+      when(() => mockTopRatedMoviesBloc.state)
+          .thenReturn(const MovieError('Failed'));
 
       final textFinder = find.byType(Text);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(HomeMoviePage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const HomeMoviePage()));
 
       expect(textFinder, findsWidgets);
       expect(find.text('Failed'), findsWidgets);
@@ -152,11 +154,13 @@ void main() {
 
       final scrollableFinder = find.byType(Scrollable);
 
-      final nowPlayingMoviesFinder = find.byKey(ValueKey('now_playing_movies'));
-      final popularMoviesFinder = find.byKey(ValueKey('popular_movies'));
-      final topRatedMoviesFinder = find.byKey(ValueKey('top_rated_movies'));
+      final nowPlayingMoviesFinder =
+          find.byKey(const ValueKey('now_playing_movies'));
+      final popularMoviesFinder = find.byKey(const ValueKey('popular_movies'));
+      final topRatedMoviesFinder =
+          find.byKey(const ValueKey('top_rated_movies'));
 
-      await widgetTester.pumpWidget(_makeTestableWidget(HomeMoviePage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const HomeMoviePage()));
       await widgetTester.scrollUntilVisible(nowPlayingMoviesFinder, 500,
           scrollable: scrollableFinder.first);
       expect(nowPlayingMoviesFinder, findsOneWidget);
@@ -184,7 +188,7 @@ void main() {
       when(() => mockTopRatedTvBloc.state).thenReturn(TvEmpty());
       when(() => mockTvWatchlistBloc.state).thenReturn(TvEmpty());
 
-      await widgetTester.pumpWidget(_makeTestableWidget(HomeMoviePage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const HomeMoviePage()));
 
       final ScaffoldState movieScaffoldState =
           widgetTester.firstState(find.byType(Scaffold));
@@ -249,7 +253,7 @@ void main() {
       when(() => mockTopRatedMoviesBloc.state).thenReturn(MovieEmpty());
       when(() => mockSearchMoviesBloc.state).thenReturn(SearchMoviesEmpty());
 
-      await widgetTester.pumpWidget(_makeTestableWidget(HomeMoviePage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const HomeMoviePage()));
 
       final searchIconFinder = find.byIcon(Icons.search);
       final backIconFinder = find.byIcon(Icons.arrow_back);
@@ -277,12 +281,13 @@ void main() {
       when(() => mockPopularMoviesBloc.state).thenReturn(MovieEmpty());
       when(() => mockTopRatedMoviesBloc.state).thenReturn(MovieEmpty());
 
-      await widgetTester.pumpWidget(_makeTestableWidget(HomeMoviePage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const HomeMoviePage()));
 
       final nowPlayingMoviesPageKey =
-          find.byKey(ValueKey('now_playing_movies'));
-      final popularMoviesPageKey = find.byKey(ValueKey('popular_movies'));
-      final topRatedMoviesPageKey = find.byKey(ValueKey('top_rated_movies'));
+          find.byKey(const ValueKey('now_playing_movies'));
+      final popularMoviesPageKey = find.byKey(const ValueKey('popular_movies'));
+      final topRatedMoviesPageKey =
+          find.byKey(const ValueKey('top_rated_movies'));
       final backIconFinder = find.byIcon(Icons.arrow_back);
 
       expect(nowPlayingMoviesPageKey, findsOneWidget);

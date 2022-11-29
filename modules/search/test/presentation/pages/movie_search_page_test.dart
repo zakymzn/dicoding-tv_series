@@ -18,7 +18,7 @@ void main() {
     },
   );
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return BlocProvider<SearchMoviesBloc>.value(
       value: mockSearchMoviesBloc,
       child: MaterialApp(
@@ -30,7 +30,7 @@ void main() {
   final testMovie = Movie(
     adult: false,
     backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
-    genreIds: [14, 28],
+    genreIds: const [14, 28],
     id: 557,
     originalTitle: 'Spider-Man',
     overview:
@@ -54,7 +54,8 @@ void main() {
       final progressIndicatorFinder = find.byType(CircularProgressIndicator);
       final centerFinder = find.byType(Center);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(MovieSearchPage()));
+      await widgetTester
+          .pumpWidget(makeTestableWidget(const MovieSearchPage()));
 
       expect(centerFinder, findsWidgets);
       expect(progressIndicatorFinder, findsWidgets);
@@ -69,7 +70,8 @@ void main() {
 
       final listViewFinder = find.byType(ListView);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(MovieSearchPage()));
+      await widgetTester
+          .pumpWidget(makeTestableWidget(const MovieSearchPage()));
 
       expect(listViewFinder, findsOneWidget);
     },
@@ -79,11 +81,12 @@ void main() {
     'Page should display text with message when error',
     (widgetTester) async {
       when(() => mockSearchMoviesBloc.state)
-          .thenReturn(SearchMoviesError('Failed'));
+          .thenReturn(const SearchMoviesError('Failed'));
 
       final textFinder = find.byType(Text);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(MovieSearchPage()));
+      await widgetTester
+          .pumpWidget(makeTestableWidget(const MovieSearchPage()));
 
       expect(textFinder, findsWidgets);
       expect(find.text('Failed'), findsOneWidget);
@@ -97,7 +100,8 @@ void main() {
 
       final containerFinder = find.byType(Container);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(MovieSearchPage()));
+      await widgetTester
+          .pumpWidget(makeTestableWidget(const MovieSearchPage()));
 
       expect(containerFinder, findsOneWidget);
     },
@@ -109,7 +113,8 @@ void main() {
       when(() => mockSearchMoviesBloc.state)
           .thenReturn(SearchMoviesHasData(testMovieList));
 
-      await widgetTester.pumpWidget(_makeTestableWidget(MovieSearchPage()));
+      await widgetTester
+          .pumpWidget(makeTestableWidget(const MovieSearchPage()));
 
       int index = 0;
       final textFieldFinder = find.byType(TextField);

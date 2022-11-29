@@ -23,7 +23,7 @@ void main() {
     registerFallbackValue(FakeTvState());
   });
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<NowPlayingTvBloc>(
@@ -54,7 +54,7 @@ void main() {
       final progressBarFinder = find.byType(CircularProgressIndicator);
       final centerFinder = find.byType(Center);
 
-      await tester.pumpWidget(_makeTestableWidget(NowPlayingTvPage()));
+      await tester.pumpWidget(makeTestableWidget(const NowPlayingTvPage()));
 
       expect(centerFinder, findsOneWidget);
       expect(progressBarFinder, findsOneWidget);
@@ -69,7 +69,7 @@ void main() {
 
       final listViewFinder = find.byType(ListView);
 
-      await tester.pumpWidget(_makeTestableWidget(NowPlayingTvPage()));
+      await tester.pumpWidget(makeTestableWidget(const NowPlayingTvPage()));
 
       expect(listViewFinder, findsOneWidget);
     },
@@ -79,11 +79,11 @@ void main() {
     'Page should display text with message when error',
     (WidgetTester tester) async {
       when(() => mockNowPlayingTvBloc.state)
-          .thenReturn(TvError('error message'));
+          .thenReturn(const TvError('error message'));
 
-      final textFinder = find.byKey(Key('error_message'));
+      final textFinder = find.byKey(const Key('error_message'));
 
-      await tester.pumpWidget(_makeTestableWidget(NowPlayingTvPage()));
+      await tester.pumpWidget(makeTestableWidget(const NowPlayingTvPage()));
 
       expect(textFinder, findsOneWidget);
     },
@@ -97,7 +97,7 @@ void main() {
     when(() => mockTvRecommendationsBloc.state).thenReturn(TvEmpty());
     when(() => mockTvWatchlistBloc.state).thenReturn(TvEmpty());
 
-    await tester.pumpWidget(_makeTestableWidget(NowPlayingTvPage()));
+    await tester.pumpWidget(makeTestableWidget(const NowPlayingTvPage()));
 
     int index = 0;
     final scrollableFinder = find.byType(Scrollable);

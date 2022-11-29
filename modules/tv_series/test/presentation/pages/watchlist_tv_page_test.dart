@@ -23,7 +23,7 @@ void main() {
     },
   );
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<TvWatchlistBloc>(
@@ -51,7 +51,8 @@ void main() {
       final progressIndicator = find.byType(CircularProgressIndicator);
       final centerFinder = find.byType(Center);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(WatchlistTvPage()));
+      await widgetTester
+          .pumpWidget(makeTestableWidget(const WatchlistTvPage()));
 
       expect(centerFinder, findsOneWidget);
       expect(progressIndicator, findsOneWidget);
@@ -66,7 +67,8 @@ void main() {
 
       final listViewFinder = find.byType(ListView);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(WatchlistTvPage()));
+      await widgetTester
+          .pumpWidget(makeTestableWidget(const WatchlistTvPage()));
 
       expect(listViewFinder, findsOneWidget);
     },
@@ -75,11 +77,12 @@ void main() {
   testWidgets(
     'Page should display text with message when error',
     (widgetTester) async {
-      when(() => mockTvWatchlistBloc.state).thenReturn(TvError('Failed'));
+      when(() => mockTvWatchlistBloc.state).thenReturn(const TvError('Failed'));
 
-      final errorFinder = find.byKey(Key('error_message'));
+      final errorFinder = find.byKey(const Key('error_message'));
 
-      await widgetTester.pumpWidget(_makeTestableWidget(WatchlistTvPage()));
+      await widgetTester
+          .pumpWidget(makeTestableWidget(const WatchlistTvPage()));
 
       expect(errorFinder, findsOneWidget);
       expect(find.text('Failed'), findsOneWidget);
@@ -94,7 +97,8 @@ void main() {
       when(() => mockTvDetailBloc.state).thenReturn(TvEmpty());
       when(() => mockTvRecommendationsBloc.state).thenReturn(TvEmpty());
 
-      await widgetTester.pumpWidget(_makeTestableWidget(WatchlistTvPage()));
+      await widgetTester
+          .pumpWidget(makeTestableWidget(const WatchlistTvPage()));
 
       int index = 0;
       final scrollableFinder = find.byType(Scrollable);

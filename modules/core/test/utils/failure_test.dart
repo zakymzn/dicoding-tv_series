@@ -31,18 +31,20 @@ void main() {
       final result = await repository.getNowPlayingTv();
 
       verify(mockRemoteDataSource.getNowPlayingTv());
-      expect(result, equals(Left(ServerFailure(''))));
+      expect(result, equals(const Left(ServerFailure(''))));
     });
 
     test('connection failure', () async {
       when(mockRemoteDataSource.getNowPlayingTv())
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
 
       final result = await repository.getNowPlayingTv();
 
       verify(mockRemoteDataSource.getNowPlayingTv());
-      expect(result,
-          equals(Left(ConnectionFailure('Failed to connect to the network'))));
+      expect(
+          result,
+          equals(const Left(
+              ConnectionFailure('Failed to connect to the network'))));
     });
 
     test('database failure', () async {
@@ -51,7 +53,7 @@ void main() {
 
       final result = await repository.saveWatchlist(testTvDetail);
 
-      expect(result, Left(DatabaseFailure('Failed to add watchlist')));
+      expect(result, const Left(DatabaseFailure('Failed to add watchlist')));
     });
   });
 }

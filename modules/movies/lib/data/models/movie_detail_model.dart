@@ -3,7 +3,7 @@ import 'package:movies/movies.dart';
 import 'package:equatable/equatable.dart';
 
 class MovieDetailResponse extends Equatable {
-  MovieDetailResponse({
+  const MovieDetailResponse({
     required this.adult,
     required this.backdropPath,
     required this.budget,
@@ -77,18 +77,18 @@ class MovieDetailResponse extends Equatable {
 
   MovieDetail toEntity() {
     return MovieDetail(
-      adult: this.adult,
-      backdropPath: this.backdropPath,
-      genres: this.genres.map((genre) => genre.toEntity()).toList(),
-      id: this.id,
-      originalTitle: this.originalTitle,
-      overview: this.overview,
-      posterPath: this.posterPath,
-      releaseDate: this.releaseDate,
-      runtime: this.runtime,
-      title: this.title,
-      voteAverage: this.voteAverage,
-      voteCount: this.voteCount,
+      adult: adult,
+      backdropPath: backdropPath,
+      genres: genres.map((genre) => genre.toEntity()).toList(),
+      id: id,
+      originalTitle: originalTitle,
+      overview: overview,
+      posterPath: posterPath,
+      releaseDate: releaseDate,
+      runtime: runtime,
+      title: title,
+      voteAverage: voteAverage,
+      voteCount: voteCount,
     );
   }
 

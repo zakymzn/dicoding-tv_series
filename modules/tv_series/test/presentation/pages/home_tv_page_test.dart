@@ -52,7 +52,7 @@ void main() {
     },
   );
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<NowPlayingTvBloc>(
@@ -100,7 +100,7 @@ void main() {
       final progressIndicatorFinder = find.byType(CircularProgressIndicator);
       final centerFinder = find.byType(Center);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(HomeTvPage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const HomeTvPage()));
 
       expect(centerFinder, findsWidgets);
       expect(progressIndicatorFinder, findsWidgets);
@@ -118,7 +118,7 @@ void main() {
 
       final listViewFinder = find.byType(ListView);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(HomeTvPage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const HomeTvPage()));
 
       expect(listViewFinder, findsWidgets);
     },
@@ -127,13 +127,14 @@ void main() {
   testWidgets(
     'Page should display text with message when error',
     (widgetTester) async {
-      when(() => mockNowPlayingTvBloc.state).thenReturn(TvError('Failed'));
-      when(() => mockPopularTvBloc.state).thenReturn(TvError('Failed'));
-      when(() => mockTopRatedTvBloc.state).thenReturn(TvError('Failed'));
+      when(() => mockNowPlayingTvBloc.state)
+          .thenReturn(const TvError('Failed'));
+      when(() => mockPopularTvBloc.state).thenReturn(const TvError('Failed'));
+      when(() => mockTopRatedTvBloc.state).thenReturn(const TvError('Failed'));
 
       final textFinder = find.byType(Text);
 
-      await widgetTester.pumpWidget(_makeTestableWidget(HomeTvPage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const HomeTvPage()));
 
       expect(textFinder, findsWidgets);
       expect(find.text('Failed'), findsWidgets);
@@ -149,14 +150,12 @@ void main() {
       when(() => mockTopRatedTvBloc.state)
           .thenReturn(TvListHasData(testTvList));
 
-      int index = 0;
       final scrollableFinder = find.byType(Scrollable);
-      final tvItemFinder = find.byKey(ValueKey('tv_$index'));
-      final nowPlayingTvFinder = find.byKey(ValueKey('now_playing_tv'));
-      final popularTvFinder = find.byKey(ValueKey('popular_tv'));
-      final topRatedTvFinder = find.byKey(ValueKey('top_rated_tv'));
+      final nowPlayingTvFinder = find.byKey(const ValueKey('now_playing_tv'));
+      final popularTvFinder = find.byKey(const ValueKey('popular_tv'));
+      final topRatedTvFinder = find.byKey(const ValueKey('top_rated_tv'));
 
-      await widgetTester.pumpWidget(_makeTestableWidget(HomeTvPage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const HomeTvPage()));
       await widgetTester.scrollUntilVisible(nowPlayingTvFinder, 500,
           scrollable: scrollableFinder.first);
       expect(nowPlayingTvFinder, findsOneWidget);
@@ -184,7 +183,7 @@ void main() {
       when(() => mockTopRatedMoviesBloc.state).thenReturn(MovieEmpty());
       when(() => mockMovieWatchlistBloc.state).thenReturn(MovieEmpty());
 
-      await widgetTester.pumpWidget(_makeTestableWidget(HomeTvPage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const HomeTvPage()));
 
       final ScaffoldState tvScaffoldState =
           widgetTester.firstState(find.byType(Scaffold));
@@ -249,7 +248,7 @@ void main() {
       when(() => mockTopRatedTvBloc.state).thenReturn(TvEmpty());
       when(() => mockSearchTvBloc.state).thenReturn(SearchTvEmpty());
 
-      await widgetTester.pumpWidget(_makeTestableWidget(HomeTvPage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const HomeTvPage()));
 
       final searchIconFinder = find.byIcon(Icons.search);
       final backIconFinder = find.byIcon(Icons.arrow_back);
@@ -277,11 +276,11 @@ void main() {
       when(() => mockPopularTvBloc.state).thenReturn(TvEmpty());
       when(() => mockTopRatedTvBloc.state).thenReturn(TvEmpty());
 
-      await widgetTester.pumpWidget(_makeTestableWidget(HomeTvPage()));
+      await widgetTester.pumpWidget(makeTestableWidget(const HomeTvPage()));
 
-      final nowPlayingTvPageKey = find.byKey(ValueKey('now_playing_tv'));
-      final popularTvPageKey = find.byKey(ValueKey('popular_tv'));
-      final topRatedTvPageKey = find.byKey(ValueKey('top_rated_tv'));
+      final nowPlayingTvPageKey = find.byKey(const ValueKey('now_playing_tv'));
+      final popularTvPageKey = find.byKey(const ValueKey('popular_tv'));
+      final topRatedTvPageKey = find.byKey(const ValueKey('top_rated_tv'));
       final backIconFinder = find.byIcon(Icons.arrow_back);
 
       expect(nowPlayingTvPageKey, findsOneWidget);

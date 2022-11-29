@@ -48,14 +48,14 @@ void main() {
   blocTest<TopRatedMoviesBloc, MovieState>(
     'emits [Loading, Error] when get top rated movies is unsuccessful.',
     build: () {
-      when(mockGetTopRatedMovies.execute()).thenAnswer(
-          (realInvocation) async => Left(ServerFailure('Server Failure')));
+      when(mockGetTopRatedMovies.execute()).thenAnswer((realInvocation) async =>
+          const Left(ServerFailure('Server Failure')));
       return topRatedMoviesBloc;
     },
     act: (bloc) => bloc.add(OnTopRatedMovies()),
     expect: () => <MovieState>[
       MovieLoading(),
-      MovieError('Server Failure'),
+      const MovieError('Server Failure'),
     ],
     verify: (bloc) {
       verify(mockGetTopRatedMovies.execute());

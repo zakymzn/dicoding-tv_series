@@ -67,7 +67,7 @@ void main() {
     },
   );
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<NowPlayingMoviesBloc>(
@@ -142,7 +142,8 @@ void main() {
           when(() => mockTopRatedTvBloc.state).thenReturn(TvEmpty());
           when(() => mockTvWatchlistBloc.state).thenReturn(TvEmpty());
 
-          await widgetTester.pumpWidget(_makeTestableWidget(HomeMoviePage()));
+          await widgetTester
+              .pumpWidget(makeTestableWidget(const HomeMoviePage()));
 
           final ScaffoldState movieScaffoldState =
               widgetTester.firstState(find.byType(Scaffold));
@@ -208,7 +209,8 @@ void main() {
           when(() => mockSearchMoviesBloc.state)
               .thenReturn(SearchMoviesEmpty());
 
-          await widgetTester.pumpWidget(_makeTestableWidget(HomeMoviePage()));
+          await widgetTester
+              .pumpWidget(makeTestableWidget(const HomeMoviePage()));
 
           final searchIconFinder = find.byIcon(Icons.search);
           final backIconFinder = find.byIcon(Icons.arrow_back);
@@ -236,13 +238,15 @@ void main() {
           when(() => mockPopularMoviesBloc.state).thenReturn(MovieEmpty());
           when(() => mockTopRatedMoviesBloc.state).thenReturn(MovieEmpty());
 
-          await widgetTester.pumpWidget(_makeTestableWidget(HomeMoviePage()));
+          await widgetTester
+              .pumpWidget(makeTestableWidget(const HomeMoviePage()));
 
           final nowPlayingMoviesPageKey =
-              find.byKey(ValueKey('now_playing_movies'));
-          final popularMoviesPageKey = find.byKey(ValueKey('popular_movies'));
+              find.byKey(const ValueKey('now_playing_movies'));
+          final popularMoviesPageKey =
+              find.byKey(const ValueKey('popular_movies'));
           final topRatedMoviesPageKey =
-              find.byKey(ValueKey('top_rated_movies'));
+              find.byKey(const ValueKey('top_rated_movies'));
           final backIconFinder = find.byIcon(Icons.arrow_back);
 
           expect(nowPlayingMoviesPageKey, findsOneWidget);
@@ -289,14 +293,14 @@ void main() {
           'Recommendations should be scrollable until a recommended movie item is found and navigate to another movie detail page',
           (WidgetTester tester) async {
         when(() => mockMovieDetailBloc.state)
-            .thenReturn(MovieDetailHasData(testMovieDetail));
+            .thenReturn(const MovieDetailHasData(testMovieDetail));
         when(() => mockMovieRecommendationsBloc.state)
             .thenReturn(MovieListHasData(testMovieList));
         when(() => mockMovieWatchlistBloc.state)
-            .thenReturn(MovieWatchlistStatus(false));
+            .thenReturn(const MovieWatchlistStatus(false));
 
         await tester.pumpWidget(
-            _makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
+            makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
 
         int index = 0;
         final scrollableFinder = find.byType(Scrollable).first;
@@ -339,7 +343,7 @@ void main() {
           when(() => mockTopRatedMoviesBloc.state).thenReturn(MovieEmpty());
           when(() => mockMovieWatchlistBloc.state).thenReturn(MovieEmpty());
 
-          await widgetTester.pumpWidget(_makeTestableWidget(HomeTvPage()));
+          await widgetTester.pumpWidget(makeTestableWidget(const HomeTvPage()));
 
           final ScaffoldState tvScaffoldState =
               widgetTester.firstState(find.byType(Scaffold));
@@ -404,7 +408,7 @@ void main() {
           when(() => mockTopRatedTvBloc.state).thenReturn(TvEmpty());
           when(() => mockSearchTvBloc.state).thenReturn(SearchTvEmpty());
 
-          await widgetTester.pumpWidget(_makeTestableWidget(HomeTvPage()));
+          await widgetTester.pumpWidget(makeTestableWidget(const HomeTvPage()));
 
           final searchIconFinder = find.byIcon(Icons.search);
           final backIconFinder = find.byIcon(Icons.arrow_back);
@@ -432,11 +436,12 @@ void main() {
           when(() => mockPopularTvBloc.state).thenReturn(TvEmpty());
           when(() => mockTopRatedTvBloc.state).thenReturn(TvEmpty());
 
-          await widgetTester.pumpWidget(_makeTestableWidget(HomeTvPage()));
+          await widgetTester.pumpWidget(makeTestableWidget(const HomeTvPage()));
 
-          final nowPlayingTvPageKey = find.byKey(ValueKey('now_playing_tv'));
-          final popularTvPageKey = find.byKey(ValueKey('popular_tv'));
-          final topRatedTvPageKey = find.byKey(ValueKey('top_rated_tv'));
+          final nowPlayingTvPageKey =
+              find.byKey(const ValueKey('now_playing_tv'));
+          final popularTvPageKey = find.byKey(const ValueKey('popular_tv'));
+          final topRatedTvPageKey = find.byKey(const ValueKey('top_rated_tv'));
           final backIconFinder = find.byIcon(Icons.arrow_back);
 
           expect(nowPlayingTvPageKey, findsOneWidget);
@@ -482,15 +487,15 @@ void main() {
         'Season list should be scrollable and can be able to navigate to tv season detail page',
         (WidgetTester tester) async {
           when(() => mockTvDetailBloc.state)
-              .thenReturn(TvDetailHasData(testTvDetail));
+              .thenReturn(const TvDetailHasData(testTvDetail));
           when(() => mockTvRecommendationsBloc.state)
               .thenReturn(TvListHasData(testTvList));
           when(() => mockTvWatchlistBloc.state)
-              .thenReturn(TvWatchlistStatus(false));
+              .thenReturn(const TvWatchlistStatus(false));
           when(() => mockTvSeasonDetailBloc.state).thenReturn(TvEmpty());
 
           await tester.pumpWidget(
-              _makeTestableWidget(TvDetailPage(id: testTvDetail.id)));
+              makeTestableWidget(TvDetailPage(id: testTvDetail.id)));
 
           int index = 0;
           final scrollableFinder = find.byType(Scrollable);
@@ -520,14 +525,14 @@ void main() {
           'Recommendations should be scrollable until a recommended tv item is found',
           (WidgetTester tester) async {
         when(() => mockTvDetailBloc.state)
-            .thenReturn(TvDetailHasData(testTvDetail));
+            .thenReturn(const TvDetailHasData(testTvDetail));
         when(() => mockTvRecommendationsBloc.state)
             .thenReturn(TvListHasData(testTvList));
         when(() => mockTvWatchlistBloc.state)
-            .thenReturn(TvWatchlistStatus(false));
+            .thenReturn(const TvWatchlistStatus(false));
 
         await tester
-            .pumpWidget(_makeTestableWidget(TvDetailPage(id: testTvDetail.id)));
+            .pumpWidget(makeTestableWidget(TvDetailPage(id: testTvDetail.id)));
 
         int index = 0;
         final scrollableFinder = find.byType(Scrollable).first;
@@ -559,7 +564,7 @@ void main() {
               .thenReturn(TvSeasonDetailHasData(testTvSeasonDetail));
           when(() => mockTvEpisodeDetailBloc.state).thenReturn(TvEmpty());
 
-          await widgetTester.pumpWidget(_makeTestableWidget(TvSeasonDetailPage(
+          await widgetTester.pumpWidget(makeTestableWidget(TvSeasonDetailPage(
               id: testTvDetail.id,
               seasonNumber: testTvSeasonDetail.seasonNumber)));
 
