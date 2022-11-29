@@ -1,7 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:tv_series/domain/usecases/get_tv_episode_detail.dart';
-import 'package:tv_series/domain/usecases/get_tv_season_detail.dart';
 import 'package:tv_series/tv_series.dart';
 
 part 'tv_event.dart';

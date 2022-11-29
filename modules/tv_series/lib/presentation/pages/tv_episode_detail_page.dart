@@ -66,14 +66,14 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                 children: [
                   CachedNetworkImage(
                     imageUrl: '$BASE_IMAGE_URL${tvEpisode.stillPath}',
-                    placeholder: (context, url) => Center(
+                    placeholder: (context, url) => const Center(
                       child: CircularProgressIndicator(),
                     ),
                     errorWidget: (context, url, error) => Container(
                       height: 150,
                       width: screenWidth,
                       color: kDavysGrey,
-                      child: Icon(
+                      child: const Icon(
                         Icons.image_not_supported,
                         size: 100,
                       ),
@@ -88,11 +88,11 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                           tvEpisode.name,
                           style: kHeading5,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         Text('Air Date : ${tvEpisode.airDate}'),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         Row(
@@ -109,7 +109,7 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                             Text('${tvEpisode.voteAverage}'),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         Text(
@@ -119,7 +119,7 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                         Text(
                           tvEpisode.overview,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         ExpansionPanelList(
@@ -129,7 +129,7 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                             });
                           },
                           dividerColor: kMikadoYellow,
-                          animationDuration: Duration(milliseconds: 500),
+                          animationDuration: const Duration(milliseconds: 500),
                           children: [
                             ExpansionPanel(
                               headerBuilder: (context, isExpanded) {
@@ -144,9 +144,9 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                               canTapOnHeader: true,
                               body: MasonryGridView.builder(
                                 shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
+                                physics: const NeverScrollableScrollPhysics(),
                                 gridDelegate:
-                                    SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                    const SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2),
                                 itemCount: tvEpisode.guestStars.length,
                                 itemBuilder: (context, index) {
@@ -167,7 +167,7 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                                               imageUrl:
                                                   '$BASE_IMAGE_URL${guestStar.profilePath}',
                                               placeholder: (context, url) =>
-                                                  Center(
+                                                  const Center(
                                                 child:
                                                     CircularProgressIndicator(),
                                               ),
@@ -177,7 +177,7 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                                                 height: 150,
                                                 width: screenWidth,
                                                 color: kDavysGrey,
-                                                child: Icon(
+                                                child: const Icon(
                                                   Icons.image_not_supported,
                                                   size: 100,
                                                 ),
@@ -231,10 +231,10 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                               isExpanded: boolExpand[1],
                               canTapOnHeader: true,
                               body: MasonryGridView.builder(
-                                physics: NeverScrollableScrollPhysics(),
+                                physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
                                 gridDelegate:
-                                    SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                    const SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2),
                                 itemCount: tvEpisode.crew.length,
                                 itemBuilder: (context, index) {
@@ -255,7 +255,7 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                                               imageUrl:
                                                   '$BASE_IMAGE_URL${crew.profilePath}',
                                               placeholder: (context, url) =>
-                                                  Center(
+                                                  const Center(
                                                 child:
                                                     CircularProgressIndicator(),
                                               ),
@@ -265,7 +265,7 @@ class _TvEpisodeDetailPageState extends State<TvEpisodeDetailPage> {
                                                 height: 150,
                                                 width: screenWidth,
                                                 color: kDavysGrey,
-                                                child: Icon(
+                                                child: const Icon(
                                                   Icons.image_not_supported,
                                                   size: 100,
                                                 ),

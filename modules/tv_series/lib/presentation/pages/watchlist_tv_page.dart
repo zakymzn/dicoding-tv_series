@@ -2,9 +2,10 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv_series/tv_series.dart';
 import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
 
 class WatchlistTvPage extends StatefulWidget {
+  const WatchlistTvPage({Key? key}) : super(key: key);
+
   @override
   State<WatchlistTvPage> createState() => _WatchlistTvPageState();
 }
@@ -36,7 +37,7 @@ class _WatchlistTvPageState extends State<WatchlistTvPage> with RouteAware {
         child: BlocBuilder<TvWatchlistBloc, TvState>(
           builder: (context, state) {
             if (state is TvLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is TvListHasData) {
@@ -48,7 +49,7 @@ class _WatchlistTvPageState extends State<WatchlistTvPage> with RouteAware {
                 itemCount: state.result.length,
               );
             } else {
-              return Center(
+              return const Center(
                 key: Key('error_message'),
                 child: Text('Failed'),
               );

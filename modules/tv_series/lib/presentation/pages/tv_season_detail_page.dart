@@ -3,7 +3,6 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv_series/tv_series.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class TvSeasonDetailPage extends StatefulWidget {
   final int id;
@@ -39,7 +38,7 @@ class _TvSeasonDetailPageState extends State<TvSeasonDetailPage> {
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Season Detail'),
+        title: const Text('Season Detail'),
       ),
       body: BlocBuilder<TvSeasonDetailBloc, TvState>(
         builder: (context, state) {
@@ -55,27 +54,27 @@ class _TvSeasonDetailPageState extends State<TvSeasonDetailPage> {
                 CachedNetworkImage(
                   imageUrl: '$BASE_IMAGE_URL${tvSeason.posterPath}',
                   width: screenWidth,
-                  placeholder: (context, url) => Center(
+                  placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(),
                   ),
                   errorWidget: (context, url, error) => Container(
                     width: screenWidth,
                     height: screenHeight,
                     color: kDavysGrey,
-                    child: Icon(Icons.image_not_supported, size: 100),
+                    child: const Icon(Icons.image_not_supported, size: 100),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 56),
+                  margin: const EdgeInsets.only(top: 56),
                   child: DraggableScrollableSheet(
                     builder: (context, scrollController) {
                       return Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: kRichBlack,
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(16)),
                         ),
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                           left: 16,
                           top: 16,
                           right: 16,
@@ -99,7 +98,7 @@ class _TvSeasonDetailPageState extends State<TvSeasonDetailPage> {
                                   style: kHeading5,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 16,
                               ),
                               Text(
@@ -107,7 +106,7 @@ class _TvSeasonDetailPageState extends State<TvSeasonDetailPage> {
                                 style: kHeading6,
                               ),
                               Text(tvSeason.overview),
-                              SizedBox(
+                              const SizedBox(
                                 height: 16,
                               ),
                               Text(
@@ -150,7 +149,7 @@ class _TvSeasonDetailPageState extends State<TvSeasonDetailPage> {
                                                         '$BASE_IMAGE_URL${tvEpisode.stillPath}',
                                                     placeholder:
                                                         (context, url) =>
-                                                            Center(
+                                                            const Center(
                                                       child:
                                                           CircularProgressIndicator(),
                                                     ),
@@ -160,21 +159,22 @@ class _TvSeasonDetailPageState extends State<TvSeasonDetailPage> {
                                                       height: 150,
                                                       width: 250,
                                                       color: kDavysGrey,
-                                                      child: Icon(Icons
+                                                      child: const Icon(Icons
                                                           .image_not_supported),
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                               Container(
-                                                padding: EdgeInsets.all(8),
-                                                decoration:
-                                                    BoxDecoration(boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.black38,
-                                                    blurRadius: 15,
-                                                  )
-                                                ]),
+                                                padding:
+                                                    const EdgeInsets.all(8),
+                                                decoration: const BoxDecoration(
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.black38,
+                                                        blurRadius: 15,
+                                                      )
+                                                    ]),
                                                 child: Text(
                                                   'Episode ${tvEpisode.episodeNumber}',
                                                   style: kHeading6,

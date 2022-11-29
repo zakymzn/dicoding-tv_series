@@ -7,7 +7,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class TvDetailPage extends StatefulWidget {
   final int id;
-  TvDetailPage({required this.id});
+  const TvDetailPage({Key? key, required this.id}) : super(key: key);
 
   @override
   State<TvDetailPage> createState() => _TvDetailPageState();
@@ -67,7 +67,9 @@ class TvDetailContent extends StatelessWidget {
   final List<Tv> recommendations;
   final bool isAddedWatchlist;
 
-  TvDetailContent(this.tv, this.recommendations, this.isAddedWatchlist);
+  const TvDetailContent(this.tv, this.recommendations, this.isAddedWatchlist,
+      {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +110,7 @@ class TvDetailContent extends StatelessWidget {
                             style: kHeading5,
                           ),
                           ElevatedButton(
-                            key: Key('tv_watchlist_button'),
+                            key: const Key('tv_watchlist_button'),
                             onPressed: () async {
                               if (!isAddedWatchlist) {
                                 context
@@ -235,7 +237,7 @@ class TvDetailContent extends StatelessWidget {
                               },
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 16,
                           ),
                           Text(
@@ -261,7 +263,7 @@ class TvDetailContent extends StatelessWidget {
                               } else if (state is TvError) {
                                 return Text(state.message);
                               } else if (state is TvListHasData) {
-                                return Container(
+                                return SizedBox(
                                   height: 150,
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
@@ -342,7 +344,7 @@ class TvDetailContent extends StatelessWidget {
   String _showGenres(List<Genre> genres) {
     String result = '';
     for (var genre in genres) {
-      result += genre.name + ', ';
+      result += '${genre.name}, ';
     }
 
     if (result.isEmpty) {

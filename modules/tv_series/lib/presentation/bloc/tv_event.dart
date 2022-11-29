@@ -15,7 +15,7 @@ class OnTopRatedTv extends TvEvent {}
 
 class OnTvRecommendations extends TvEvent {
   final int id;
-  OnTvRecommendations(this.id);
+  const OnTvRecommendations(this.id);
 
   @override
   List<Object> get props => [id];
@@ -23,7 +23,7 @@ class OnTvRecommendations extends TvEvent {
 
 class OnTvDetail extends TvEvent {
   final int id;
-  OnTvDetail(this.id);
+  const OnTvDetail(this.id);
 
   @override
   List<Object> get props => [id];
@@ -33,7 +33,7 @@ class OnTvSeasonDetail extends TvEvent {
   final int id;
   final int seasonNumber;
 
-  OnTvSeasonDetail(this.id, this.seasonNumber);
+  const OnTvSeasonDetail(this.id, this.seasonNumber);
 
   @override
   List<Object> get props => [id, seasonNumber];
@@ -44,7 +44,7 @@ class OnTvEpisodeDetail extends TvEvent {
   final int seasonNumber;
   final int episodeNumber;
 
-  OnTvEpisodeDetail(
+  const OnTvEpisodeDetail(
     this.id,
     this.seasonNumber,
     this.episodeNumber,
@@ -58,7 +58,7 @@ class OnTvWatchlist extends TvEvent {}
 
 class OnTvWatchlistStatus extends TvEvent {
   final int id;
-  OnTvWatchlistStatus(this.id);
+  const OnTvWatchlistStatus(this.id);
 
   @override
   List<Object> get props => [id];
@@ -66,7 +66,7 @@ class OnTvWatchlistStatus extends TvEvent {
 
 class OnAddTvWatchlist extends TvEvent {
   final TvDetail tvDetail;
-  OnAddTvWatchlist(this.tvDetail);
+  const OnAddTvWatchlist(this.tvDetail);
 
   @override
   List<Object> get props => [tvDetail];
@@ -74,7 +74,7 @@ class OnAddTvWatchlist extends TvEvent {
 
 class OnRemoveTvWatchlist extends TvEvent {
   final TvDetail tvDetail;
-  OnRemoveTvWatchlist(this.tvDetail);
+  const OnRemoveTvWatchlist(this.tvDetail);
 
   @override
   List<Object> get props => [tvDetail];

@@ -7,7 +7,7 @@ class TvCard extends StatelessWidget {
   final Tv tv;
   final int index;
 
-  TvCard(this.tv, this.index);
+  const TvCard(this.tv, this.index, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class TvCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     Text(
@@ -59,14 +59,14 @@ class TvCard extends StatelessWidget {
                 bottom: 16,
               ),
               child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
                 child: CachedNetworkImage(
                   imageUrl: '$BASE_IMAGE_URL${tv.posterPath}',
                   width: 80,
-                  placeholder: (context, url) => Center(
+                  placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(),
                   ),
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(8)),
               ),
             )
           ],
