@@ -23,7 +23,7 @@ void main() {
 
   group('get Now Playing Movies', () {
     final tMovieList = MovieResponse.fromJson(
-            json.decode(readJson('/dummy_data/now_playing_movie.json')))
+            json.decode(readJson('dummy_data/now_playing_movie.json')))
         .movieList;
 
     test('should return list of Movie Model when the response code is 200',
