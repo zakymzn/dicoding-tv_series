@@ -5,11 +5,13 @@ import 'package:movies/movies.dart';
 import 'package:flutter/material.dart';
 
 class MovieSearchPage extends StatelessWidget {
+  const MovieSearchPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search'),
+        title: const Text('Search'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -22,14 +24,14 @@ class MovieSearchPage extends StatelessWidget {
                     .read<SearchMoviesBloc>()
                     .add(OnMoviesQueryChanged(query));
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Search title',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
               textInputAction: TextInputAction.search,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'Search Result',
               style: kHeading6,
@@ -37,7 +39,7 @@ class MovieSearchPage extends StatelessWidget {
             BlocBuilder<SearchMoviesBloc, SearchMoviesState>(
               builder: (context, state) {
                 if (state is SearchMoviesLoading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is SearchMoviesHasData) {

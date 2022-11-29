@@ -6,11 +6,13 @@ import 'package:tv_series/tv_series.dart';
 import 'package:flutter/material.dart';
 
 class TvSearchPage extends StatelessWidget {
+  const TvSearchPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search'),
+        title: const Text('Search'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -21,14 +23,14 @@ class TvSearchPage extends StatelessWidget {
               onChanged: (query) {
                 context.read<SearchTvBloc>().add(OnTvQueryChanged(query));
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Search name',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
               textInputAction: TextInputAction.search,
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Text(
@@ -38,7 +40,7 @@ class TvSearchPage extends StatelessWidget {
             BlocBuilder<SearchTvBloc, SearchTvState>(
               builder: (context, state) {
                 if (state is SearchTvLoading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is SearchTvHasData) {

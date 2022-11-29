@@ -14,7 +14,7 @@ class SearchTvLoading extends SearchTvState {}
 class SearchTvError extends SearchTvState {
   final String message;
 
-  SearchTvError(this.message);
+  const SearchTvError(this.message);
 
   @override
   List<Object> get props => [message];
@@ -23,7 +23,7 @@ class SearchTvError extends SearchTvState {
 class SearchTvHasData extends SearchTvState {
   final List<Tv> result;
 
-  SearchTvHasData(this.result);
+  const SearchTvHasData(this.result);
 
   @override
   List<Object> get props => [result];
