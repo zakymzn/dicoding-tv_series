@@ -4,13 +4,15 @@ import 'package:movies/movies.dart';
 import 'package:tv_series/presentation/pages/watchlist_tv_page.dart';
 
 class WatchListPage extends StatelessWidget {
+  const WatchListPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          bottom: TabBar(
+          bottom: const TabBar(
             labelColor: kMikadoYellow,
             unselectedLabelColor: Colors.white,
             indicatorColor: kMikadoYellow,
@@ -25,9 +27,9 @@ class WatchListPage extends StatelessWidget {
               ),
             ],
           ),
-          title: Text('Watchlist'),
+          title: const Text('Watchlist'),
         ),
-        body: TabBarView(children: [
+        body: const TabBarView(children: [
           WatchlistMoviesPage(),
           WatchlistTvPage(),
         ]),
