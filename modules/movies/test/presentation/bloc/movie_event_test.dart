@@ -16,9 +16,9 @@ void main() {
       expect(OnMovieWatchlist(), OnMovieWatchlist());
       expect(const OnMovieWatchlistStatus(1),
           OnMovieWatchlistStatus(testMovieDetail.id));
-      expect(const OnAddMovieWatchlist(testMovieDetail),
+      expect(OnAddMovieWatchlist(testMovieDetail),
           const OnAddMovieWatchlist(testMovieDetail));
-      expect(const OnRemoveMovieWatchlist(testMovieDetail),
+      expect(OnRemoveMovieWatchlist(testMovieDetail),
           const OnRemoveMovieWatchlist(testMovieDetail));
     },
   );

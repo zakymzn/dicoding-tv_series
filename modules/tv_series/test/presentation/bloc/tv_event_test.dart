@@ -22,10 +22,9 @@ void main() {
       expect(OnTvWatchlist(), OnTvWatchlist());
       expect(
           const OnTvWatchlistStatus(1), OnTvWatchlistStatus(testTvDetail.id));
-      expect(const OnAddTvWatchlist(testTvDetail),
-          const OnAddTvWatchlist(testTvDetail));
-      expect(const OnRemoveTvWatchlist(testTvDetail),
-          const OnRemoveTvWatchlist(testTvDetail));
+      expect(OnAddTvWatchlist(testTvDetail), OnAddTvWatchlist(testTvDetail));
+      expect(
+          OnRemoveTvWatchlist(testTvDetail), OnRemoveTvWatchlist(testTvDetail));
     },
   );
 }

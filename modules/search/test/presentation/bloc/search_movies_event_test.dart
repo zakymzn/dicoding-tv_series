@@ -5,8 +5,7 @@ void main() {
   test(
     'test search movies event',
     () async {
-      expect(const OnMoviesQueryChanged('query'),
-          const OnMoviesQueryChanged('query'));
+      expect(OnMoviesQueryChanged('query'), OnMoviesQueryChanged('query'));
     },
   );
 }

@@ -5,7 +5,7 @@ void main() {
   test(
     'test search tv event',
     () async {
-      expect(const OnTvQueryChanged('query'), const OnTvQueryChanged('query'));
+      expect(OnTvQueryChanged('query'), OnTvQueryChanged('query'));
     },
   );
 }
