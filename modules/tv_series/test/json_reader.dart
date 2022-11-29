@@ -8,5 +8,8 @@ String readJson(String name) {
   if (dir.endsWith('tv_series')) {
     return File('$dir/test/$name').readAsStringSync();
   }
-  return File('$dir/tv_series/test/$name').readAsStringSync();
+  if (dir.endsWith('modules')) {
+    return File('$dir/tv_series/test/$name').readAsStringSync();
+  }
+  return File('$dir/modules/tv_series/test/$name').readAsStringSync();
 }
