@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:tv_series/tv_series.dart';
 
 class TvSeasonDetailResponse extends Equatable {
-  TvSeasonDetailResponse({
+  const TvSeasonDetailResponse({
     required this.id,
     required this.airDate,
     required this.episodes,
@@ -13,14 +13,14 @@ class TvSeasonDetailResponse extends Equatable {
     required this.seasonNumber,
   });
 
-  String id;
-  String? airDate;
-  List<EpisodeModel> episodes;
-  String name;
-  String overview;
-  int seasonDetailId;
-  String? posterPath;
-  int seasonNumber;
+  final String id;
+  final String? airDate;
+  final List<EpisodeModel> episodes;
+  final String name;
+  final String overview;
+  final int seasonDetailId;
+  final String? posterPath;
+  final int seasonNumber;
 
   factory TvSeasonDetailResponse.fromJson(Map<String, dynamic> json) =>
       TvSeasonDetailResponse(

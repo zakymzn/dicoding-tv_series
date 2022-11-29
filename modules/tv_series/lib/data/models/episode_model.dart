@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'crew_in_season_detail_model.dart';
 
 class EpisodeModel extends Equatable {
-  EpisodeModel({
+  const EpisodeModel({
     required this.airDate,
     required this.episodeNumber,
     required this.crew,
@@ -18,18 +18,18 @@ class EpisodeModel extends Equatable {
     required this.voteCount,
   });
 
-  String airDate;
-  int episodeNumber;
-  List<CrewInSeasonDetailModel> crew;
-  List<CrewInSeasonDetailModel> guestStars;
-  int id;
-  String name;
-  String overview;
-  String productionCode;
-  int seasonNumber;
-  String? stillPath;
-  double voteAverage;
-  int voteCount;
+  final String airDate;
+  final int episodeNumber;
+  final List<CrewInSeasonDetailModel> crew;
+  final List<CrewInSeasonDetailModel> guestStars;
+  final int id;
+  final String name;
+  final String overview;
+  final String productionCode;
+  final int seasonNumber;
+  final String? stillPath;
+  final double voteAverage;
+  final int voteCount;
 
   factory EpisodeModel.fromJson(Map<String, dynamic> json) => EpisodeModel(
         airDate: json["air_date"],

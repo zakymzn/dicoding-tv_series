@@ -5,7 +5,7 @@ import 'crew_in_episode_detail_model.dart';
 import 'guest_star_model.dart';
 
 class TvEpisodeDetailResponse extends Equatable {
-  TvEpisodeDetailResponse({
+  const TvEpisodeDetailResponse({
     required this.airDate,
     required this.crew,
     required this.episodeNumber,
@@ -20,18 +20,18 @@ class TvEpisodeDetailResponse extends Equatable {
     required this.voteCount,
   });
 
-  String airDate;
-  List<CrewInEpisodeDetailModel> crew;
-  int episodeNumber;
-  List<GuestStarModel> guestStars;
-  String name;
-  String overview;
-  int id;
-  String? productionCode;
-  int seasonNumber;
-  String? stillPath;
-  double voteAverage;
-  int voteCount;
+  final String airDate;
+  final List<CrewInEpisodeDetailModel> crew;
+  final int episodeNumber;
+  final List<GuestStarModel> guestStars;
+  final String name;
+  final String overview;
+  final int id;
+  final String? productionCode;
+  final int seasonNumber;
+  final String? stillPath;
+  final double voteAverage;
+  final int voteCount;
 
   factory TvEpisodeDetailResponse.fromJson(Map<String, dynamic> json) =>
       TvEpisodeDetailResponse(

@@ -5,7 +5,7 @@ void main() {
   final tTvSeasonDetailModel = TvSeasonDetailResponse(
     id: 'id',
     airDate: 'airDate',
-    episodes: [
+    episodes: const [
       EpisodeModel(
         airDate: 'airDate',
         episodeNumber: 1,
@@ -63,7 +63,7 @@ void main() {
   final tTvSeasonDetail = TvSeasonDetail(
     id: 'id',
     airDate: 'airDate',
-    episodes: [
+    episodes: const [
       EpisodeModel(
         airDate: 'airDate',
         episodeNumber: 1,

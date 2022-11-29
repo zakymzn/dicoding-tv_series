@@ -66,7 +66,7 @@ const testTvDetail = TvDetail(
 final testTvSeasonDetail = TvSeasonDetail(
   id: 'id',
   airDate: 'airDate',
-  episodes: [
+  episodes: const [
     EpisodeModel(
         airDate: 'airDate',
         episodeNumber: 1,
@@ -122,7 +122,7 @@ final testTvSeasonDetail = TvSeasonDetail(
 
 final testTvEpisodeDetail = TvEpisodeDetail(
   airDate: 'airDate',
-  crew: [
+  crew: const [
     CrewInEpisodeDetailModel(
       id: 1,
       creditId: 'creditId',
@@ -133,7 +133,7 @@ final testTvEpisodeDetail = TvEpisodeDetail(
     ),
   ],
   episodeNumber: 1,
-  guestStars: [
+  guestStars: const [
     GuestStarModel(
       id: 1,
       name: 'name',

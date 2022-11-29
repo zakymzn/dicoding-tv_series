@@ -7,7 +7,7 @@ import 'package:tv_series/domain/entities/tv_episode_detail.dart';
 void main() {
   final tTvEpisodeDetailModel = TvEpisodeDetailResponse(
     airDate: 'airDate',
-    crew: [
+    crew: const [
       CrewInEpisodeDetailModel(
         id: 1,
         creditId: 'creditId',
@@ -18,7 +18,7 @@ void main() {
       ),
     ],
     episodeNumber: 1,
-    guestStars: [
+    guestStars: const [
       GuestStarModel(
         id: 1,
         name: 'name',
@@ -40,7 +40,7 @@ void main() {
 
   final tTvEpisodeDetail = TvEpisodeDetail(
     airDate: 'airDate',
-    crew: [
+    crew: const [
       CrewInEpisodeDetailModel(
         id: 1,
         creditId: 'creditId',
@@ -51,7 +51,7 @@ void main() {
       ),
     ],
     episodeNumber: 1,
-    guestStars: [
+    guestStars: const [
       GuestStarModel(
         id: 1,
         name: 'name',

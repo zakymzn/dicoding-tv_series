@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class GuestStarModel extends Equatable {
-  GuestStarModel({
+  const GuestStarModel({
     required this.id,
     required this.name,
     required this.creditId,
@@ -10,12 +10,12 @@ class GuestStarModel extends Equatable {
     required this.profilePath,
   });
 
-  int id;
-  String name;
-  String creditId;
-  String character;
-  int order;
-  String? profilePath;
+  final int id;
+  final String name;
+  final String creditId;
+  final String character;
+  final int order;
+  final String? profilePath;
 
   factory GuestStarModel.fromJson(Map<String, dynamic> json) => GuestStarModel(
         id: json["id"],

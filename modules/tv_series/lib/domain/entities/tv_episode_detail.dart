@@ -3,7 +3,7 @@ import 'package:tv_series/data/models/crew_in_episode_detail_model.dart';
 import 'package:tv_series/data/models/guest_star_model.dart';
 
 class TvEpisodeDetail extends Equatable {
-  TvEpisodeDetail({
+  const TvEpisodeDetail({
     required this.airDate,
     required this.crew,
     required this.episodeNumber,
@@ -17,17 +17,17 @@ class TvEpisodeDetail extends Equatable {
     required this.voteCount,
   });
 
-  String airDate;
-  List<CrewInEpisodeDetailModel> crew;
-  int episodeNumber;
-  List<GuestStarModel> guestStars;
-  String name;
-  String overview;
-  int id;
-  int seasonNumber;
-  String? stillPath;
-  double voteAverage;
-  int voteCount;
+  final String airDate;
+  final List<CrewInEpisodeDetailModel> crew;
+  final int episodeNumber;
+  final List<GuestStarModel> guestStars;
+  final String name;
+  final String overview;
+  final int id;
+  final int seasonNumber;
+  final String? stillPath;
+  final double voteAverage;
+  final int voteCount;
 
   @override
   List<Object?> get props => [

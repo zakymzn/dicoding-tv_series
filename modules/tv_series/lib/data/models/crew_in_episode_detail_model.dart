@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class CrewInEpisodeDetailModel extends Equatable {
-  CrewInEpisodeDetailModel({
+  const CrewInEpisodeDetailModel({
     required this.id,
     required this.creditId,
     required this.name,
@@ -10,12 +10,12 @@ class CrewInEpisodeDetailModel extends Equatable {
     required this.profilePath,
   });
 
-  int id;
-  String creditId;
-  String name;
-  String department;
-  String job;
-  String? profilePath;
+  final int id;
+  final String creditId;
+  final String name;
+  final String department;
+  final String job;
+  final String? profilePath;
 
   factory CrewInEpisodeDetailModel.fromJson(Map<String, dynamic> json) =>
       CrewInEpisodeDetailModel(

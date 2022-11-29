@@ -288,7 +288,7 @@ void main() {
       final tTvSeasonDetailResponse = TvSeasonDetailResponse(
         id: 'id',
         airDate: 'airDate',
-        episodes: [
+        episodes: const [
           EpisodeModel(
             airDate: 'airDate',
             episodeNumber: 1,
@@ -396,7 +396,7 @@ void main() {
       const tEpisodeNumber = 1;
       final tTvEpisodeDetailResponse = TvEpisodeDetailResponse(
         airDate: 'airDate',
-        crew: [
+        crew: const [
           CrewInEpisodeDetailModel(
             id: 1,
             creditId: 'creditId',
@@ -407,7 +407,7 @@ void main() {
           ),
         ],
         episodeNumber: 1,
-        guestStars: [
+        guestStars: const [
           GuestStarModel(
             id: 1,
             name: 'name',

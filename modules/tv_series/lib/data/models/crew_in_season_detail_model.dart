@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class CrewInSeasonDetailModel extends Equatable {
-  CrewInSeasonDetailModel({
+  const CrewInSeasonDetailModel({
     required this.department,
     required this.job,
     required this.creditId,
@@ -17,19 +17,19 @@ class CrewInSeasonDetailModel extends Equatable {
     required this.character,
   });
 
-  String? department;
-  String? job;
-  String creditId;
-  bool? adult;
-  int? gender;
-  int? id;
-  String? knownForDepartment;
-  String? name;
-  String? originalName;
-  double? popularity;
-  String? profilePath;
-  int? order;
-  String? character;
+  final String? department;
+  final String? job;
+  final String creditId;
+  final bool? adult;
+  final int? gender;
+  final int? id;
+  final String? knownForDepartment;
+  final String? name;
+  final String? originalName;
+  final double? popularity;
+  final String? profilePath;
+  final int? order;
+  final String? character;
 
   factory CrewInSeasonDetailModel.fromJson(Map<String, dynamic> json) =>
       CrewInSeasonDetailModel(
