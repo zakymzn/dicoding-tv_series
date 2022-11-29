@@ -4,8 +4,10 @@ import 'package:movies/movies.dart';
 import 'package:flutter/material.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
+  const WatchlistMoviesPage({Key? key}) : super(key: key);
+
   @override
-  _WatchlistMoviesPageState createState() => _WatchlistMoviesPageState();
+  State<WatchlistMoviesPage> createState() => _WatchlistMoviesPageState();
 }
 
 class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
@@ -36,7 +38,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
         child: BlocBuilder<MovieWatchlistBloc, MovieState>(
           builder: (context, state) {
             if (state is MovieLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is MovieListHasData) {
@@ -48,7 +50,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
                 itemCount: state.result.length,
               );
             } else {
-              return Center(
+              return const Center(
                 key: Key('error_message'),
                 child: Text('Failed'),
               );

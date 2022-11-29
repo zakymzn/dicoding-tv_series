@@ -7,10 +7,10 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class MovieDetailPage extends StatefulWidget {
   final int id;
-  MovieDetailPage({required this.id});
+  const MovieDetailPage({Key? key, required this.id}) : super(key: key);
 
   @override
-  _MovieDetailPageState createState() => _MovieDetailPageState();
+  State<MovieDetailPage> createState() => _MovieDetailPageState();
 }
 
 class _MovieDetailPageState extends State<MovieDetailPage> {
@@ -69,7 +69,10 @@ class MovieDetailContent extends StatelessWidget {
   final List<Movie> recommendations;
   final bool isAddedWatchlist;
 
-  MovieDetailContent(this.movie, this.recommendations, this.isAddedWatchlist);
+  const MovieDetailContent(
+      this.movie, this.recommendations, this.isAddedWatchlist,
+      {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +114,7 @@ class MovieDetailContent extends StatelessWidget {
                               style: kHeading5,
                             ),
                             ElevatedButton(
-                              key: Key('movie_watchlist_button'),
+                              key: const Key('movie_watchlist_button'),
                               onPressed: () async {
                                 if (!isAddedWatchlist) {
                                   context
@@ -204,7 +207,7 @@ class MovieDetailContent extends StatelessWidget {
                                 } else if (state is MovieError) {
                                   return Text(state.message);
                                 } else if (state is MovieListHasData) {
-                                  return Container(
+                                  return SizedBox(
                                     height: 150,
                                     child: ListView.builder(
                                       scrollDirection: Axis.horizontal,
@@ -286,7 +289,7 @@ class MovieDetailContent extends StatelessWidget {
   String _showGenres(List<Genre> genres) {
     String result = '';
     for (var genre in genres) {
-      result += genre.name + ', ';
+      result += '${genre.name}, ';
     }
 
     if (result.isEmpty) {

@@ -1,12 +1,12 @@
-import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/movies.dart';
 import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
 
 class PopularMoviesPage extends StatefulWidget {
+  const PopularMoviesPage({Key? key}) : super(key: key);
+
   @override
-  _PopularMoviesPageState createState() => _PopularMoviesPageState();
+  State<PopularMoviesPage> createState() => _PopularMoviesPageState();
 }
 
 class _PopularMoviesPageState extends State<PopularMoviesPage> {
@@ -21,14 +21,14 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Popular Movies'),
+        title: const Text('Popular Movies'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<PopularMoviesBloc, MovieState>(
           builder: (context, state) {
             if (state is MovieLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is MovieListHasData) {
@@ -40,7 +40,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
                 itemCount: state.result.length,
               );
             } else {
-              return Center(
+              return const Center(
                 key: Key('error_message'),
                 child: Text('Failed'),
               );

@@ -15,7 +15,7 @@ class OnTopRatedMovies extends MovieEvent {}
 
 class OnMovieRecommendations extends MovieEvent {
   final int id;
-  OnMovieRecommendations(this.id);
+  const OnMovieRecommendations(this.id);
 
   @override
   List<Object> get props => [id];
@@ -23,7 +23,7 @@ class OnMovieRecommendations extends MovieEvent {
 
 class OnMovieDetail extends MovieEvent {
   final int id;
-  OnMovieDetail(this.id);
+  const OnMovieDetail(this.id);
 
   @override
   List<Object> get props => [id];
@@ -33,7 +33,7 @@ class OnMovieWatchlist extends MovieEvent {}
 
 class OnMovieWatchlistStatus extends MovieEvent {
   final int id;
-  OnMovieWatchlistStatus(this.id);
+  const OnMovieWatchlistStatus(this.id);
 
   @override
   List<Object> get props => [id];
@@ -41,7 +41,7 @@ class OnMovieWatchlistStatus extends MovieEvent {
 
 class OnAddMovieWatchlist extends MovieEvent {
   final MovieDetail movieDetail;
-  OnAddMovieWatchlist(this.movieDetail);
+  const OnAddMovieWatchlist(this.movieDetail);
 
   @override
   List<Object> get props => [movieDetail];
@@ -49,7 +49,7 @@ class OnAddMovieWatchlist extends MovieEvent {
 
 class OnRemoveMovieWatchlist extends MovieEvent {
   final MovieDetail movieDetail;
-  OnRemoveMovieWatchlist(this.movieDetail);
+  const OnRemoveMovieWatchlist(this.movieDetail);
 
   @override
   List<Object> get props => [movieDetail];
