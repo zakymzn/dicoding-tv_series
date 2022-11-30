@@ -70,6 +70,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
         title: const Text('Ditonton'),
         actions: [
           IconButton(
+            key: Key('search_tv'),
             onPressed: () {
               Navigator.pushNamed(context, searchTvRoute);
             },
