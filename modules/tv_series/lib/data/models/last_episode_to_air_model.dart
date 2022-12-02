@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:tv_series/tv_series.dart';
 
 class LastEpisodeToAirModel extends Equatable {
   const LastEpisodeToAirModel({
@@ -8,7 +9,6 @@ class LastEpisodeToAirModel extends Equatable {
     required this.name,
     required this.overview,
     required this.productionCode,
-    required this.runtime,
     required this.seasonNumber,
     required this.stillPath,
     required this.voteAverage,
@@ -21,9 +21,8 @@ class LastEpisodeToAirModel extends Equatable {
   final String name;
   final String overview;
   final String productionCode;
-  final dynamic runtime;
   final int seasonNumber;
-  final dynamic stillPath;
+  final String? stillPath;
   final double voteAverage;
   final int voteCount;
 
@@ -35,12 +34,24 @@ class LastEpisodeToAirModel extends Equatable {
         name: json["name"],
         overview: json["overview"],
         productionCode: json["production_code"],
-        runtime: json["runtime"],
         seasonNumber: json["season_number"],
         stillPath: json["still_path"],
         voteAverage: json["vote_average"],
         voteCount: json["vote_count"],
       );
+
+  LastEpisodeToAir toEntity() {
+    return LastEpisodeToAir(
+      airDate: airDate,
+      episodeNumber: episodeNumber,
+      id: id,
+      name: name,
+      overview: overview,
+      seasonNumber: seasonNumber,
+      voteAverage: voteAverage,
+      voteCount: voteCount,
+    );
+  }
 
   @override
   List<Object?> get props => [
@@ -50,7 +61,6 @@ class LastEpisodeToAirModel extends Equatable {
         name,
         overview,
         productionCode,
-        runtime,
         seasonNumber,
         stillPath,
         voteAverage,

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:tv_series/tv_series.dart';
 
 class GuestStarModel extends Equatable {
   const GuestStarModel({
@@ -25,6 +26,17 @@ class GuestStarModel extends Equatable {
         order: json["order"],
         profilePath: json["profile_path"],
       );
+
+  GuestStar toEntity() {
+    return GuestStar(
+      id: id,
+      name: name,
+      creditId: creditId,
+      character: character,
+      order: order,
+      profilePath: profilePath,
+    );
+  }
 
   @override
   List<Object?> get props => [

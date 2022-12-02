@@ -22,18 +22,15 @@ final testTvList = [testTv];
 
 const testTvDetail = TvDetail(
   backdropPath: "backdropPath",
-  lastEpisodeToAir: LastEpisodeToAirModel(
+  lastEpisodeToAir: LastEpisodeToAir(
     airDate: "airDate",
     episodeNumber: 1,
     id: 1,
     name: "name",
     overview: "overview",
-    runtime: 1,
     seasonNumber: 1,
     voteAverage: 1,
     voteCount: 1,
-    productionCode: 'productionCode',
-    stillPath: 'stillPath',
   ),
   name: "name",
   episodeRunTime: [1],
@@ -46,7 +43,7 @@ const testTvDetail = TvDetail(
     Genre(id: 1, name: "name"),
   ],
   seasons: [
-    SeasonModel(
+    Season(
         airDate: "airDate",
         episodeCount: 1,
         id: 1,
@@ -66,52 +63,46 @@ const testTvDetail = TvDetail(
 final testTvSeasonDetail = TvSeasonDetail(
   id: 'id',
   airDate: 'airDate',
-  episodes: const [
-    EpisodeModel(
-        airDate: 'airDate',
-        episodeNumber: 1,
-        crew: [
-          CrewInSeasonDetailModel(
-            department: 'department',
-            job: 'job',
-            creditId: 'creditId',
-            adult: false,
-            gender: 1,
-            id: 1,
-            knownForDepartment: 'knownForDepartment',
-            name: 'name',
-            originalName: 'originalName',
-            popularity: 1,
-            profilePath: 'profilePath',
-            order: 1,
-            character: 'character',
-          ),
-        ],
-        guestStars: [
-          CrewInSeasonDetailModel(
-            department: 'department',
-            job: 'job',
-            creditId: 'creditId',
-            adult: false,
-            gender: 1,
-            id: 1,
-            knownForDepartment: 'knownForDepartment',
-            name: 'name',
-            originalName: 'originalName',
-            popularity: 1,
-            profilePath: 'profilePath',
-            order: 1,
-            character: 'character',
-          ),
-        ],
-        id: 1,
-        name: 'name',
-        overview: 'overview',
-        productionCode: 'productionCode',
-        seasonNumber: 1,
-        stillPath: 'stillPath',
-        voteAverage: 1,
-        voteCount: 1)
+  episodes: [
+    Episode(
+      airDate: 'airDate',
+      episodeNumber: 1,
+      crew: [
+        CrewInSeasonDetail(
+          department: 'department',
+          job: 'job',
+          creditId: 'creditId',
+          adult: false,
+          id: 1,
+          knownForDepartment: 'knownForDepartment',
+          originalName: 'originalName',
+          popularity: 1,
+          profilePath: 'profilePath',
+          character: 'character',
+        ),
+      ],
+      guestStars: [
+        CrewInSeasonDetail(
+          department: 'department',
+          job: 'job',
+          creditId: 'creditId',
+          adult: false,
+          id: 1,
+          knownForDepartment: 'knownForDepartment',
+          originalName: 'originalName',
+          popularity: 1,
+          profilePath: 'profilePath',
+          character: 'character',
+        ),
+      ],
+      id: 1,
+      name: 'name',
+      overview: 'overview',
+      seasonNumber: 1,
+      stillPath: 'stillPath',
+      voteAverage: 1,
+      voteCount: 1,
+    )
   ],
   name: 'name',
   overview: 'overview',
@@ -122,8 +113,8 @@ final testTvSeasonDetail = TvSeasonDetail(
 
 final testTvEpisodeDetail = TvEpisodeDetail(
   airDate: 'airDate',
-  crew: const [
-    CrewInEpisodeDetailModel(
+  crew: [
+    CrewInEpisodeDetail(
       id: 1,
       creditId: 'creditId',
       name: 'name',
@@ -133,8 +124,8 @@ final testTvEpisodeDetail = TvEpisodeDetail(
     ),
   ],
   episodeNumber: 1,
-  guestStars: const [
-    GuestStarModel(
+  guestStars: [
+    GuestStar(
       id: 1,
       name: 'name',
       creditId: 'creditId',

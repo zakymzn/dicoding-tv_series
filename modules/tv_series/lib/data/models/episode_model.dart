@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:tv_series/tv_series.dart';
 
 import 'crew_in_season_detail_model.dart';
 
@@ -25,7 +26,7 @@ class EpisodeModel extends Equatable {
   final int id;
   final String name;
   final String overview;
-  final String productionCode;
+  final String? productionCode;
   final int seasonNumber;
   final String? stillPath;
   final double voteAverage;
@@ -47,6 +48,22 @@ class EpisodeModel extends Equatable {
         voteAverage: json["vote_average"].toDouble(),
         voteCount: json["vote_count"],
       );
+
+  Episode toEntity() {
+    return Episode(
+      airDate: airDate,
+      episodeNumber: episodeNumber,
+      crew: crew.map((e) => e.toEntity()).toList(),
+      guestStars: guestStars.map((e) => e.toEntity()).toList(),
+      id: id,
+      name: name,
+      overview: overview,
+      seasonNumber: seasonNumber,
+      stillPath: stillPath,
+      voteAverage: voteAverage,
+      voteCount: voteCount,
+    );
+  }
 
   @override
   List<Object?> get props => [

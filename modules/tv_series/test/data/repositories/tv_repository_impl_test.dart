@@ -202,7 +202,6 @@ void main() {
           name: 'name',
           overview: 'overview',
           productionCode: 'productionCode',
-          runtime: 1,
           seasonNumber: 1,
           stillPath: 'stillPath',
           voteAverage: 1,

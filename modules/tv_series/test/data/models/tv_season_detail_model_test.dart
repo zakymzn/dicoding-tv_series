@@ -63,48 +63,41 @@ void main() {
   final tTvSeasonDetail = TvSeasonDetail(
     id: 'id',
     airDate: 'airDate',
-    episodes: const [
-      EpisodeModel(
+    episodes: [
+      Episode(
         airDate: 'airDate',
         episodeNumber: 1,
         crew: [
-          CrewInSeasonDetailModel(
+          CrewInSeasonDetail(
             department: 'department',
             job: 'job',
             creditId: 'creditId',
             adult: false,
-            gender: 1,
             id: 1,
             knownForDepartment: 'knownForDepartment',
-            name: 'name',
             originalName: 'originalName',
             popularity: 1,
             profilePath: 'profilePath',
-            order: 1,
             character: 'character',
           ),
         ],
         guestStars: [
-          CrewInSeasonDetailModel(
+          CrewInSeasonDetail(
             department: 'department',
             job: 'job',
             creditId: 'creditId',
             adult: false,
-            gender: 1,
             id: 1,
             knownForDepartment: 'knownForDepartment',
-            name: 'name',
             originalName: 'originalName',
             popularity: 1,
             profilePath: 'profilePath',
-            order: 1,
             character: 'character',
           )
         ],
         id: 1,
         name: 'name',
         overview: 'overview',
-        productionCode: 'productionCode',
         seasonNumber: 1,
         stillPath: 'stillPath',
         voteAverage: 1,

@@ -39,7 +39,7 @@ class TvSeasonDetailResponse extends Equatable {
     return TvSeasonDetail(
       id: id,
       airDate: airDate,
-      episodes: episodes,
+      episodes: episodes.map((e) => e.toEntity()).toList(),
       name: name,
       overview: overview,
       seasonDetailId: seasonDetailId,

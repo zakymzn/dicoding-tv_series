@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:tv_series/tv_series.dart';
 
 class CrewInSeasonDetailModel extends Equatable {
   const CrewInSeasonDetailModel({
@@ -21,12 +22,12 @@ class CrewInSeasonDetailModel extends Equatable {
   final String? job;
   final String creditId;
   final bool? adult;
-  final int? gender;
-  final int? id;
-  final String? knownForDepartment;
-  final String? name;
-  final String? originalName;
-  final double? popularity;
+  final int gender;
+  final int id;
+  final String knownForDepartment;
+  final String name;
+  final String originalName;
+  final double popularity;
   final String? profilePath;
   final int? order;
   final String? character;
@@ -47,6 +48,21 @@ class CrewInSeasonDetailModel extends Equatable {
         order: json["order"],
         character: json["character"],
       );
+
+  CrewInSeasonDetail toEntity() {
+    return CrewInSeasonDetail(
+      department: department,
+      job: job,
+      creditId: creditId,
+      adult: adult,
+      id: id,
+      knownForDepartment: knownForDepartment,
+      originalName: originalName,
+      popularity: popularity,
+      profilePath: profilePath,
+      character: character,
+    );
+  }
 
   @override
   List<Object?> get props => [

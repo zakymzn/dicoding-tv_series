@@ -1,8 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:tv_series/domain/entities/tv_episode_detail.dart';
-
-import 'crew_in_episode_detail_model.dart';
-import 'guest_star_model.dart';
+import 'package:tv_series/tv_series.dart';
 
 class TvEpisodeDetailResponse extends Equatable {
   const TvEpisodeDetailResponse({
@@ -54,9 +51,9 @@ class TvEpisodeDetailResponse extends Equatable {
   TvEpisodeDetail toEntity() {
     return TvEpisodeDetail(
       airDate: airDate,
-      crew: crew,
+      crew: crew.map((e) => e.toEntity()).toList(),
       episodeNumber: episodeNumber,
-      guestStars: guestStars,
+      guestStars: guestStars.map((e) => e.toEntity()).toList(),
       name: name,
       overview: overview,
       id: id,

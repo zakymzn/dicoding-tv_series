@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:tv_series/tv_series.dart';
 
 class CrewInEpisodeDetailModel extends Equatable {
   const CrewInEpisodeDetailModel({
@@ -26,6 +27,17 @@ class CrewInEpisodeDetailModel extends Equatable {
         job: json["job"],
         profilePath: json["profile_path"],
       );
+
+  CrewInEpisodeDetail toEntity() {
+    return CrewInEpisodeDetail(
+      id: id,
+      creditId: creditId,
+      name: name,
+      department: department,
+      job: job,
+      profilePath: profilePath,
+    );
+  }
 
   @override
   List<Object?> get props => [

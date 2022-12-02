@@ -1,8 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tv_series/data/models/crew_in_episode_detail_model.dart';
-import 'package:tv_series/data/models/guest_star_model.dart';
-import 'package:tv_series/data/models/tv_episode_detail_model.dart';
-import 'package:tv_series/domain/entities/tv_episode_detail.dart';
+import 'package:tv_series/tv_series.dart';
 
 void main() {
   final tTvEpisodeDetailModel = TvEpisodeDetailResponse(
@@ -40,8 +37,8 @@ void main() {
 
   final tTvEpisodeDetail = TvEpisodeDetail(
     airDate: 'airDate',
-    crew: const [
-      CrewInEpisodeDetailModel(
+    crew: [
+      CrewInEpisodeDetail(
         id: 1,
         creditId: 'creditId',
         name: 'name',
@@ -51,8 +48,8 @@ void main() {
       ),
     ],
     episodeNumber: 1,
-    guestStars: const [
-      GuestStarModel(
+    guestStars: [
+      GuestStar(
         id: 1,
         name: 'name',
         creditId: 'creditId',

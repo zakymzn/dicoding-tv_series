@@ -115,7 +115,7 @@ class TvDetailResponse extends Equatable {
   TvDetail toEntity() {
     return TvDetail(
       backdropPath: backdropPath,
-      lastEpisodeToAir: lastEpisodeToAir,
+      lastEpisodeToAir: lastEpisodeToAir.toEntity(),
       name: name,
       episodeRunTime: episodeRunTime,
       firstAirDate: firstAirDate,
@@ -124,7 +124,7 @@ class TvDetailResponse extends Equatable {
       numberOfSeasons: numberOfSeasons,
       originCountry: originCountry,
       genres: genres.map((e) => e.toEntity()).toList(),
-      seasons: seasons,
+      seasons: seasons.map((e) => e.toEntity()).toList(),
       id: id,
       originalName: originalName,
       overview: overview,

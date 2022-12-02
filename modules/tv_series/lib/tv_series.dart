@@ -23,6 +23,12 @@ export 'domain/entities/tv.dart';
 export 'domain/entities/tv_detail.dart';
 export 'domain/entities/tv_episode_detail.dart';
 export 'domain/entities/tv_season_detail.dart';
+export 'domain/entities/crew_in_episode_detail.dart';
+export 'domain/entities/crew_in_season_detail.dart';
+export 'domain/entities/episode.dart';
+export 'domain/entities/guest_star.dart';
+export 'domain/entities/last_episode_to_air.dart';
+export 'domain/entities/season.dart';
 
 export 'domain/repositories/tv_repository.dart';
 

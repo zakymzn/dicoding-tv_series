@@ -24,7 +24,7 @@ class TvDetail extends Equatable {
   });
 
   final String? backdropPath;
-  final LastEpisodeToAirModel lastEpisodeToAir;
+  final LastEpisodeToAir lastEpisodeToAir;
   final String name;
   final List<dynamic> episodeRunTime;
   final String firstAirDate;
@@ -33,7 +33,7 @@ class TvDetail extends Equatable {
   final int numberOfSeasons;
   final List<dynamic> originCountry;
   final List<Genre> genres;
-  final List<dynamic> seasons;
+  final List<Season> seasons;
   final int id;
   final String originalName;
   final String overview;
