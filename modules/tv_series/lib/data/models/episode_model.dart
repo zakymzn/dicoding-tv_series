@@ -1,8 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:tv_series/tv_series.dart';
 
-import 'crew_in_season_detail_model.dart';
-
 class EpisodeModel extends Equatable {
   const EpisodeModel({
     required this.airDate,
@@ -19,7 +17,7 @@ class EpisodeModel extends Equatable {
     required this.voteCount,
   });
 
-  final String airDate;
+  final String? airDate;
   final int episodeNumber;
   final List<CrewInSeasonDetailModel> crew;
   final List<CrewInSeasonDetailModel> guestStars;

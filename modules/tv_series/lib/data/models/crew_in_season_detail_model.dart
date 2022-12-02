@@ -22,7 +22,7 @@ class CrewInSeasonDetailModel extends Equatable {
   final String? job;
   final String creditId;
   final bool? adult;
-  final int gender;
+  final int? gender;
   final int id;
   final String knownForDepartment;
   final String name;

@@ -103,6 +103,21 @@ void main() {
           equals(const Left(
               ConnectionFailure('Failed to connect to the network'))));
     });
+
+    test(
+      'should return SSL failure when an error occurs during SSL verification',
+      () async {
+        when(mockRemoteDataSource.getNowPlayingTv())
+            .thenThrow(const TlsException('CERTIFICATE_VERIFY_FAILED'));
+
+        final result = await repository.getNowPlayingTv();
+
+        verify(mockRemoteDataSource.getNowPlayingTv());
+
+        expect(result,
+            equals(const Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'))));
+      },
+    );
   });
 
   group('Popular Tv', () {
@@ -137,6 +152,21 @@ void main() {
       expect(result,
           const Left(ConnectionFailure('Failed to connect to the network')));
     });
+
+    test(
+      'should return SSL failure when an error occurs during SSL verification',
+      () async {
+        when(mockRemoteDataSource.getPopularTv())
+            .thenThrow(const TlsException('CERTIFICATE_VERIFY_FAILED'));
+
+        final result = await repository.getPopularTv();
+
+        verify(mockRemoteDataSource.getPopularTv());
+
+        expect(result,
+            equals(const Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'))));
+      },
+    );
   });
 
   group('Top Rated Tv', () {
@@ -171,6 +201,21 @@ void main() {
       expect(result,
           const Left(ConnectionFailure('Failed to connect to the network')));
     });
+
+    test(
+      'should return SSL failure when an error occurs during SSL verification',
+      () async {
+        when(mockRemoteDataSource.getTopRatedTv())
+            .thenThrow(const TlsException('CERTIFICATE_VERIFY_FAILED'));
+
+        final result = await repository.getTopRatedTv();
+
+        verify(mockRemoteDataSource.getTopRatedTv());
+
+        expect(result,
+            equals(const Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'))));
+      },
+    );
   });
 
   group(
@@ -276,6 +321,21 @@ void main() {
             equals(const Left(
                 ConnectionFailure('Failed to connect to the network'))));
       });
+
+      test(
+        'should return SSL failure when an error occurs during SSL verification',
+        () async {
+          when(mockRemoteDataSource.getTvDetail(tId))
+              .thenThrow(const TlsException('CERTIFICATE_VERIFY_FAILED'));
+
+          final result = await repository.getTvDetail(tId);
+
+          verify(mockRemoteDataSource.getTvDetail(tId));
+
+          expect(result,
+              equals(const Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'))));
+        },
+      );
     },
   );
 
@@ -384,6 +444,21 @@ void main() {
                   ConnectionFailure('Failed to connect to the network'))));
         },
       );
+
+      test(
+        'should return SSL failure when an error occurs during SSL verification',
+        () async {
+          when(mockRemoteDataSource.getTvSeasonDetail(tId, tSeasonNumber))
+              .thenThrow(const TlsException('CERTIFICATE_VERIFY_FAILED'));
+
+          final result = await repository.getTvSeasonDetail(tId, tSeasonNumber);
+
+          verify(mockRemoteDataSource.getTvSeasonDetail(tId, tSeasonNumber));
+
+          expect(result,
+              equals(const Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'))));
+        },
+      );
     },
   );
 
@@ -477,6 +552,24 @@ void main() {
                   ConnectionFailure('Failed to connect to the network'))));
         },
       );
+
+      test(
+        'should return SSL failure when an error occurs during SSL verification',
+        () async {
+          when(mockRemoteDataSource.getTvEpisodeDetail(
+                  tId, tSeasonNumber, tEpisodeNumber))
+              .thenThrow(const TlsException('CERTIFICATE_VERIFY_FAILED'));
+
+          final result = await repository.getTvEpisodeDetail(
+              tId, tSeasonNumber, tEpisodeNumber);
+
+          verify(mockRemoteDataSource.getTvEpisodeDetail(
+              tId, tSeasonNumber, tEpisodeNumber));
+
+          expect(result,
+              equals(const Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'))));
+        },
+      );
     },
   );
 
@@ -522,6 +615,21 @@ void main() {
           equals(const Left(
               ConnectionFailure('Failed to connect to the network'))));
     });
+
+    test(
+      'should return SSL failure when an error occurs during SSL verification',
+      () async {
+        when(mockRemoteDataSource.getTvRecommendations(tId))
+            .thenThrow(const TlsException('CERTIFICATE_VERIFY_FAILED'));
+
+        final result = await repository.getTvRecommendations(tId);
+
+        verify(mockRemoteDataSource.getTvRecommendations(tId));
+
+        expect(result,
+            equals(const Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'))));
+      },
+    );
   });
 
   group('Search Tv', () {
@@ -558,6 +666,21 @@ void main() {
       expect(result,
           const Left(ConnectionFailure('Failed to connect to the network')));
     });
+
+    test(
+      'should return SSL failure when an error occurs during SSL verification',
+      () async {
+        when(mockRemoteDataSource.searchTv(tQuery))
+            .thenThrow(const TlsException('CERTIFICATE_VERIFY_FAILED'));
+
+        final result = await repository.searchTv(tQuery);
+
+        verify(mockRemoteDataSource.searchTv(tQuery));
+
+        expect(result,
+            equals(const Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'))));
+      },
+    );
   });
 
   group('save watchlist', () {
